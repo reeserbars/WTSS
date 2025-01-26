@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cuh1yaoty6gvf"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_rd5nv"]
-[ext_resource type="Shader" path="res://pixelart_stylizer2.gdshader" id="2_bxrj4"]
+[ext_resource type="Shader" path="res://shaders/pixelart_stylizer2.gdshader" id="2_bxrj4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_57txa"]
 size = Vector2(10, 10)
@@ -12,7 +12,7 @@ shader = ExtResource("2_bxrj4")
 shader_parameter/depth_threshold = 0.05
 shader_parameter/reverse_depth_threshold = 0.25
 shader_parameter/normal_threshold = 0.6
-shader_parameter/darken_amount = 0.3
+shader_parameter/darken_amount = 0.91
 shader_parameter/lighten_amount = 1.5
 shader_parameter/normal_edge_bias = Vector3(1, 1, 1)
 shader_parameter/light_direction = Vector3(-0.96, -0.18, 0.2)

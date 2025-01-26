@@ -17,9 +17,19 @@ shape = SubResource("CapsuleShape3D_mxhwf")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 0, 0)
 pixel_size = 0.1
+shaded = true
 texture_filter = 0
 texture = ExtResource("2_ngu3k")
 hframes = 7
 vframes = 8
 region_enabled = true
 region_rect = Rect2(0, 32, 224, 256)
+
+[node name="FlashPivot" type="Marker3D" parent="."]
+
+[node name="Flashlight" type="SpotLight3D" parent="FlashPivot"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+light_energy = 4.232
+light_indirect_energy = 0.838
+spot_range = 15.27
+spot_angle = 40.8774

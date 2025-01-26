@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://djc2wirwhg3g"]
+[gd_scene load_steps=19 format=3 uid="uid://djc2wirwhg3g"]
 
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://camera.tscn" id="1_nnx1f"]
 [ext_resource type="ArrayMesh" uid="uid://d037pyppkxhc5" path="res://van/van.obj" id="2_4xknd"]
 [ext_resource type="Texture2D" uid="uid://cd7mhw2l6pojo" path="res://van/Van.png" id="2_cupxo"]
 [ext_resource type="Texture2D" uid="uid://rnhh3oljmo7k" path="res://van/Wheel.png" id="3_12wpk"]
 [ext_resource type="PackedScene" uid="uid://bslt1wqktv76a" path="res://player/player_placeholder.tscn" id="5_ukydb"]
+[ext_resource type="PackedScene" uid="uid://byhr6q4vp2e23" path="res://interactable.tscn" id="6_enij3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdoky"]
 albedo_texture = ExtResource("2_cupxo")
@@ -27,19 +28,11 @@ size = Vector3(4.25372, 1, 2.1665)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78ma3"]
 albedo_color = Color(0.190762, 0.190762, 0.190762, 1)
 
-[sub_resource type="Environment" id="Environment_t4b23"]
+[sub_resource type="Environment" id="Environment_wh5m0"]
 background_mode = 1
-background_color = Color(0.0131092, 0.0466929, 0.0832401, 1)
-ambient_light_source = 3
-ambient_light_color = Color(0.340339, 0.340339, 0.340339, 1)
-ambient_light_sky_contribution = 0.17
+ambient_light_energy = 0.1
 tonemap_mode = 2
-sdfgi_min_cell_size = 0.4
-sdfgi_cascade0_distance = 25.6
-sdfgi_max_distance = 409.6
-volumetric_fog_density = 0.1026
-volumetric_fog_emission = Color(0.941176, 0.470588, 0.337255, 1)
-adjustment_saturation = 0.01
+tonemap_white = 3.0
 
 [sub_resource type="Animation" id="Animation_clmft"]
 length = 3.0
@@ -47,7 +40,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewportContainer/SubViewport/van:position")
+tracks/0/path = NodePath("van:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -59,7 +52,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SubViewportContainer/SubViewport/van:rotation")
+tracks/1/path = NodePath("van:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -71,7 +64,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SubViewportContainer/SubViewport/Donut:rotation")
+tracks/2/path = NodePath("Donut:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -96,64 +89,55 @@ _data = {
 
 [node name="Demo" type="Node3D"]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-stretch = true
-stretch_shrink = 3
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(80, 45)
-render_target_update_mode = 4
-
-[node name="van" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+[node name="van" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45422, 0.992346, -3.27157)
 
-[node name="Van" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/van"]
+[node name="Van" type="MeshInstance3D" parent="van"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.319089, 0)
 mesh = ExtResource("2_4xknd")
-skeleton = NodePath("../../../..")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_mdoky")
 surface_material_override/1 = SubResource("StandardMaterial3D_0xhhy")
 surface_material_override/2 = SubResource("StandardMaterial3D_tadgw")
 surface_material_override/3 = SubResource("StandardMaterial3D_on5b8")
 surface_material_override/4 = SubResource("StandardMaterial3D_alhbr")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/van"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="van"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11752, 0, 0.010498)
 shape = SubResource("BoxShape3D_i2n7g")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(3.93516, 0, 3.08456, 0, 5, 0, -3.08456, 0, 3.93516, 0, -0.350363, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(3.93516, 0, 3.08456, 0, 5, 0, -3.08456, 0, 3.93516, -0.649942, -0.350363, -0.82917)
 use_collision = true
-size = Vector3(2.72815, 0.178711, 3.22961)
+size = Vector3(2.72815, 0.178711, 2.0806)
 material = SubResource("StandardMaterial3D_78ma3")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
-environment = SubResource("Environment_t4b23")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wh5m0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport"]
-root_node = NodePath("../../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_y7lvy")
 }
 autoplay = "RESET"
 
-[node name="CharacterBody3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_ukydb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0435997, 0.514277, -0.774212)
+[node name="CharacterBody3D" parent="." instance=ExtResource("5_ukydb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17504, 0.514277, 2.14935)
 
-[node name="Camera" parent="SubViewportContainer/SubViewport/CharacterBody3D" instance=ExtResource("1_nnx1f")]
+[node name="Camera" parent="CharacterBody3D" instance=ExtResource("1_nnx1f")]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 18.255, 19.375)
+fov = 38.9861
+near = 0.008
+far = 3990.7
 
-[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0435997, 2.44346, 0.00315654)
+[node name="SurroundLight" type="SpotLight3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, -0.0509999, 2.188, -0.921917)
+spot_range = 5.86622
+spot_angle = 55.2229
 
-[node name="Donut" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523918, 0.700336, -0.484809, 0.290416, 0.388199, 0.87462, 2.48717, 1.06462, 0)
+[node name="Donut" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523918, 0.700336, -0.484809, 0.290415, 0.388199, 0.87462, 2.59845, 1.06462, -0.0338063)
 mesh = SubResource("TorusMesh_bb0yi")
-skeleton = NodePath("../../..")
+
+[node name="Interactable" parent="." instance=ExtResource("6_enij3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.239367, 0.549617, 0.207944)

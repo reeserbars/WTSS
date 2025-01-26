@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://byhr6q4vp2e23"]
+
+[ext_resource type="Script" path="res://Interactable.gd" id="1_8qe2b"]
+[ext_resource type="Shader" path="res://shaders/EdgeHighlight.gdshader" id="1_dj4ts"]
+[ext_resource type="Texture2D" uid="uid://1g56xnyset5b" path="res://UI/E.png" id="3_i0ioo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqbwy"]
+render_priority = 0
+shader = ExtResource("1_dj4ts")
+shader_parameter/is_hovered = false
+shader_parameter/highlight_color = Vector3(1, 1, 1)
+shader_parameter/edge_width = 0.1
+shader_parameter/base_color = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e5o6s"]
+material = SubResource("ShaderMaterial_tqbwy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_02cec"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yc2cx"]
+size = Vector3(1.25, 1.25, 1.25)
+
+[node name="Interactable" type="StaticBody3D"]
+script = ExtResource("1_8qe2b")
+mesh_instance_path = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_tqbwy")
+mesh = SubResource("BoxMesh_e5o6s")
+
+[node name="InteractableCollisionbox" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_02cec")
+
+[node name="InteractionRange" type="Area3D" parent="."]
+
+[node name="InteractionRangeHitbox" type="CollisionShape3D" parent="InteractionRange"]
+shape = SubResource("BoxShape3D_yc2cx")
+
+[node name="ButtonPrompt" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 1.11725, 0)
+visible = false
+pixel_size = 0.03
+texture_filter = 0
+texture = ExtResource("3_i0ioo")
+
+[connection signal="body_entered" from="InteractionRange" to="." method="_on_interaction_range_body_entered"]
+[connection signal="body_exited" from="InteractionRange" to="." method="_on_interaction_range_body_exited"]
