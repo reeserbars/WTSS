@@ -4,10 +4,10 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready var flash_pivot = $FlashPivot
-@onready var anim_tree = $AnimationTree["parameters/playback"]
+@onready var anim_tree = $AnimationTree
 
 func _ready() -> void:
-	anim_tree.travel("Walk")
+	pass
 
 func _physics_process(delta: float) -> void:
 	# Add gravity
