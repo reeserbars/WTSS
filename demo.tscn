@@ -1,11 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://djc2wirwhg3g"]
+[gd_scene load_steps=20 format=3 uid="uid://djc2wirwhg3g"]
 
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://camera.tscn" id="1_nnx1f"]
 [ext_resource type="ArrayMesh" uid="uid://d037pyppkxhc5" path="res://van/van.obj" id="2_4xknd"]
 [ext_resource type="Texture2D" uid="uid://cd7mhw2l6pojo" path="res://van/Van.png" id="2_cupxo"]
 [ext_resource type="Texture2D" uid="uid://rnhh3oljmo7k" path="res://van/Wheel.png" id="3_12wpk"]
 [ext_resource type="PackedScene" uid="uid://bslt1wqktv76a" path="res://player/player_placeholder.tscn" id="5_ukydb"]
-[ext_resource type="PackedScene" uid="uid://byhr6q4vp2e23" path="res://interactable.tscn" id="6_enij3"]
+[ext_resource type="PackedScene" uid="uid://byhr6q4vp2e23" path="res://environment/interactable.tscn" id="6_enij3"]
+[ext_resource type="PackedScene" uid="uid://c7ap3vy012rbt" path="res://environment/wall.tscn" id="7_8udc0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdoky"]
 albedo_texture = ExtResource("2_cupxo")
@@ -106,10 +107,20 @@ surface_material_override/4 = SubResource("StandardMaterial3D_alhbr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11752, 0, 0.010498)
 shape = SubResource("BoxShape3D_i2n7g")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+snap = 1e-06
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(3.93516, 0, 3.08456, 0, 5, 0, -3.08456, 0, 3.93516, -0.649942, -0.350363, -0.82917)
 use_collision = true
 size = Vector3(2.72815, 0.178711, 2.0806)
+material = SubResource("StandardMaterial3D_78ma3")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(3.93516, 0, 3.08456, 0, 5, 0, -3.08456, 0, 3.93516, -6.06053, -0.350363, 6.91156)
+use_collision = true
+size = Vector3(2.12885, 0.178711, 2.0806)
 material = SubResource("StandardMaterial3D_78ma3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -122,7 +133,7 @@ libraries = {
 autoplay = "RESET"
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("5_ukydb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17504, 0.514277, 2.14935)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.85181, 0.777841, 2.05126)
 
 [node name="Camera" parent="CharacterBody3D" instance=ExtResource("1_nnx1f")]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 18.255, 19.375)
@@ -136,8 +147,11 @@ spot_range = 5.86622
 spot_angle = 55.2229
 
 [node name="Donut" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523918, 0.700336, -0.484809, 0.290415, 0.388199, 0.87462, 2.59845, 1.06462, -0.0338063)
+transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523918, 0.700336, -0.484809, 0.290416, 0.388199, 0.87462, 2.59845, 1.06462, -0.0338063)
 mesh = SubResource("TorusMesh_bb0yi")
 
 [node name="Interactable" parent="." instance=ExtResource("6_enij3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.239367, 0.549617, 0.207944)
+
+[node name="Wall" parent="." instance=ExtResource("7_8udc0")]
+transform = Transform3D(0.999801, 0, -0.0199303, 0, 1, 0, 0.0199303, 0, 0.999801, -9.29841, 1.4617, 5.80368)

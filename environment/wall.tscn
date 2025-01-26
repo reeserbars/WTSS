@@ -1,10 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7ap3vy012rbt"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7eoao"]
+size = Vector3(10.67, 3.52, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d1p58"]
+size = Vector3(10.72, 3.52, 1)
 
 [node name="Wall" type="StaticBody3D"]
+input_ray_pickable = false
 
 [node name="WallMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_7eoao")
