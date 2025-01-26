@@ -1,0 +1,159 @@
+[gd_scene load_steps=18 format=3 uid="uid://djc2wirwhg3g"]
+
+[ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://camera.tscn" id="1_nnx1f"]
+[ext_resource type="ArrayMesh" uid="uid://d037pyppkxhc5" path="res://van/van.obj" id="2_4xknd"]
+[ext_resource type="Texture2D" uid="uid://cd7mhw2l6pojo" path="res://van/Van.png" id="2_cupxo"]
+[ext_resource type="Texture2D" uid="uid://rnhh3oljmo7k" path="res://van/Wheel.png" id="3_12wpk"]
+[ext_resource type="PackedScene" uid="uid://bslt1wqktv76a" path="res://player/player_placeholder.tscn" id="5_ukydb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdoky"]
+albedo_texture = ExtResource("2_cupxo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xhhy"]
+albedo_texture = ExtResource("3_12wpk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tadgw"]
+albedo_texture = ExtResource("3_12wpk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_on5b8"]
+albedo_texture = ExtResource("3_12wpk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_alhbr"]
+albedo_texture = ExtResource("3_12wpk")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i2n7g"]
+size = Vector3(4.25372, 1, 2.1665)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78ma3"]
+albedo_color = Color(0.190762, 0.190762, 0.190762, 1)
+
+[sub_resource type="Environment" id="Environment_t4b23"]
+background_mode = 1
+background_color = Color(0.0131092, 0.0466929, 0.0832401, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.340339, 0.340339, 0.340339, 1)
+ambient_light_sky_contribution = 0.17
+tonemap_mode = 2
+sdfgi_min_cell_size = 0.4
+sdfgi_cascade0_distance = 25.6
+sdfgi_max_distance = 409.6
+volumetric_fog_density = 0.1026
+volumetric_fog_emission = Color(0.941176, 0.470588, 0.337255, 1)
+adjustment_saturation = 0.01
+
+[sub_resource type="Animation" id="Animation_clmft"]
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/van:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(5.45422, 0.992346, -3.27157), Vector3(-1.6537, 0.992346, -2.78559)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/van:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(1.93333, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.755448, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SubViewportContainer/SubViewport/Donut:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.506145, -6.28319, 0.642281), Vector3(0.506145, 6.28319, 0.642281)]
+}
+
+[sub_resource type="Animation" id="Animation_b55y7"]
+resource_name = "loop"
+length = 10.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7lvy"]
+_data = {
+"RESET": SubResource("Animation_clmft"),
+"loop": SubResource("Animation_b55y7")
+}
+
+[sub_resource type="TorusMesh" id="TorusMesh_bb0yi"]
+
+[node name="Demo" type="Node3D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(80, 45)
+render_target_update_mode = 4
+
+[node name="van" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45422, 0.992346, -3.27157)
+
+[node name="Van" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/van"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.319089, 0)
+mesh = ExtResource("2_4xknd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_mdoky")
+surface_material_override/1 = SubResource("StandardMaterial3D_0xhhy")
+surface_material_override/2 = SubResource("StandardMaterial3D_tadgw")
+surface_material_override/3 = SubResource("StandardMaterial3D_on5b8")
+surface_material_override/4 = SubResource("StandardMaterial3D_alhbr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/van"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11752, 0, 0.010498)
+shape = SubResource("BoxShape3D_i2n7g")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(3.93516, 0, 3.08456, 0, 5, 0, -3.08456, 0, 3.93516, 0, -0.350363, 0)
+use_collision = true
+size = Vector3(2.72815, 0.178711, 3.22961)
+material = SubResource("StandardMaterial3D_78ma3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_t4b23")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_y7lvy")
+}
+autoplay = "RESET"
+
+[node name="CharacterBody3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_ukydb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0435997, 0.514277, -0.774212)
+
+[node name="Camera" parent="SubViewportContainer/SubViewport/CharacterBody3D" instance=ExtResource("1_nnx1f")]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 18.255, 19.375)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0435997, 2.44346, 0.00315654)
+
+[node name="Donut" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523918, 0.700336, -0.484809, 0.290416, 0.388199, 0.87462, 2.48717, 1.06462, 0)
+mesh = SubResource("TorusMesh_bb0yi")
+skeleton = NodePath("../../..")
