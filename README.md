@@ -14,8 +14,8 @@ Inspired by [this shader Kody King](https://threejs.org/examples/webgl_postproce
 ## Notes
 
 - Orthographic camera has some quirks that are non-specific to the shader:
-    - SDFGI & VocelGI not supported [(Github issue)](https://github.com/godotengine/godot/issues/70944)
-    - DirectionalLight3D shadows behave weird. To fix configure either your Camera's `Far` property or your DirectionalLight3D's `Split 1` property.
+	- SDFGI & VocelGI not supported [(Github issue)](https://github.com/godotengine/godot/issues/70944)
+	- DirectionalLight3D shadows behave weird. To fix configure either your Camera's `Far` property or your DirectionalLight3D's `Split 1` property.
 - Special thanks to [oJadeo](https://github.com/oJadeo) for informing me about Godot 4's normal buffer :)
 
 ## License

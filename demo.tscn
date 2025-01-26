@@ -154,4 +154,4 @@ mesh = SubResource("TorusMesh_bb0yi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.239367, 0.549617, 0.207944)
 
 [node name="Wall" parent="." instance=ExtResource("7_8udc0")]
-transform = Transform3D(0.999801, 0, -0.0199303, 0, 1, 0, 0.0199303, 0, 0.999801, -9.29841, 1.4617, 5.80368)
+transform = Transform3D(0.999801, 0, -0.0199303, 0, 1, 0, 0.0199303, 0, 0.999801, -9.29841, 1.4617, 4.55184)
