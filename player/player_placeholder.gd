@@ -3,40 +3,83 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+var input_dir = Vector2.ZERO
+
 @onready var flash_pivot = $FlashPivot
-@onready var anim_tree = $AnimationTree
+@onready var anim_player = $AnimationPlayer
 
 func _ready() -> void:
-	pass
+	anim_player.play("Idle/idle_down")
 
 func _physics_process(delta: float) -> void:
 	# Add gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
+
 	# Handle movement
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+	var new_input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_dir = new_input_dir
+	# Convert input to 3D direction
+	var direction = Vector3.ZERO
+	direction.x = input_dir.x
+	direction.z = input_dir.y
+	direction = direction.normalized()
+	direction = transform.basis * direction
+
+	# Apply movement
+	var target_velocity = direction * SPEED
+	velocity.x = lerpf(velocity.x, target_velocity.x, 10.0 * delta)
+	velocity.z = lerpf(velocity.z, target_velocity.z, 10.0 * delta)
+
+	# Update animation based on movement direction
+	update_animation()
+
 	move_and_slide()
-	
-	# Update animation blend amount
-	anim_tree.set("parameters/Walk/blend_amount", input_dir)
-	
+
 	# Rotate FlashPivot towards the mouse
 	rotate_flash_pivot_towards_mouse()
+
+func update_animation():
+	if velocity == Vector3.ZERO:
+		if input_dir == Vector2(0, 1):
+			anim_player.play("Idle/idle_down")
+		elif input_dir == Vector2(-1, 1):
+			anim_player.play("Idle/idle_down_left")
+		elif input_dir == Vector2(1, 1):
+			anim_player.play("Idle/idle_down_right")
+		elif input_dir == Vector2(-1, 0):
+			anim_player.play("Idle/idle_left")
+		elif input_dir == Vector2(1, 0):
+			anim_player.play("Idle/idle_right")
+		elif input_dir == Vector2(0, -1):
+			anim_player.play("Idle/idle_up")
+		elif input_dir == Vector2(-1, -1):
+			anim_player.play("Idle/idle_up_left")
+		elif input_dir == Vector2(1, -1):
+			anim_player.play("Idle/idle_up_right")
+	else:
+		if input_dir == Vector2(0, 1):
+			anim_player.play("Walk/walk_down")
+		elif input_dir == Vector2(-1, 1):
+			anim_player.play("Walk/walk_down_left")
+		elif input_dir == Vector2(1, 1):
+			anim_player.play("Walk/walk_down_right")
+		elif input_dir == Vector2(-1, 0):
+			anim_player.play("Walk/walk_left")
+		elif input_dir == Vector2(1, 0):
+			anim_player.play("Walk/walk_right")
+		elif input_dir == Vector2(0, -1):
+			anim_player.play("Walk/walk_up")
+		elif input_dir == Vector2(-1, -1):
+			anim_player.play("Walk/walk_up_left")
+		elif input_dir == Vector2(1, -1):
+			anim_player.play("Walk/walk_up_right")
 
 func rotate_flash_pivot_towards_mouse():
 	var camera = get_viewport().get_camera_3d()
 	if not camera:
 		return
-	
+
 	# Get mouse position in world space
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse_pos)
@@ -55,7 +98,7 @@ func rotate_flash_pivot_towards_mouse():
 	if result:
 		var target_pos = result.position
 		var direction = (target_pos - flash_pivot.global_transform.origin).normalized()
-		
+
 		# Calculate the target rotation around the Y-axis
 		var target_yaw = atan2(direction.x, direction.z)
 		flash_pivot.rotation.y = target_yaw

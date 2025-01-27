@@ -34,6 +34,7 @@ background_mode = 1
 ambient_light_energy = 0.1
 tonemap_mode = 2
 tonemap_white = 3.0
+volumetric_fog_enabled = true
 
 [sub_resource type="Animation" id="Animation_clmft"]
 length = 3.0
@@ -89,6 +90,13 @@ _data = {
 [sub_resource type="TorusMesh" id="TorusMesh_bb0yi"]
 
 [node name="Demo" type="Node3D"]
+
+[node name="Lightsourcestreetlamp" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, -6.0867, 2.96584, 9.59834)
+light_energy = 4.717
+light_volumetric_fog_energy = 2.99
+spot_range = 5.86622
+spot_angle = 55.2229
 
 [node name="van" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45422, 0.992346, -3.27157)
