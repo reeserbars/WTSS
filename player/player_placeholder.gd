@@ -26,15 +26,15 @@ func _physics_process(delta: float) -> void:
 	var target_velocity = direction * SPEED
 	velocity.x = lerpf(velocity.x, target_velocity.x, 10.0 * delta)
 	velocity.z = lerpf(velocity.z, target_velocity.z, 10.0 * delta)
-
-	anim_tree.get("parameters/playback").travel("Idle")
-	anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", input_dir)
-	print(anim_tree.get("parameters/Idle/BlendSpace2D/blend_position"))
-
-	if velocity.x > 0:
-		$Sprite3D.flip_h = true
+	
+	if direction != Vector3.ZERO:
+		anim_tree.get("parameters/playback").travel("Walk")
+		anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", input_dir)
+		anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", input_dir)
 	else:
-		$Sprite3D.flip_h = false
+		anim_tree.get("parameters/playback").travel("Idle")
+
+
 
 
 	move_and_slide()
