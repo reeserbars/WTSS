@@ -6,10 +6,7 @@ const JUMP_VELOCITY = 4.5
 var input_dir = Vector2.ZERO
 
 @onready var flash_pivot = $FlashPivot
-@onready var anim_player = $AnimationPlayer
-
-func _ready() -> void:
-	anim_player.play("Idle/idle_down")
+@onready var anim_tree = $AnimationTree
 
 func _physics_process(delta: float) -> void:
 	# Add gravity
@@ -25,55 +22,25 @@ func _physics_process(delta: float) -> void:
 	direction.z = input_dir.y
 	direction = direction.normalized()
 	direction = transform.basis * direction
-
 	# Apply movement
 	var target_velocity = direction * SPEED
 	velocity.x = lerpf(velocity.x, target_velocity.x, 10.0 * delta)
 	velocity.z = lerpf(velocity.z, target_velocity.z, 10.0 * delta)
 
-	# Update animation based on movement direction
-	update_animation()
+	anim_tree.get("parameters/playback").travel("Idle")
+	anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", input_dir)
+	print(anim_tree.get("parameters/Idle/BlendSpace2D/blend_position"))
+
+	if velocity.x > 0:
+		$Sprite3D.flip_h = true
+	else:
+		$Sprite3D.flip_h = false
+
 
 	move_and_slide()
-
 	# Rotate FlashPivot towards the mouse
 	rotate_flash_pivot_towards_mouse()
 
-func update_animation():
-	if velocity == Vector3.ZERO:
-		if input_dir == Vector2(0, 1):
-			anim_player.play("Idle/idle_down")
-		elif input_dir == Vector2(-1, 1):
-			anim_player.play("Idle/idle_down_left")
-		elif input_dir == Vector2(1, 1):
-			anim_player.play("Idle/idle_down_right")
-		elif input_dir == Vector2(-1, 0):
-			anim_player.play("Idle/idle_left")
-		elif input_dir == Vector2(1, 0):
-			anim_player.play("Idle/idle_right")
-		elif input_dir == Vector2(0, -1):
-			anim_player.play("Idle/idle_up")
-		elif input_dir == Vector2(-1, -1):
-			anim_player.play("Idle/idle_up_left")
-		elif input_dir == Vector2(1, -1):
-			anim_player.play("Idle/idle_up_right")
-	else:
-		if input_dir == Vector2(0, 1):
-			anim_player.play("Walk/walk_down")
-		elif input_dir == Vector2(-1, 1):
-			anim_player.play("Walk/walk_down_left")
-		elif input_dir == Vector2(1, 1):
-			anim_player.play("Walk/walk_down_right")
-		elif input_dir == Vector2(-1, 0):
-			anim_player.play("Walk/walk_left")
-		elif input_dir == Vector2(1, 0):
-			anim_player.play("Walk/walk_right")
-		elif input_dir == Vector2(0, -1):
-			anim_player.play("Walk/walk_up")
-		elif input_dir == Vector2(-1, -1):
-			anim_player.play("Walk/walk_up_left")
-		elif input_dir == Vector2(1, -1):
-			anim_player.play("Walk/walk_up_right")
 
 func rotate_flash_pivot_towards_mouse():
 	var camera = get_viewport().get_camera_3d()

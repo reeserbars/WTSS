@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bslt1wqktv76a"]
+[gd_scene load_steps=19 format=3 uid="uid://bslt1wqktv76a"]
 
 [ext_resource type="Script" path="res://player/player_placeholder.gd" id="1_onbbf"]
 [ext_resource type="AnimationLibrary" uid="uid://64ej0pet4wjp" path="res://player/Idle.res" id="2_ecepc"]
@@ -8,6 +8,67 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxhwf"]
 radius = 0.318209
 height = 1.36994
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8v3bu"]
+animation = &"Idle/idle_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7fg4v"]
+animation = &"Idle/idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_88lft"]
+animation = &"Idle/idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5d38s"]
+animation = &"Idle/idle_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0kmp0"]
+animation = &"Idle/idle_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m5jqj"]
+animation = &"Idle/idle_up_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xf71h"]
+animation = &"Idle/idle_down_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oh6hi"]
+animation = &"Idle/idle_up_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3hkgf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_8v3bu")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_7fg4v")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_88lft")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_5d38s")
+blend_point_3/pos = Vector2(0, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_0kmp0")
+blend_point_4/pos = Vector2(-1, 1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_m5jqj")
+blend_point_5/pos = Vector2(-1, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_xf71h")
+blend_point_6/pos = Vector2(1, 1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_oh6hi")
+blend_point_7/pos = Vector2(1, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_if2hy"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bj6sg"]
+graph_offset = Vector2(-129, 54)
+nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_3hkgf")
+nodes/BlendSpace2D/position = Vector2(-80, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_if2hy")
+nodes/TimeScale/position = Vector2(120, 160)
+node_connections = [&"TimeScale", 0, &"BlendSpace2D", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhduh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rqldv"]
+states/Idle/node = SubResource("AnimationNodeBlendTree_bj6sg")
+states/Idle/position = Vector2(404, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_lhduh")]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_onbbf")
@@ -38,3 +99,9 @@ libraries = {
 "Idle": ExtResource("2_ecepc"),
 "Walk": ExtResource("3_5dvu8")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_rqldv")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/BlendSpace2D/blend_position = Vector2(0.980922, 1.11504)
+parameters/Idle/TimeScale/scale = 1.0
