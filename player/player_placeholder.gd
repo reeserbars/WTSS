@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
+const SPEED = 2.5
 const JUMP_VELOCITY = 4.5
 
 var input_dir = Vector2.ZERO
@@ -26,17 +26,13 @@ func _physics_process(delta: float) -> void:
 	var target_velocity = direction * SPEED
 	velocity.x = lerpf(velocity.x, target_velocity.x, 10.0 * delta)
 	velocity.z = lerpf(velocity.z, target_velocity.z, 10.0 * delta)
-	
+
 	if direction != Vector3.ZERO:
 		anim_tree.get("parameters/playback").travel("Walk")
 		anim_tree.set("parameters/Idle/BlendSpace2D/blend_position", input_dir)
 		anim_tree.set("parameters/Walk/BlendSpace2D/blend_position", input_dir)
 	else:
 		anim_tree.get("parameters/playback").travel("Idle")
-
-
-
-
 	move_and_slide()
 	# Rotate FlashPivot towards the mouse
 	rotate_flash_pivot_towards_mouse()

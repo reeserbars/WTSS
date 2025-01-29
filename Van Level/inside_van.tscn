@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://cns2ilvhy7giw"]
+
+[ext_resource type="Texture2D" uid="uid://bus4dyuyj7uk" path="res://environment/texture_09.png" id="1_embea"]
+[ext_resource type="PackedScene" uid="uid://b2qhxdrnviyqf" path="res://player/player_fps.tscn" id="2_wieus"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_au030"]
+albedo_texture = ExtResource("1_embea")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1u7yk"]
+material = SubResource("StandardMaterial3D_au030")
+size = Vector2(5, 12)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pl2id"]
+
+[sub_resource type="Sky" id="Sky_ekwby"]
+sky_material = SubResource("ProceduralSkyMaterial_pl2id")
+
+[sub_resource type="Environment" id="Environment_atstm"]
+background_mode = 2
+background_energy_multiplier = 1.85
+sky = SubResource("Sky_ekwby")
+ambient_light_source = 3
+
+[node name="VanLevel" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1u7yk")
+
+[node name="player" parent="." instance=ExtResource("2_wieus")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_atstm")

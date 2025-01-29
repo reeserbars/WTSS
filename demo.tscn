@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://djc2wirwhg3g"]
+[gd_scene load_steps=22 format=3 uid="uid://djc2wirwhg3g"]
 
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://camera.tscn" id="1_nnx1f"]
 [ext_resource type="ArrayMesh" uid="uid://d037pyppkxhc5" path="res://van/van.obj" id="2_4xknd"]
@@ -75,6 +75,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(0.506145, -6.28319, 0.642281), Vector3(0.506145, 6.28319, 0.642281)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.03333, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-6.13493, 0.722456, 9.83344), Vector3(-6.13493, 0.722456, 10.7468), Vector3(-6.13493, 0.722456, 8.6812)]
+}
 
 [sub_resource type="Animation" id="Animation_b55y7"]
 resource_name = "loop"
@@ -88,6 +100,22 @@ _data = {
 }
 
 [sub_resource type="TorusMesh" id="TorusMesh_bb0yi"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rltkk"]
+angular_velocity_min = -66.21
+angular_velocity_max = 82.76
+scale_min = 0.1
+scale_max = 0.5
+scale_over_velocity_max = 63.22
+hue_variation_min = -0.1
+hue_variation_max = 0.2
+anim_speed_max = 0.55
+anim_offset_max = 0.0805
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_lfn85"]
 
 [node name="Demo" type="Node3D"]
 
@@ -141,7 +169,7 @@ libraries = {
 autoplay = "RESET"
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("5_ukydb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.85181, 0.777841, 2.05126)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.777113, 0.777841, -1.70068)
 
 [node name="Camera" parent="CharacterBody3D" instance=ExtResource("1_nnx1f")]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 18.255, 19.375)
@@ -161,5 +189,14 @@ mesh = SubResource("TorusMesh_bb0yi")
 [node name="Interactable" parent="." instance=ExtResource("6_enij3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.239367, 0.549617, 0.207944)
 
+[node name="Interactable2" parent="." instance=ExtResource("6_enij3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.37419, 0.636336, 8.64913)
+
 [node name="Wall" parent="." instance=ExtResource("7_8udc0")]
 transform = Transform3D(0.999801, 0, -0.0199303, 0, 1, 0, 0.0199303, 0, 0.999801, -9.29841, 1.4617, 4.55184)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.13493, 0.722456, 9.83344)
+explosiveness = 0.64
+process_material = SubResource("ParticleProcessMaterial_rltkk")
+draw_pass_1 = SubResource("QuadMesh_lfn85")
