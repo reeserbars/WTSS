@@ -1,27 +1,23 @@
 shader_type spatial;
+render_mode cull_front, unshaded;
 
-uniform bool is_hovered = false;
-uniform vec3 highlight_color = vec3(1.0, 1.0, 1.0); // Changed to white
-uniform float edge_width = 0.1;
-uniform vec3 base_color = vec3(0.8, 0.8, 0.8); // Base color when not highlighted
-
-varying vec3 view_dir;
+uniform vec4 outline_color : source_color;
+uniform float outline_width = 1.0;
 
 void vertex() {
-    vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    vec3 camera_pos = INV_VIEW_MATRIX[3].xyz;
-    view_dir = normalize(world_pos - camera_pos);
+	vec4 clip_position = PROJECTION_MATRIX * (MODELVIEW_MATRIX * vec4(VERTEX, 1.0));
+	vec3 clip_normal = mat3(PROJECTION_MATRIX) * (mat3(MODELVIEW_MATRIX) * NORMAL);
+	
+	vec2 offset = normalize(clip_normal.xy) / VIEWPORT_SIZE * clip_position.w * outline_width * 2.0;
+	
+	clip_position.xy += offset;
+	
+	POSITION = clip_position;
 }
 
 void fragment() {
-    vec3 normal_dir = normalize(NORMAL);
-    float edge_factor = pow(1.0 - dot(normal_dir, view_dir), 2.0);
-
-    if (is_hovered && edge_factor > (1.0 - edge_width)) {
-        ALBEDO = highlight_color;
-        EMISSION = highlight_color; // Add emission for stronger outline
-    } else {
-        ALBEDO = base_color;
-        EMISSION = vec3(0.0); // No emission when not highlighted
-    }
+	ALBEDO = outline_color.rgb;
+	if (outline_color.a < 1.0) {
+		ALPHA = outline_color.a;
+	}
 }

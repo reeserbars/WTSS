@@ -7,7 +7,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mxhwf"]
 radius = 0.318209
-height = 1.36994
+height = 1.65827
 
 [sub_resource type="Animation" id="Animation_aiwdm"]
 length = 0.001
@@ -154,15 +154,17 @@ graph_offset = Vector2(-103, 40)
 script = ExtResource("1_onbbf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 0.0931795, 0)
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, -0.0150475, -0.143463)
 shape = SubResource("CapsuleShape3D_mxhwf")
 
 [node name="FlashPivot" type="Marker3D" parent="."]
 
 [node name="Flashlight" type="SpotLight3D" parent="FlashPivot"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-light_energy = 4.232
-light_indirect_energy = 0.838
+light_energy = 5.887
+light_indirect_energy = 2.824
+light_volumetric_fog_energy = 1.662
+shadow_enabled = true
 spot_range = 15.27
 spot_angle = 40.8774
 

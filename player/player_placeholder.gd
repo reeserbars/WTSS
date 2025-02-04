@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle movement
-	var new_input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var new_input_dir = Input.get_vector("left", "right", "up", "down")
 	input_dir = new_input_dir
 	# Convert input to 3D direction
 	var direction = Vector3.ZERO

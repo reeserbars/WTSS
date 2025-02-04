@@ -1,15 +1,16 @@
 @tool
 extends Camera3D
 
-
-@export var post_processing := true:
+@export var post_processing : bool = true:
 	set(p):
-		if p:
-			$Postprocess.show()
-			post_processing = p
-			var a = Vector3(-1, 1, 0).normalized()
-			var b = Vector3(1, 0, 0).normalized()
-			print("dot: ", a.dot(b))
+		post_processing = p
+		if $Postprocess:
+			if p:
+				$Postprocess.show()
+				var a = Vector3(-1, 1, 0).normalized()
+				var b = Vector3(1, 0, 0).normalized()
+				print("dot: ", a.dot(b))
+			else:
+				$Postprocess.hide()
 		else:
-			$Postprocess.hide()
-			post_processing = p
+			print("Error: Postprocess node is null")

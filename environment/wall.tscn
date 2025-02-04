@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://environment/wall.gd" id="1_8qe2b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0ovb"]
+transparency = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_7eoao"]
 material = SubResource("StandardMaterial3D_n0ovb")
@@ -12,7 +13,7 @@ size = Vector3(10.67, 3.52, 1)
 size = Vector3(10.72, 3.52, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xao1i"]
-size = Vector3(10.675, 3.55, 3.01465)
+size = Vector3(10.675, 3.55, 2)
 
 [node name="Wall" type="StaticBody3D"]
 input_ray_pickable = false
@@ -27,7 +28,7 @@ shape = SubResource("BoxShape3D_d1p58")
 [node name="PlayerDetector" type="Area3D" parent="."]
 
 [node name="PlayerDetectorCollision" type="CollisionShape3D" parent="PlayerDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.00231)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.50964)
 shape = SubResource("BoxShape3D_xao1i")
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
