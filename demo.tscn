@@ -87,6 +87,22 @@ shadow_enabled = true
 spot_range = 5.86622
 spot_angle = 55.2229
 
+[node name="Lightsourcestreetlamp2" type="SpotLight3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, -8.68096, 2.96584, 5.10528)
+light_energy = 4.717
+light_volumetric_fog_energy = 2.99
+shadow_enabled = true
+spot_range = 5.86622
+spot_angle = 55.2229
+
+[node name="Lightsourcestreetlamp3" type="SpotLight3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, -3.47077, 2.96584, 5.10528)
+light_energy = 4.717
+light_volumetric_fog_energy = 2.99
+shadow_enabled = true
+spot_range = 5.86622
+spot_angle = 55.2229
+
 [node name="van" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45422, 0.992346, -3.27157)
 
@@ -123,7 +139,7 @@ transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, 
 transform = Transform3D(0.999801, 0, -0.0199303, 0, 1, 0, 0.0199303, 0, 0.999801, -9.29841, 1.4617, 4.55184)
 
 [node name="Donut" type="MeshInstance3D" parent="Level"]
-transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523918, 0.700336, -0.484809, 0.290416, 0.388199, 0.87462, 2.59845, 1.06462, -0.0338063)
+transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523918, 0.700336, -0.484809, 0.290415, 0.388199, 0.87462, 2.59845, 1.06462, -0.0338063)
 mesh = SubResource("TorusMesh_bb0yi")
 skeleton = NodePath("../..")
 
@@ -138,7 +154,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.382589, 1.93716, 0)
 shadow_enabled = true
 
 [node name="TableTest" parent="Level" instance=ExtResource("5_4d5eb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.43154, 0.0964136, -2.10162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66721, 0.0964136, 6.29678)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wh5m0")

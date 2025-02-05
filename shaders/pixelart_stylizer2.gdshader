@@ -1,4 +1,3 @@
-
 shader_type spatial;
 render_mode unshaded;
 
@@ -16,6 +15,8 @@ uniform float lighten_amount : hint_range(0, 10, 0.01) = 1.5;
 uniform vec3 normal_edge_bias = vec3(1, 1, 1);
 uniform vec3 light_direction = vec3(-0.96, -0.18, 0.2);
 
+uniform float pixelation_level : hint_range(1, 10, 0.1) = 1.0;
+
 float get_depth(vec2 screen_uv, mat4 inv_projection_matrix) {
 	float depth = texture(depth_texture, screen_uv).r;
 	vec3 ndc = vec3(screen_uv * 2.0 - 1.0, depth);
@@ -31,7 +32,7 @@ void vertex() {
 void fragment() {
 	float depth = get_depth(SCREEN_UV, INV_PROJECTION_MATRIX);
 	vec3 normal = texture(normal_texture, SCREEN_UV).xyz * 2.0 - 1.0;
-	vec2 texel_size = 1.0 / VIEWPORT_SIZE.xy;
+	vec2 texel_size = pixelation_level / VIEWPORT_SIZE.xy;
 
 	vec2 uvs[4];
 	uvs[0] = vec2(SCREEN_UV.x, min(1.0 - 0.001, SCREEN_UV.y + texel_size.y));

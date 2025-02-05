@@ -12,8 +12,8 @@ var aim_mode : bool = false
 
 @onready var camera: Camera3D = $Pivot/Camera
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
-@onready var muzzle_flash: GPUParticles3D = $Pivot/Camera3D/pistol/GPUParticles3D
-@onready var raycast: RayCast3D = $Pivot/Camera3D/RayCast3D
+@onready var muzzle_flash: GPUParticles3D = $Pivot/Camera/pistol/GPUParticles3D
+@onready var raycast: RayCast3D = $Pivot/Camera/RayCast3D
 @onready var gunshot_sound: AudioStreamPlayer3D = %GunshotSound
 @onready var player_sprite: Sprite3D = $Sprite3D
 @onready var pivot: Marker3D = $Pivot
