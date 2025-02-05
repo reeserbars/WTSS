@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dtg5fd0dqrekj"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu.tscn" id="1_b052l"]
+[ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu.tscn" id="1_b052l"]
 [ext_resource type="Script" path="res://examplescenes/scenes/menus/options_menu/master_options_menu.gd" id="2_2q71j"]
-[ext_resource type="PackedScene" path="res://examplescenes/scenes/menus/options_menu/input/input_options_menu_with_mouse_sensitivity.tscn" id="3_m0jld"]
-[ext_resource type="PackedScene" path="res://examplescenes/scenes/menus/options_menu/audio/audio_options_menu.tscn" id="4_pmwfy"]
-[ext_resource type="PackedScene" path="res://examplescenes/scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="5_v3smp"]
-[ext_resource type="PackedScene" path="res://examplescenes/scenes/menus/options_menu/game/game_options_menu.tscn" id="6_yk668"]
+[ext_resource type="PackedScene" uid="uid://crskgs6u5kb4x" path="res://examplescenes/scenes/menus/options_menu/input/input_options_menu_with_mouse_sensitivity.tscn" id="3_m0jld"]
+[ext_resource type="PackedScene" uid="uid://dr3bwcyukiyt5" path="res://examplescenes/scenes/menus/options_menu/audio/audio_options_menu.tscn" id="4_pmwfy"]
+[ext_resource type="PackedScene" uid="uid://d0jp6pmdhbjld" path="res://examplescenes/scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="5_v3smp"]
+[ext_resource type="PackedScene" uid="uid://bboovg77pao73" path="res://examplescenes/scenes/menus/options_menu/game/game_options_menu.tscn" id="6_yk668"]
 
 [node name="MasterOptionsMenu" instance=ExtResource("1_b052l")]
 script = ExtResource("2_2q71j")

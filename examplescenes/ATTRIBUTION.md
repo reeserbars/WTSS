@@ -2,10 +2,14 @@
 ## Collaborators
 
 ### Writer
-Xai
-Jak
-[Person w/ Link]()  
+Xaimyra
+Defjeep
 
+### Programmer
+Ickor
+
+### Artist
+Xaimyra
 
 ## Sourced / Unaffiliated
 ### Asset Type

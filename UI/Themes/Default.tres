@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bjxa5agiiq01p"]
+
+[ext_resource type="FontFile" uid="uid://d3oyb3x1n06bp" path="res://UI/Themes/CiGamedevRegular-ovq3z.ttf" id="1_k350s"]
+
+[resource]
+default_font = ExtResource("1_k350s")

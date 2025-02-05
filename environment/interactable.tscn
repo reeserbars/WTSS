@@ -6,18 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://1g56xnyset5b" path="res://UI/E.png" id="3_i0ioo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cd5lq"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_dj4ts")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/outline_width = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkuk2"]
+resource_local_to_scene = true
 next_pass = SubResource("ShaderMaterial_cd5lq")
 albedo_texture = ExtResource("2_rip0b")
 
 [sub_resource type="BoxMesh" id="BoxMesh_il36n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_02cec"]
+size = Vector3(0.995605, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yc2cx"]
 size = Vector3(1.25, 1.25, 1.25)
@@ -31,11 +34,13 @@ material_override = SubResource("StandardMaterial3D_jkuk2")
 mesh = SubResource("BoxMesh_il36n")
 
 [node name="InteractableCollisionbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00219727, 0, 0)
 shape = SubResource("BoxShape3D_02cec")
 
 [node name="InteractionRange" type="Area3D" parent="."]
 
 [node name="InteractionRangeHitbox" type="CollisionShape3D" parent="InteractionRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0109247, 0, 0)
 shape = SubResource("BoxShape3D_yc2cx")
 
 [node name="ButtonPrompt" type="Sprite3D" parent="."]

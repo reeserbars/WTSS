@@ -363,7 +363,7 @@ fill_to = Vector2(0.188034, 0.24359)
 [node name="MainMenu" instance=ExtResource("1_6mbvk")]
 script = ExtResource("2_byhjo")
 level_select_packed_scene = ExtResource("3_xbu4y")
-game_scene_path = "res://examplescenes/scenes/game_scene/game_ui.tscn"
+game_scene_path = "res://demo.tscn"
 options_packed_scene = ExtResource("4_7xap0")
 credits_packed_scene = ExtResource("5_pr3f2")
 
@@ -386,6 +386,9 @@ stretch_mode = 6
 
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
+
+[node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
+text = "vDev-0.0.15.1"
 
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)

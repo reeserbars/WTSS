@@ -16,3 +16,4 @@ func _unhandled_input(event):
 		await current_menu.tree_exited
 		if is_inside_tree() and _initial_focus_control:
 			_initial_focus_control.grab_focus()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

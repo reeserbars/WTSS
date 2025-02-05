@@ -9,6 +9,7 @@
 script = ExtResource("2_ton54")
 next_scene = "res://examplescenes/scenes/menus/main_menu/main_menu_with_animations.tscn"
 images = Array[Texture2D]([ExtResource("3_bk2mu"), ExtResource("4_1fied")])
+show_loading_screen = true
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 layout_mode = 2

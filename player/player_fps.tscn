@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://b2qhxdrnviyqf"]
+[gd_scene load_steps=20 format=3 uid="uid://b2qhxdrnviyqf"]
 
 [ext_resource type="Script" path="res://player/player_fps.gd" id="1_jjp5x"]
 [ext_resource type="PackedScene" uid="uid://bxafw8kyswsyx" path="res://player/pistol.blend" id="2_q1iuk"]
+[ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://camera.tscn" id="2_w61wo"]
 [ext_resource type="AudioStream" uid="uid://b036qvste7k1i" path="res://player/645317__darkshroom__m9_noisegate-1780.ogg" id="3_6fknb"]
 [ext_resource type="Texture2D" uid="uid://ogicbc1hvh6i" path="res://player/star_05.png" id="4_kyt3f"]
 [ext_resource type="Texture2D" uid="uid://dxrwle7trcq77" path="res://player/circle_05.png" id="5_7i455"]
@@ -44,7 +45,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Camera3D/pistol:position")
+tracks/0/path = NodePath("Pivot/Camera/pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -56,7 +57,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Camera3D/pistol:rotation")
+tracks/1/path = NodePath("Pivot/Camera/pistol:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -73,7 +74,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Camera3D/pistol:position")
+tracks/0/path = NodePath("Pivot/Camera/pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -85,7 +86,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Camera3D/pistol:rotation")
+tracks/1/path = NodePath("Pivot/Camera/pistol:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -102,7 +103,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Camera3D/pistol:position")
+tracks/0/path = NodePath("Pivot/Camera/pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -118,7 +119,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Camera3D/pistol:position")
+tracks/0/path = NodePath("Pivot/Camera/pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -130,7 +131,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Camera3D/pistol:rotation")
+tracks/1/path = NodePath("Pivot/Camera/pistol:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -149,33 +150,35 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D"]
-collision_layer = 2
 script = ExtResource("1_jjp5x")
 
 [node name="Pivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58822, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Pivot"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+[node name="Camera" parent="Pivot" instance=ExtResource("2_w61wo")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+projection = 0
 
-[node name="RayCast3D" type="RayCast3D" parent="Pivot/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="Pivot/Camera"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, -50)
 collision_mask = 3
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Pivot/Camera3D"]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
+[node name="SpotLight3D" type="SpotLight3D" parent="Pivot/Camera"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, -0.532672, 0)
 light_energy = 9.805
+shadow_enabled = true
 spot_range = 30.8588
-spot_angle = 18.6724
+spot_angle = 36.276
 
-[node name="pistol" parent="Pivot/Camera3D" instance=ExtResource("2_q1iuk")]
+[node name="pistol" parent="Pivot/Camera" instance=ExtResource("2_q1iuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
-[node name="GunshotSound" type="AudioStreamPlayer3D" parent="Pivot/Camera3D/pistol"]
+[node name="GunshotSound" type="AudioStreamPlayer3D" parent="Pivot/Camera/pistol"]
 unique_name_in_owner = true
 stream = ExtResource("3_6fknb")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Pivot/Camera3D/pistol"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Pivot/Camera/pistol"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00020802, 0.0394075, -0.282182)
 emitting = false
 amount = 1
@@ -219,3 +222,5 @@ vframes = 8
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="Pivot/Camera"]

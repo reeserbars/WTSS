@@ -10,7 +10,7 @@ var axis_vector : Vector2
 var mouse_captured : bool = true
 var aim_mode : bool = false
 
-@onready var camera: Camera3D = $Pivot/Camera3D
+@onready var camera: Camera3D = $Pivot/Camera
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var muzzle_flash: GPUParticles3D = $Pivot/Camera3D/pistol/GPUParticles3D
 @onready var raycast: RayCast3D = $Pivot/Camera3D/RayCast3D
@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 	rotate_y(-axis_vector.x * controller_sensitivity)
 	camera.rotate_x(-axis_vector.y * controller_sensitivity)
 	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+	camera.rotation.z = clamp(camera.rotation.z, -15, +15)
 
 	update_aim_mode()
 
@@ -37,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and aim_mode:
 		rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(event.relative.y * sensitivity)
-	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
 	if Input.is_action_just_pressed("aim"):
 		aim_mode = not aim_mode
@@ -94,12 +95,12 @@ func update_aim_mode() -> void:
 		camera.current = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+		camera.rotation.x = 0
 
 func rotate_towards_mouse():
 	var current_camera = get_viewport().get_camera_3d()
 	if not current_camera:
 		return
-
 	# Get mouse position in world space
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = current_camera.project_ray_origin(mouse_pos)
