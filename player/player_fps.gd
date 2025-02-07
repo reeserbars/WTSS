@@ -24,25 +24,33 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	sensitivity = Global.sensitivity
 	controller_sensitivity = Global.controller_sensitivity
-
-	rotate_y(-axis_vector.x * controller_sensitivity)
-	camera.rotate_x(-axis_vector.y * controller_sensitivity)
-	camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
-	camera.rotation.z = clamp(camera.rotation.z, -15, +15)
-
-	update_aim_mode()
-
+	
+	# Check if the aim button is pressed or released
+	if Input.is_action_pressed("aim"):
+		aim_mode = true
+		update_aim_mode()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	elif Input.is_action_just_released("aim"):
+		aim_mode = false
+		update_aim_mode()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	if aim_mode:
+		rotate_y(-axis_vector.x * controller_sensitivity)
+		camera.rotate_x(-axis_vector.y * controller_sensitivity)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80),deg_to_rad(80))
+		camera.rotation.y = clamp(camera.rotation.y, deg_to_rad(-180),deg_to_rad(-180))
+		camera.rotation.z = clamp(camera.rotation.z, 0,0)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	axis_vector = Input.get_vector("look_left", "look_right", "look_up", "look_down")
 	if event is InputEventMouseMotion and aim_mode:
 		rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(event.relative.y * sensitivity)
-		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
-
-	if Input.is_action_just_pressed("aim"):
-		aim_mode = not aim_mode
-
+	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80),deg_to_rad(80))
+	
+	
 	if Input.is_action_just_pressed("shoot") \
 		and anim_player.current_animation != "shoot" :
 		play_shoot_effects.rpc()
@@ -87,13 +95,11 @@ func play_shoot_effects() -> void:
 func update_aim_mode() -> void:
 	if aim_mode:
 		camera.current = true
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		player_sprite.hide()
 		camera.projection = Camera3D.PROJECTION_PERSPECTIVE
 	else:
 		player_sprite.show()
 		camera.current = false
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		camera.projection = Camera3D.PROJECTION_ORTHOGONAL
 		camera.rotation.x = 0
 

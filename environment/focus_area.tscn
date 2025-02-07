@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://tqtt1xftyqh5"]
+
+[ext_resource type="Script" path="res://environment/focus_area.gd" id="1_8043b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aq2sy"]
+size = Vector3(10, 2, 10)
+
+[node name="FocusArea" type="Area3D"]
+script = ExtResource("1_8043b")
+
+[node name="FocusArea Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_aq2sy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

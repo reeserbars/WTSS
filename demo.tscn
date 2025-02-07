@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://djc2wirwhg3g"]
+[gd_scene load_steps=17 format=3 uid="uid://djc2wirwhg3g"]
 
 [ext_resource type="PackedScene" uid="uid://benhs2xg0xqh8" path="res://van/BetterTruck.glb" id="1_h34n0"]
 [ext_resource type="PackedScene" uid="uid://b2qhxdrnviyqf" path="res://player/player_fps.tscn" id="4_hnlj4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://camera.tscn" id="6_2q1xv"]
 [ext_resource type="PackedScene" uid="uid://byhr6q4vp2e23" path="res://environment/interactable.tscn" id="6_enij3"]
 [ext_resource type="PackedScene" uid="uid://c7ap3vy012rbt" path="res://environment/wall.tscn" id="7_8udc0"]
+[ext_resource type="Script" path="res://scripts/camera_switcher.gd" id="7_tqwsl"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="7_xb03l"]
 [ext_resource type="PackedScene" uid="uid://cec2o6a1jgw51" path="res://examplescenes/scenes/overlaid_menus/pause_menu.tscn" id="8_v0r4x"]
 
@@ -21,8 +22,9 @@ albedo_color = Color(0.190762, 0.190762, 0.190762, 1)
 background_mode = 1
 ambient_light_energy = 0.1
 tonemap_mode = 2
+tonemap_exposure = 0.5
 tonemap_white = 3.0
-volumetric_fog_enabled = true
+ssao_enabled = true
 
 [sub_resource type="Animation" id="Animation_clmft"]
 length = 3.0
@@ -139,12 +141,12 @@ transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, 
 transform = Transform3D(0.999801, 0, -0.0199303, 0, 1, 0, 0.0199303, 0, 0.999801, -9.29841, 1.4617, 4.55184)
 
 [node name="Donut" type="MeshInstance3D" parent="Level"]
-transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523918, 0.700336, -0.484809, 0.290415, 0.388199, 0.87462, 2.59845, 1.06462, -0.0338063)
+transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523918, 0.700336, -0.484809, 0.290416, 0.388199, 0.87462, 2.59845, 1.06462, -0.0338063)
 mesh = SubResource("TorusMesh_bb0yi")
 skeleton = NodePath("../..")
 
 [node name="Player" parent="Level" instance=ExtResource("4_hnlj4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.27425, 0.182372, 8.77379)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.27425, 0.182372, 9.48949)
 
 [node name="SpotLight3D" parent="Level/Player/Pivot/Camera" index="2"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
@@ -156,6 +158,34 @@ shadow_enabled = true
 [node name="TableTest" parent="Level" instance=ExtResource("5_4d5eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66721, 0.0964136, 6.29678)
 
+[node name="CamFocus" type="Node3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55548, 0, 0)
+
+[node name="pos1" type="Marker3D" parent="Level/CamFocus"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 5, 5, 5)
+rotation_edit_mode = 1
+
+[node name="pos3" type="Marker3D" parent="Level/CamFocus"]
+transform = Transform3D(-0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, 0.5, -0.5, -5, 5.182, -5)
+rotation_edit_mode = 1
+
+[node name="pos2" type="Marker3D" parent="Level/CamFocus"]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5.182, 5)
+rotation_edit_mode = 1
+
+[node name="pos4" type="Marker3D" parent="Level/CamFocus"]
+transform = Transform3D(-0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 5, 5.182, -5)
+rotation_edit_mode = 1
+
+[node name="Camera" parent="Level/CamFocus" instance=ExtResource("6_2q1xv")]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, -1.55548, 8, 14)
+size = 15.0
+near = 0.05
+
+[node name="CameraSwitcher" type="Node" parent="Level/CamFocus" node_paths=PackedStringArray("position_markers")]
+script = ExtResource("7_tqwsl")
+position_markers = [NodePath("../pos1"), NodePath("../pos2"), NodePath("../pos3"), NodePath("../pos4")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wh5m0")
 
@@ -165,14 +195,10 @@ libraries = {
 }
 autoplay = "RESET"
 
-[node name="Camera" parent="." instance=ExtResource("6_2q1xv")]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 8, 14)
-size = 15.0
-near = 0.05
-
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("7_xb03l")
 pause_menu_packed = ExtResource("8_v0r4x")
 
 [editable path="Level/Player"]
 [editable path="Level/Player/Pivot/Camera"]
+[editable path="Level/CamFocus/Camera"]
