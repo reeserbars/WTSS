@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 		rotate_y(-axis_vector.x * controller_sensitivity)
 		camera.rotate_x(-axis_vector.y * controller_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80),deg_to_rad(80))
-		camera.rotation.y = clamp(camera.rotation.y, deg_to_rad(-180),deg_to_rad(-180))
+		camera.rotation.y = clamp(camera.rotation.y, 0,0)
 		camera.rotation.z = clamp(camera.rotation.z, 0,0)
 	
 
@@ -108,27 +108,12 @@ func rotate_towards_mouse():
 	if not current_camera:
 		return
 	# Get mouse position in world space
+	var target_plane_mouse = Plane(Vector3(0,1,0), position.y)
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = current_camera.project_ray_origin(mouse_pos)
 	var to = from + current_camera.project_ray_normal(mouse_pos) * 1000
-
-	# Create and configure ray query
-	var query = PhysicsRayQueryParameters3D.new()
-	query.from = from
-	query.to = to
-	query.collide_with_areas = false
-	query.collide_with_bodies = true
-
-	var space_state = get_world_3d().direct_space_state
-	var result = space_state.intersect_ray(query)
-
-	if result:
-		var target_pos = result.position
-		var direction = (target_pos - pivot.global_transform.origin).normalized()
-
-		# Calculate the target rotation around the Y-axis
-		var target_yaw = atan2(direction.x, direction.z)
-		pivot.rotation.y = target_yaw
+	var cursor_position_on_plane = target_plane_mouse.intersects_ray(from, to)
+	look_at(cursor_position_on_plane, Vector3.UP, 0)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "shoot":
