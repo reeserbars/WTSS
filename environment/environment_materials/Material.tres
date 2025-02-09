@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://co8luf4vocdwk"]
+
+[ext_resource type="Texture2D" uid="uid://bgriev2v7y663" path="res://environment/TableTest_PixelizedTable.png" id="1_inwnl"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_inwnl")
+roughness = 0.1
+texture_filter = 2

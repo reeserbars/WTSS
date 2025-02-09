@@ -47,7 +47,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	axis_vector = Input.get_vector("look_left", "look_right", "look_up", "look_down")
 	if event is InputEventMouseMotion and aim_mode:
 		rotate_y(-event.relative.x * sensitivity)
-		camera.rotate_x(event.relative.y * sensitivity)
+		camera.rotate_x(-event.relative.y * sensitivity)
 	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80),deg_to_rad(80))
 	
 	

@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://becncj3c5t0nk"]
+[gd_scene load_steps=5 format=3 uid="uid://becncj3c5t0nk"]
 
 [ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/loading_screen/loading_screen.tscn" id="1_8rhfx"]
 [ext_resource type="Script" path="res://examplescenes/scenes/loading_screen/loading_screen.gd" id="2_jwcvm"]
 
+[sub_resource type="Gradient" id="Gradient_tgkip"]
+offsets = PackedFloat32Array(0, 0.186441, 0.292373, 1)
+colors = PackedColorArray(0.56, 0.190773, 0.0448, 1, 0.16, 0, 0.152, 1, 0.00193893, 0, 0.0737779, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_alyqc"]
+gradient = SubResource("Gradient_tgkip")
+fill = 1
+fill_from = Vector2(0, 0.846154)
+
 [node name="LoadingScreen" instance=ExtResource("1_8rhfx")]
 script = ExtResource("2_jwcvm")
+
+[node name="BackgroundTextureRect" parent="Control" index="2"]
+texture = SubResource("GradientTexture2D_alyqc")
+stretch_mode = 6
