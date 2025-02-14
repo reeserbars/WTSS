@@ -38,8 +38,9 @@ func _process(_delta: float) -> void:
 	if aim_mode:
 		rotate_y(-axis_vector.x * controller_sensitivity)
 		camera.rotate_x(-axis_vector.y * controller_sensitivity)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80),deg_to_rad(80))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-45),deg_to_rad(45))
 		camera.rotation.y = clamp(camera.rotation.y, 0,0)
+		rotation.y = clamp(rotation.y, deg_to_rad(-45),deg_to_rad(45))
 		camera.rotation.z = clamp(camera.rotation.z, 0,0)
 	
 
