@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d037pyppkxhc5"
+path="res://.godot/imported/van.obj-3aa404e68180bac2593feff99af7ce01.mesh"
+
+[deps]
+
+files=["res://.godot/imported/van.obj-3aa404e68180bac2593feff99af7ce01.mesh"]
+
+source_file="res://models/van/van.obj"
+dest_files=["res://.godot/imported/van.obj-3aa404e68180bac2593feff99af7ce01.mesh", "res://.godot/imported/van.obj-3aa404e68180bac2593feff99af7ce01.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

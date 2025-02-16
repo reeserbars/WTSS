@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://byhr6q4vp2e23"]
 
-[ext_resource type="Script" path="res://environment/Interactable.gd" id="1_8qe2b"]
+[ext_resource type="Script" path="res://levels/Interactable.gd" id="1_8qe2b"]
 [ext_resource type="Shader" path="res://shaders/EdgeHighlight.gdshader" id="1_dj4ts"]
-[ext_resource type="Texture2D" uid="uid://cwraedbqkryj8" path="res://environment/texture_07.png" id="2_rip0b"]
-[ext_resource type="Texture2D" uid="uid://1g56xnyset5b" path="res://UI/E.png" id="3_i0ioo"]
+[ext_resource type="Texture2D" uid="uid://cwraedbqkryj8" path="res://models/environment/texture_07.png" id="2_rip0b"]
+[ext_resource type="Texture2D" uid="uid://1g56xnyset5b" path="res://ui/E.png" id="3_i0ioo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cd5lq"]
 resource_local_to_scene = true

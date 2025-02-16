@@ -30,7 +30,7 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 directories/dch_directory={}
 directories/dtl_directory={
-"placeholder_timeline": "res://Dialogue/placeholder_timeline.dtl"
+"placeholder_timeline": "res://dialogue/placeholder_timeline.dtl"
 }
 glossary/default_case_sensitive=true
 layout/style_list=["res://Dialogue/char_style.tres", "res://Dialogue/object_style.tres"]
@@ -48,7 +48,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/gdLi
 
 [gui]
 
-theme/custom="res://UI/Themes/Default.tres"
+theme/custom="res://ui/themes/Default.tres"
 
 [input]
 

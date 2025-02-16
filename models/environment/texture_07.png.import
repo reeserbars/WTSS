@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd7mhw2l6pojo"
-path.s3tc="res://.godot/imported/Van.png-67f9fd23d0a639c4d0ebd94a96270b98.s3tc.ctex"
+uid="uid://cwraedbqkryj8"
+path="res://.godot/imported/texture_07.png-878f50fb9454386e3abbcf9ab70e764b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://van/Van.png"
-dest_files=["res://.godot/imported/Van.png-67f9fd23d0a639c4d0ebd94a96270b98.s3tc.ctex"]
+source_file="res://models/environment/texture_07.png"
+dest_files=["res://.godot/imported/texture_07.png-878f50fb9454386e3abbcf9ab70e764b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

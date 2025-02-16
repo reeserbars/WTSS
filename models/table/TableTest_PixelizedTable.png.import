@@ -2,16 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwraedbqkryj8"
-path="res://.godot/imported/texture_07.png-9d14640c8d2223e7ee712adcad9681de.ctex"
+uid="uid://bgriev2v7y663"
+path="res://.godot/imported/TableTest_PixelizedTable.png-7504d7a187ca917decb491604cd6b3d1.ctex"
 metadata={
 "vram_texture": false
+}
+generator_parameters={
+"md5": "81b6e59893382c1becdfceaac42eba58"
 }
 
 [deps]
 
-source_file="res://environment/texture_07.png"
-dest_files=["res://.godot/imported/texture_07.png-9d14640c8d2223e7ee712adcad9681de.ctex"]
+source_file="res://models/table/TableTest_PixelizedTable.png"
+dest_files=["res://.godot/imported/TableTest_PixelizedTable.png-7504d7a187ca917decb491604cd6b3d1.ctex"]
 
 [params]
 

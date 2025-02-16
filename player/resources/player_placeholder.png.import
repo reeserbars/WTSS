@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dskugtrolp2vt"
-path.s3tc="res://.godot/imported/Truck_0.png-168356a7d7fff908a9b99478fd477039.s3tc.ctex"
+uid="uid://cfkmuurjmpycf"
+path.s3tc="res://.godot/imported/player_placeholder.png-b3f880da67fe772a4f66b9d3c2c5245c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "0c7180ed690208472282443cc4db31cd"
-}
 
 [deps]
 
-source_file="res://van/Truck_0.png"
-dest_files=["res://.godot/imported/Truck_0.png-168356a7d7fff908a9b99478fd477039.s3tc.ctex"]
+source_file="res://player/resources/player_placeholder.png"
+dest_files=["res://.godot/imported/player_placeholder.png-b3f880da67fe772a4f66b9d3c2c5245c.s3tc.ctex"]
 
 [params]
 

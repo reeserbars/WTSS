@@ -1,13 +1,13 @@
 [gd_scene load_steps=20 format=3 uid="uid://b2qhxdrnviyqf"]
 
 [ext_resource type="Script" path="res://player/player_fps.gd" id="1_jjp5x"]
-[ext_resource type="PackedScene" uid="uid://bxafw8kyswsyx" path="res://player/pistol.blend" id="2_q1iuk"]
-[ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://camera.tscn" id="2_w61wo"]
-[ext_resource type="AudioStream" uid="uid://b036qvste7k1i" path="res://player/645317__darkshroom__m9_noisegate-1780.ogg" id="3_6fknb"]
-[ext_resource type="Texture2D" uid="uid://ogicbc1hvh6i" path="res://player/star_05.png" id="4_kyt3f"]
-[ext_resource type="Texture2D" uid="uid://dxrwle7trcq77" path="res://player/circle_05.png" id="5_7i455"]
+[ext_resource type="PackedScene" uid="uid://bxafw8kyswsyx" path="res://player/resources/pistol.blend" id="2_q1iuk"]
+[ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://player/camera.tscn" id="2_w61wo"]
+[ext_resource type="AudioStream" uid="uid://b036qvste7k1i" path="res://player/resources/645317__darkshroom__m9_noisegate-1780.ogg" id="3_6fknb"]
+[ext_resource type="Texture2D" uid="uid://ogicbc1hvh6i" path="res://player/resources/star_05.png" id="4_kyt3f"]
+[ext_resource type="Texture2D" uid="uid://dxrwle7trcq77" path="res://player/resources/circle_05.png" id="5_7i455"]
 [ext_resource type="Script" path="res://player/crosshair.gd" id="6_gni8e"]
-[ext_resource type="Texture2D" uid="uid://cfkmuurjmpycf" path="res://player/player_placeholder.png" id="7_nsdvw"]
+[ext_resource type="Texture2D" uid="uid://cfkmuurjmpycf" path="res://player/resources/player_placeholder.png" id="7_nsdvw"]
 
 [sub_resource type="Gradient" id="Gradient_054tn"]
 offsets = PackedFloat32Array(0, 0.15942, 1)

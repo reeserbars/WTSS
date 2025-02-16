@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://d3oyb3x1n06bp"
-path="res://.godot/imported/CiGamedevRegular-ovq3z.ttf-860b261241168eabaf204c5a4431a7ae.fontdata"
+path="res://.godot/imported/CiGamedevRegular-ovq3z.ttf-c590d5f42cb513ab290e79e29cb9cd5c.fontdata"
 
 [deps]
 
-source_file="res://UI/Themes/CiGamedevRegular-ovq3z.ttf"
-dest_files=["res://.godot/imported/CiGamedevRegular-ovq3z.ttf-860b261241168eabaf204c5a4431a7ae.fontdata"]
+source_file="res://ui/themes/CiGamedevRegular-ovq3z.ttf"
+dest_files=["res://.godot/imported/CiGamedevRegular-ovq3z.ttf-c590d5f42cb513ab290e79e29cb9cd5c.fontdata"]
 
 [params]
 

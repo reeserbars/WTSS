@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cqyj10w7dijcg"]
 
-[ext_resource type="Texture2D" uid="uid://dqdfp0xiaq0yq" path="res://van/BetterTruck_Truck.png" id="1_57bh8"]
+[ext_resource type="Texture2D" uid="uid://dqdfp0xiaq0yq" path="res://models/van/BetterTruck_Truck.png" id="1_57bh8"]
 
 [resource]
 resource_name = "Material"

@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_game_template/base/scenes/opening/opening.tscn" id="1_5pfro"]
 [ext_resource type="Script" path="res://examplescenes/scenes/opening/opening.gd" id="2_ton54"]
-[ext_resource type="Texture2D" uid="uid://dwgm37rjspy00" path="res://UI/Disclaimer.png" id="3_bk2mu"]
-[ext_resource type="Texture2D" uid="uid://t08k6q0i1nr" path="res://UI/icon-dark.png" id="4_1fied"]
+[ext_resource type="Texture2D" uid="uid://dwgm37rjspy00" path="res://ui/Disclaimer.png" id="3_bk2mu"]
+[ext_resource type="Texture2D" uid="uid://t08k6q0i1nr" path="res://ui/icon-dark.png" id="4_1fied"]
 
 [node name="Opening" instance=ExtResource("1_5pfro")]
 script = ExtResource("2_ton54")

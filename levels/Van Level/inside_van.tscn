@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cns2ilvhy7giw"]
 
-[ext_resource type="Texture2D" uid="uid://bus4dyuyj7uk" path="res://environment/texture_09.png" id="1_embea"]
+[ext_resource type="Texture2D" uid="uid://bus4dyuyj7uk" path="res://models/environment/texture_09.png" id="1_embea"]
 [ext_resource type="PackedScene" uid="uid://b2qhxdrnviyqf" path="res://player/player_fps.tscn" id="2_wieus"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pl2id"]
