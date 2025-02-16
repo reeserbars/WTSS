@@ -1,12 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2qhxdrnviyqf"]
+[gd_scene load_steps=18 format=3 uid="uid://b2qhxdrnviyqf"]
 
 [ext_resource type="Script" path="res://player/player_fps.gd" id="1_jjp5x"]
 [ext_resource type="PackedScene" uid="uid://bxafw8kyswsyx" path="res://player/resources/pistol.blend" id="2_q1iuk"]
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://player/camera.tscn" id="2_w61wo"]
 [ext_resource type="AudioStream" uid="uid://b036qvste7k1i" path="res://player/resources/645317__darkshroom__m9_noisegate-1780.ogg" id="3_6fknb"]
 [ext_resource type="Texture2D" uid="uid://ogicbc1hvh6i" path="res://player/resources/star_05.png" id="4_kyt3f"]
-[ext_resource type="Texture2D" uid="uid://dxrwle7trcq77" path="res://player/resources/circle_05.png" id="5_7i455"]
-[ext_resource type="Script" path="res://player/crosshair.gd" id="6_gni8e"]
 [ext_resource type="Texture2D" uid="uid://cfkmuurjmpycf" path="res://player/resources/player_placeholder.png" id="7_nsdvw"]
 
 [sub_resource type="Gradient" id="Gradient_054tn"]
@@ -197,17 +195,6 @@ libraries = {
 }
 autoplay = "idle"
 playback_default_blend_time = 0.05
-
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("5_7i455")
-stretch_mode = 5
-script = ExtResource("6_gni8e")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886675, 0)

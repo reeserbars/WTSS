@@ -26,39 +26,28 @@ func _process(_delta: float) -> void:
 	controller_sensitivity = Global.controller_sensitivity
 	
 	# Check if the aim button is pressed or released
-	if Input.is_action_pressed("aim"):
+	if Input.is_action_just_pressed("aim"):
 		aim_mode = true
 		update_aim_mode()
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
 	elif Input.is_action_just_released("aim"):
 		aim_mode = false
 		update_aim_mode()
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	if aim_mode:
 		rotate_y(-axis_vector.x * controller_sensitivity)
 		camera.rotate_x(-axis_vector.y * controller_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-45),deg_to_rad(45))
-		camera.rotation.y = clamp(camera.rotation.y, 0,0)
-		rotation.y = clamp(rotation.y, deg_to_rad(-45),deg_to_rad(45))
+		camera.rotation.y = clamp(camera.rotation.y, deg_to_rad(-45),deg_to_rad(45))
 		camera.rotation.z = clamp(camera.rotation.z, 0,0)
 	
 
 func _unhandled_input(event: InputEvent) -> void:
 	axis_vector = Input.get_vector("look_left", "look_right", "look_up", "look_down")
 	if event is InputEventMouseMotion and aim_mode:
-		rotate_y(-event.relative.x * sensitivity)
+		camera.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
-	camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80),deg_to_rad(80))
 	
-	
-	if Input.is_action_just_pressed("shoot") \
-		and anim_player.current_animation != "shoot" :
-		play_shoot_effects.rpc()
-		gunshot_sound.play()
-		if raycast.is_colliding() && str(raycast.get_collider()).contains("CharacterBody3D") :
-			var hit_player: Object = raycast.get_collider()
-			hit_player.recieve_damage.rpc_id(hit_player.get_multiplayer_authority())
 
 
 func _physics_process(delta: float) -> void:
@@ -98,11 +87,13 @@ func update_aim_mode() -> void:
 		camera.current = true
 		player_sprite.hide()
 		camera.projection = Camera3D.PROJECTION_PERSPECTIVE
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	else:
 		player_sprite.show()
 		camera.current = false
 		camera.projection = Camera3D.PROJECTION_ORTHOGONAL
 		camera.rotation.x = 0
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func rotate_towards_mouse():
 	var current_camera = get_viewport().get_camera_3d()
