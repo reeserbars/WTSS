@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv1pcrflu73bg"]
+
+[ext_resource type="Theme" uid="uid://bjxa5agiiq01p" path="res://ui/themes/Default.tres" id="1_nav78"]
+[ext_resource type="Script" path="res://scripts/debug.gd" id="2_l731t"]
+
+[node name="DebugPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 51.0
+theme = ExtResource("1_nav78")
+script = ExtResource("2_l731t")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="PropertyContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2

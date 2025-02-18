@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://byhr6q4vp2e23"]
+[gd_scene load_steps=11 format=3 uid="uid://byhr6q4vp2e23"]
 
-[ext_resource type="Script" path="res://levels/Interactable.gd" id="1_8qe2b"]
+[ext_resource type="Script" path="res://objects/Interactable.gd" id="1_8qe2b"]
 [ext_resource type="Shader" path="res://shaders/EdgeHighlight.gdshader" id="1_dj4ts"]
 [ext_resource type="Texture2D" uid="uid://cwraedbqkryj8" path="res://models/environment/texture_07.png" id="2_rip0b"]
 [ext_resource type="Texture2D" uid="uid://1g56xnyset5b" path="res://ui/E.png" id="3_i0ioo"]
+[ext_resource type="Texture2D" uid="uid://civ2ex63x8huc" path="res://objects/character/Markimoo.png" id="5_j00nk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cd5lq"]
 resource_local_to_scene = true
@@ -34,6 +35,7 @@ script = ExtResource("1_8qe2b")
 mesh_instance_path = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_jkuk2")
 mesh = SubResource("BoxMesh_il36n")
 
@@ -48,12 +50,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0109247, 0, 0)
 shape = SubResource("BoxShape3D_yc2cx")
 
 [node name="ButtonPrompt" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 1.11725, 0)
+transform = Transform3D(0.105, 0, 0, 0, 0.0804346, 0.0674927, 0, -0.0674927, 0.0804346, 0, 1.11725, 0)
 visible = false
 pixel_size = 0.03
 billboard = 1
+fixed_size = true
 texture_filter = 0
 texture = ExtResource("3_i0ioo")
+
+[node name="CharacterSprite" type="Sprite3D" parent="."]
+transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, 0, 0.57, 0)
+visible = false
+billboard = 1
+shaded = true
+texture = ExtResource("5_j00nk")
 
 [connection signal="body_entered" from="InteractionRange" to="." method="_on_interaction_range_body_entered"]
 [connection signal="body_exited" from="InteractionRange" to="." method="_on_interaction_range_body_exited"]

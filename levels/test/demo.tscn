@@ -1,16 +1,17 @@
-[gd_scene load_steps=22 format=3 uid="uid://djc2wirwhg3g"]
+[gd_scene load_steps=27 format=3 uid="uid://djc2wirwhg3g"]
 
 [ext_resource type="PackedScene" uid="uid://benhs2xg0xqh8" path="res://models/van/BetterTruck.glb" id="1_1wmqt"]
 [ext_resource type="Texture2D" uid="uid://bus4dyuyj7uk" path="res://models/environment/texture_09.png" id="2_k4txe"]
-[ext_resource type="PackedScene" uid="uid://byhr6q4vp2e23" path="res://levels/interactable.tscn" id="3_h1ffd"]
+[ext_resource type="PackedScene" uid="uid://byhr6q4vp2e23" path="res://objects/interactable.tscn" id="3_h1ffd"]
 [ext_resource type="PackedScene" uid="uid://c7ap3vy012rbt" path="res://levels/wall.tscn" id="4_6vcnf"]
+[ext_resource type="Resource" path="res://dialogue/character_timeline_test.dtl" id="4_erecm"]
 [ext_resource type="Texture2D" uid="uid://cwraedbqkryj8" path="res://models/environment/texture_07.png" id="5_un00x"]
 [ext_resource type="PackedScene" uid="uid://b2qhxdrnviyqf" path="res://player/player_fps.tscn" id="6_qkghn"]
+[ext_resource type="Shader" path="res://shaders/EdgeHighlight.gdshader" id="6_xk2sw"]
 [ext_resource type="PackedScene" uid="uid://b02ldtqso7x43" path="res://models/table/TableTest.glb" id="7_a2pe7"]
+[ext_resource type="PackedScene" uid="uid://kutm44ohjusm" path="res://objects/character/BetterLowPolyHuman.glb" id="7_wh2ja"]
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://player/camera.tscn" id="8_y75jf"]
 [ext_resource type="Script" path="res://scripts/camera_switcher.gd" id="9_mvxbr"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="10_mldut"]
-[ext_resource type="PackedScene" uid="uid://cec2o6a1jgw51" path="res://examplescenes/scenes/overlaid_menus/pause_menu.tscn" id="11_ehk52"]
 [ext_resource type="PackedScene" uid="uid://2l63kuifpsg8" path="res://levels/focus_area.tscn" id="12_pb21y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i2n7g"]
@@ -27,6 +28,34 @@ uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78ma3"]
 albedo_color = Color(0.190762, 0.190762, 0.190762, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pve3"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_xk2sw")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ht8mf"]
+resource_local_to_scene = true
+next_pass = SubResource("ShaderMaterial_4pve3")
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("5_un00x")
+roughness = 0.1
+uv1_triplanar = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nepir"]
+render_priority = 0
+shader = ExtResource("6_xk2sw")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_immyw"]
+next_pass = SubResource("ShaderMaterial_nepir")
+diffuse_mode = 3
+albedo_color = Color(1, 0.541176, 1, 1)
+roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44hiu"]
 diffuse_mode = 3
@@ -102,7 +131,7 @@ _data = {
 
 [node name="Lightsourcestreetlamp" type="SpotLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, -6.0867, 2.96584, 9.59834)
-light_energy = 4.717
+light_energy = 2.0
 light_volumetric_fog_energy = 2.99
 shadow_enabled = true
 spot_range = 5.86622
@@ -110,7 +139,7 @@ spot_angle = 55.2229
 
 [node name="Lightsourcestreetlamp2" type="SpotLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, -8.68096, 2.96584, 5.10528)
-light_energy = 4.717
+light_energy = 2.0
 light_volumetric_fog_energy = 2.99
 shadow_enabled = true
 spot_range = 5.86622
@@ -118,7 +147,7 @@ spot_angle = 55.2229
 
 [node name="Lightsourcestreetlamp3" type="SpotLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, -3.47077, 2.96584, 5.10528)
-light_energy = 4.717
+light_energy = 2.0
 light_volumetric_fog_energy = 2.99
 shadow_enabled = true
 spot_range = 5.86622
@@ -153,6 +182,21 @@ material = SubResource("StandardMaterial3D_78ma3")
 
 [node name="Interactable" parent="Level" instance=ExtResource("3_h1ffd")]
 transform = Transform3D(0.760281, 0, -0.649594, 0, 1, 0, 0.649594, 0, 0.760281, 0.239367, 0.549617, 0.207944)
+mesh_instance_path = NodePath("BetterLowPolyHuman/Cube_001")
+is_character = true
+dialogue_timeline = ExtResource("4_erecm")
+
+[node name="MeshInstance3D" parent="Level/Interactable" index="0"]
+material_override = SubResource("StandardMaterial3D_ht8mf")
+
+[node name="ButtonPrompt" parent="Level/Interactable" index="3"]
+transform = Transform3D(0.105, 0, 0, 0, 0.0804346, 0.0674927, 0, -0.0674927, 0.0804346, 0, 1.11725, 0)
+
+[node name="BetterLowPolyHuman" parent="Level/Interactable" instance=ExtResource("7_wh2ja")]
+transform = Transform3D(0.355, 0, 0, 0, 0.355, 0, 0, 0, 0.355, 0, -0.519566, 0)
+
+[node name="Cube_001" parent="Level/Interactable/BetterLowPolyHuman" index="0"]
+material_override = SubResource("StandardMaterial3D_immyw")
 
 [node name="Interactable2" parent="Level" instance=ExtResource("3_h1ffd")]
 transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, -8.37419, 0.729404, 8.64913)
@@ -167,14 +211,7 @@ mesh = SubResource("TorusMesh_bb0yi")
 skeleton = NodePath("../..")
 
 [node name="Player" parent="Level" instance=ExtResource("6_qkghn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54261, 0.182372, 7.33182)
-
-[node name="SpotLight3D" parent="Level/Player/Pivot/Camera" index="2"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Level/Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.382589, 1.93716, 0)
-shadow_enabled = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39456, 0.182372, 2.62458)
 
 [node name="TableTest" parent="Level" instance=ExtResource("7_a2pe7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66721, 0.0964136, 6.29678)
@@ -217,10 +254,6 @@ libraries = {
 }
 autoplay = "RESET"
 
-[node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("10_mldut")
-pause_menu_packed = ExtResource("11_ehk52")
-
 [node name="FocusArea" parent="." node_paths=PackedStringArray("focus_node", "cam_manager") instance=ExtResource("12_pb21y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96014, 0.247147, 7.06394)
 focus_node = NodePath("../Level/CamFocus")
@@ -231,6 +264,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.378809, 0.247147, -0.94848
 focus_node = NodePath("../Level/CamFocus")
 cam_manager = NodePath("../Level/CamFocus/CameraSwitcher")
 
+[editable path="Level/Interactable"]
+[editable path="Level/Interactable/BetterLowPolyHuman"]
 [editable path="Level/Player"]
 [editable path="Level/Player/Pivot/Camera"]
+[editable path="Level/Player/Playermodel"]
 [editable path="Level/Camera"]
