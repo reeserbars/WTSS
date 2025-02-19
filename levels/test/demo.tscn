@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bus4dyuyj7uk" path="res://models/environment/texture_09.png" id="2_k4txe"]
 [ext_resource type="PackedScene" uid="uid://byhr6q4vp2e23" path="res://objects/interactable.tscn" id="3_h1ffd"]
 [ext_resource type="PackedScene" uid="uid://c7ap3vy012rbt" path="res://levels/wall.tscn" id="4_6vcnf"]
-[ext_resource type="Resource" path="res://dialogue/character_timeline_test.dtl" id="4_erecm"]
+[ext_resource type="Resource" path="res://Dialogue/placeholder_timeline.dtl" id="4_11har"]
 [ext_resource type="Texture2D" uid="uid://cwraedbqkryj8" path="res://models/environment/texture_07.png" id="5_un00x"]
 [ext_resource type="PackedScene" uid="uid://b2qhxdrnviyqf" path="res://player/player_fps.tscn" id="6_qkghn"]
 [ext_resource type="Shader" path="res://shaders/EdgeHighlight.gdshader" id="6_xk2sw"]
@@ -184,13 +184,10 @@ material = SubResource("StandardMaterial3D_78ma3")
 transform = Transform3D(0.760281, 0, -0.649594, 0, 1, 0, 0.649594, 0, 0.760281, 0.239367, 0.549617, 0.207944)
 mesh_instance_path = NodePath("BetterLowPolyHuman/Cube_001")
 is_character = true
-dialogue_timeline = ExtResource("4_erecm")
+dialogue_timeline = ExtResource("4_11har")
 
 [node name="MeshInstance3D" parent="Level/Interactable" index="0"]
 material_override = SubResource("StandardMaterial3D_ht8mf")
-
-[node name="ButtonPrompt" parent="Level/Interactable" index="3"]
-transform = Transform3D(0.105, 0, 0, 0, 0.0804346, 0.0674927, 0, -0.0674927, 0.0804346, 0, 1.11725, 0)
 
 [node name="BetterLowPolyHuman" parent="Level/Interactable" instance=ExtResource("7_wh2ja")]
 transform = Transform3D(0.355, 0, 0, 0, 0.355, 0, 0, 0, 0.355, 0, -0.519566, 0)
@@ -200,6 +197,7 @@ material_override = SubResource("StandardMaterial3D_immyw")
 
 [node name="Interactable2" parent="Level" instance=ExtResource("3_h1ffd")]
 transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, -8.37419, 0.729404, 8.64913)
+dialogue_timeline = ExtResource("4_11har")
 
 [node name="Wall" parent="Level" instance=ExtResource("4_6vcnf")]
 transform = Transform3D(0.999801, 0, -0.0199303, 0, 1, 0, 0.0199303, 0, 0.999801, -9.29841, 1.4617, 4.55184)

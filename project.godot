@@ -29,11 +29,11 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
-"markiplier": "res://dialogue/characters/markiplier.dch"
+"markiplier": "res://Dialogue/characters/markiplier.dch"
 }
 directories/dtl_directory={
-"character_timeline_test": "res://dialogue/character_timeline_test.dtl",
-"placeholder_timeline": "res://dialogue/placeholder_timeline.dtl"
+"character_timeline_test": "res://Dialogue/character_timeline_test.dtl",
+"placeholder_timeline": "res://Dialogue/placeholder_timeline.dtl"
 }
 glossary/default_case_sensitive=true
 layout/style_list=["res://Dialogue/char_style.tres", "res://Dialogue/object_style.tres"]
@@ -66,6 +66,11 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="res://player/resources/cursor.png"
 mouse_cursor/custom_image_hotspot=Vector2(8, 8)
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 
