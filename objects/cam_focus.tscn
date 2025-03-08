@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://pdqjt7pqlg0"]
+
+[ext_resource type="Script" uid="uid://cyvqufiyo1t2a" path="res://scripts/camera_switcher.gd" id="1_it221"]
+
+[node name="CamFocus" type="Node3D"]
+transform = Transform3D(1.49, 0, 0, 0, 1.49, 0, 0, 0, 1.49, -7.39986, 0, 6.32049)
+
+[node name="pos1" type="Marker3D" parent="."]
+transform = Transform3D(0.707107, -0.241845, 0.664463, 0, 0.939693, 0.34202, -0.707107, -0.241845, 0.664463, 5, 5, 5)
+
+[node name="pos3" type="Marker3D" parent="."]
+transform = Transform3D(-0.707107, 0.241845, -0.664463, 0, 0.939693, 0.34202, 0.707107, 0.241845, -0.664463, -5, 5.182, -5)
+
+[node name="pos2" type="Marker3D" parent="."]
+transform = Transform3D(0.707107, 0.241845, -0.664463, 0, 0.939693, 0.34202, 0.707107, -0.241845, 0.664463, -5, 5.182, 5)
+
+[node name="pos4" type="Marker3D" parent="."]
+transform = Transform3D(-0.707107, -0.241845, 0.664463, 0, 0.939693, 0.34202, -0.707107, 0.241845, -0.664463, 5, 5.182, -5)
+
+[node name="CameraSwitcher" type="Node" parent="." node_paths=PackedStringArray("position_markers")]
+script = ExtResource("1_it221")
+position_markers = [NodePath("../pos1"), NodePath("../pos2"), NodePath("../pos3"), NodePath("../pos4")]

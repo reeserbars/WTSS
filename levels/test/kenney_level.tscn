@@ -1,0 +1,100 @@
+[gd_scene load_steps=17 format=3 uid="uid://cxo477ik2knft"]
+
+[ext_resource type="Texture2D" uid="uid://c3nsffa4378tm" path="res://models/kenney_assets/Textures/tiles.png" id="1_h2b24"]
+[ext_resource type="PackedScene" uid="uid://b2qhxdrnviyqf" path="res://player/player_fps.tscn" id="2_m4hkm"]
+[ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://player/camera.tscn" id="3_ujv1q"]
+[ext_resource type="PackedScene" uid="uid://pdqjt7pqlg0" path="res://objects/cam_focus.tscn" id="4_fiytp"]
+[ext_resource type="Environment" uid="uid://damvjxxjp4wko" path="res://levels/worldenv.tres" id="5_t438e"]
+[ext_resource type="PackedScene" uid="uid://2l63kuifpsg8" path="res://levels/focus_area.tscn" id="6_4bbg3"]
+[ext_resource type="PackedScene" uid="uid://cxtlnapcr10l6" path="res://models/kenney_assets/tree-large.glb" id="7_5hpap"]
+[ext_resource type="PackedScene" uid="uid://btrhjorl5dh08" path="res://models/kenney_assets/truck-green.glb" id="8_lotea"]
+[ext_resource type="PackedScene" uid="uid://cji847xjicx1w" path="res://models/kenney_assets/wall-a-open.glb" id="9_m7nd4"]
+[ext_resource type="PackedScene" uid="uid://buiw3klf8v8ak" path="res://models/kenney_assets/wall-broken-type-a.glb" id="10_23oux"]
+[ext_resource type="PackedScene" uid="uid://bw3qy3ugcu2i2" path="res://models/kenney_assets/wall-a-painted.glb" id="11_0inuh"]
+[ext_resource type="PackedScene" uid="uid://ctkjs2fw3dhjq" path="res://models/kenney_assets/wall-a-window.glb" id="12_gx3wp"]
+[ext_resource type="PackedScene" uid="uid://douvsdens7ap2" path="res://models/kenney_assets/detail-light-single.glb" id="13_tj6p1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m4xle"]
+size = Vector2(72, 72)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iyl8f"]
+albedo_texture = ExtResource("1_h2b24")
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_m7ffr"]
+data = PackedVector3Array(36, 0, 36, -36, 0, 36, 36, 0, -36, -36, 0, 36, -36, 0, -36, 36, 0, -36)
+
+[node name="KenneyLevel" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_m4hkm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.44537, 4.76837e-07, 1.85269)
+
+[node name="Camera" parent="Player/Pivot" index="0"]
+current = false
+
+[node name="Camera" parent="." instance=ExtResource("3_ujv1q")]
+transform = Transform3D(0.707107, -0.183013, 0.683013, 0, 0.965926, 0.258819, -0.707107, -0.183013, 0.683013, 10.3129, 7.53989, 8.20731)
+
+[node name="CamFocus" parent="." instance=ExtResource("4_fiytp")]
+transform = Transform3D(1.49, 0, 0, 0, 1.49, 0, 0, 0, 1.49, -0.367212, 0, 0.694018)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("5_t438e")
+
+[node name="FocusArea" parent="." node_paths=PackedStringArray("focus_node", "cam_manager") instance=ExtResource("6_4bbg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.78654, 0.238165, 0.682602)
+focus_node = NodePath("../CamFocus")
+cam_manager = NodePath("../CamFocus/CameraSwitcher")
+
+[node name="FocusArea2" parent="." node_paths=PackedStringArray("focus_node", "cam_manager") instance=ExtResource("6_4bbg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21346, 0.238165, 0.682602)
+focus_node = NodePath("../CamFocus")
+cam_manager = NodePath("../CamFocus/CameraSwitcher")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.001, 0)
+mesh = SubResource("PlaneMesh_m4xle")
+surface_material_override/0 = SubResource("StandardMaterial3D_iyl8f")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("ConcavePolygonShape3D_m7ffr")
+
+[node name="Level" type="Node3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="tree-large2" parent="Level" instance=ExtResource("7_5hpap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24347, 0, 0.55271)
+
+[node name="truck-green2" parent="Level" instance=ExtResource("8_lotea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02552, 4.76837e-07, -2.74936)
+
+[node name="wall-a-open2" parent="Level" instance=ExtResource("9_m7nd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53754, 0, -2.20003)
+
+[node name="wall-broken-type-a2" parent="Level" instance=ExtResource("10_23oux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.512541, -9.53674e-08, -1.7402)
+
+[node name="wall-a-painted2" parent="Level" instance=ExtResource("11_0inuh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5266, 0, -2.21745)
+
+[node name="wall-a-painted3" parent="Level" instance=ExtResource("11_0inuh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.56764, 0, -2.21745)
+
+[node name="wall-a-window2" parent="Level" instance=ExtResource("12_gx3wp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.58954, 0.991243, -2.21728)
+
+[node name="detail-light-single2" parent="Level" instance=ExtResource("13_tj6p1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Level/detail-light-single2"]
+transform = Transform3D(0.4, 0, 0, 0, -1.74846e-08, 0.4, 0, -0.4, -1.74846e-08, 0, 0.92, -0.2)
+
+[editable path="Player"]
+[editable path="Player/Pivot/Camera"]
+[editable path="Player/Playermodel"]
+[editable path="CamFocus"]
+[editable path="Level/tree-large2"]
+[editable path="Level/detail-light-single2"]

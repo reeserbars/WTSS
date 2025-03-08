@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cphb5tqh456b8"]
+
+[ext_resource type="Texture2D" uid="uid://b0nvmgpimxiu6" path="res://models/kenney_assets/Textures/truck_alien.png" id="1_ash6h"]
+
+[resource]
+resource_name = "truck_alien"
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("1_ash6h")
+roughness = 0.0

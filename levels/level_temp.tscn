@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxi2xx8kx3ukt"]
 
-[ext_resource type="PackedScene" uid="uid://djc2wirwhg3g" path="res://levels/test/demo.tscn" id="1_jai68"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="2_kf3ik"]
+[ext_resource type="PackedScene" uid="uid://djc2wirwhg3g" path="res://levels/test/demo.tscn" id="1_2br10"]
+[ext_resource type="Script" uid="uid://cfmp2danfawfl" path="res://addons/maaacks_game_template/extras/scripts/pause_menu_controller.gd" id="2_kf3ik"]
 [ext_resource type="PackedScene" uid="uid://cec2o6a1jgw51" path="res://examplescenes/scenes/overlaid_menus/pause_menu.tscn" id="3_8giyu"]
 [ext_resource type="PackedScene" uid="uid://dv1pcrflu73bg" path="res://ui/debug_panel.tscn" id="4_3x1mm"]
 
@@ -22,7 +22,7 @@ handle_input_locally = false
 size = Vector2i(576, 324)
 render_target_update_mode = 4
 
-[node name="Demo" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_jai68")]
+[node name="Demo" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_2br10")]
 
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("2_kf3ik")

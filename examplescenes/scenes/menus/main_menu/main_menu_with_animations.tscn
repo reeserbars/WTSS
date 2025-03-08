@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://1evei3qdoac3"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_6mbvk"]
-[ext_resource type="Script" path="res://examplescenes/scenes/menus/main_menu/main_menu_with_animations.gd" id="2_byhjo"]
+[ext_resource type="Script" uid="uid://s3pe3mbfqm1" path="res://examplescenes/scenes/menus/main_menu/main_menu_with_animations.gd" id="2_byhjo"]
 [ext_resource type="PackedScene" uid="uid://cl1g7ujkotd36" path="res://examplescenes/scenes/menus/level_select_menu/level_select_menu.tscn" id="3_xbu4y"]
 [ext_resource type="PackedScene" uid="uid://dtg5fd0dqrekj" path="res://examplescenes/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="4_7xap0"]
 [ext_resource type="PackedScene" uid="uid://beb7hj8v8rveb" path="res://examplescenes/scenes/credits/credits.tscn" id="5_pr3f2"]
@@ -313,10 +313,10 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kqig"]
 _data = {
-"Intro": SubResource("1"),
-"OpenMainMenu": SubResource("6"),
-"OpenSubMenu": SubResource("4"),
-"RESET": SubResource("2")
+&"Intro": SubResource("1"),
+&"OpenMainMenu": SubResource("6"),
+&"OpenSubMenu": SubResource("4"),
+&"RESET": SubResource("2")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="7"]

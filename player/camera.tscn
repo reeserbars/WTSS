@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cuh1yaoty6gvf"]
 
-[ext_resource type="Script" path="res://player/camera.gd" id="1_rd5nv"]
-[ext_resource type="Shader" path="res://shaders/pixelart_stylizer2.gdshader" id="2_bxrj4"]
+[ext_resource type="Script" uid="uid://blny1ms5pgqi6" path="res://player/camera.gd" id="1_rd5nv"]
+[ext_resource type="Shader" uid="uid://divnhc5r8hlx3" path="res://shaders/pixelart_stylizer2.gdshader" id="2_bxrj4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vgiil"]
 render_priority = 0

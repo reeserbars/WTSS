@@ -13,7 +13,7 @@ config_version=5
 config/name="WHERE THE SUN SLEEPS"
 config/version="Dev-0.0.17.3"
 run/main_scene="res://examplescenes/scenes/opening/opening_with_logo.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
@@ -182,4 +182,5 @@ textures/canvas_textures/default_texture_filter=0
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
 lights_and_shadows/directional_shadow/16_bits=false
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+textures/default_filters/use_nearest_mipmap_filter=true
 textures/decals/filter=0

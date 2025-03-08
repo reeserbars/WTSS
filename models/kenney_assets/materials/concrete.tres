@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c5yda1fgeedvt"]
+
+[ext_resource type="Texture2D" uid="uid://0jautod2stpx" path="res://models/kenney_assets/Textures/concrete.png" id="1_6qsyu"]
+
+[resource]
+resource_name = "concrete"
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("1_6qsyu")

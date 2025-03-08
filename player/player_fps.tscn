@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://b2qhxdrnviyqf"]
 
-[ext_resource type="Script" path="res://player/player_fps.gd" id="1_jjp5x"]
+[ext_resource type="Script" uid="uid://755ha43plb50" path="res://player/player_fps.gd" id="1_jjp5x"]
 [ext_resource type="PackedScene" uid="uid://bxafw8kyswsyx" path="res://player/resources/pistol.blend" id="2_q1iuk"]
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://player/camera.tscn" id="2_w61wo"]
 [ext_resource type="AudioStream" uid="uid://b036qvste7k1i" path="res://player/resources/645317__darkshroom__m9_noisegate-1780.ogg" id="3_6fknb"]
@@ -142,16 +142,15 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m8nyu"]
 _data = {
-"RESET": SubResource("Animation_5woug"),
-"idle": SubResource("Animation_hwk86"),
-"move": SubResource("Animation_yvvk7"),
-"shoot": SubResource("Animation_d7qmc")
+&"RESET": SubResource("Animation_5woug"),
+&"idle": SubResource("Animation_hwk86"),
+&"move": SubResource("Animation_yvvk7"),
+&"shoot": SubResource("Animation_d7qmc")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbmbe"]
 diffuse_mode = 3
 specular_mode = 1
-emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.1
 
@@ -170,12 +169,14 @@ target_position = Vector3(0, 0, -50)
 collision_mask = 3
 
 [node name="Flashlight" type="SpotLight3D" parent="Pivot/Camera"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, -0.532672, 0)
-visible = false
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.235163, -0.506653, -0.0741627)
 light_energy = 9.805
+light_indirect_energy = 7.606
 shadow_enabled = true
-spot_range = 30.8588
-spot_angle = 36.276
+spot_range = 13.1015
+spot_attenuation = 2.0
+spot_angle = 20.7023
+spot_angle_attenuation = 1.61369
 
 [node name="pistol" parent="Pivot/Camera" instance=ExtResource("2_q1iuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
@@ -200,7 +201,7 @@ shape = SubResource("CapsuleShape3D_kk8xf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_m8nyu")
+&"": SubResource("AnimationLibrary_m8nyu")
 }
 autoplay = "idle"
 playback_default_blend_time = 0.05
@@ -222,9 +223,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lbmbe")
 
 [node name="OmniLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.35367, 0)
+visible = false
 light_energy = 0.2
 spot_range = 7.30046
 spot_angle = 77.9851
+
+[node name="PlayerLight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.35367, 0)
+light_energy = 0.2
+spot_range = 4.43458
+spot_angle = 17.757
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cxfwc1gevrcof"]
 
-[ext_resource type="Script" path="res://examplescenes/scenes/menus/options_menu/game/reset_game_control/reset_game_control.gd" id="1_jy2cg"]
+[ext_resource type="Script" uid="uid://dplo13kembd6x" path="res://examplescenes/scenes/menus/options_menu/game/reset_game_control/reset_game_control.gd" id="1_jy2cg"]
 
 [node name="ResetGameControl" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 32)

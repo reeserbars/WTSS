@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b8jcj60pxaih5"]
+
+[ext_resource type="Texture2D" uid="uid://4m15qan82xyy" path="res://models/kenney_assets/Textures/wall_lines.png" id="1_ki4jf"]
+
+[resource]
+resource_name = "wall_lines"
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_ki4jf")

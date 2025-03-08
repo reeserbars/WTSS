@@ -4,16 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://bus4dyuyj7uk" path="res://models/environment/texture_09.png" id="2_k4txe"]
 [ext_resource type="PackedScene" uid="uid://byhr6q4vp2e23" path="res://objects/interactable.tscn" id="3_h1ffd"]
 [ext_resource type="PackedScene" uid="uid://c7ap3vy012rbt" path="res://levels/wall.tscn" id="4_6vcnf"]
-[ext_resource type="Resource" path="res://Dialogue/placeholder_timeline.dtl" id="4_11har"]
-[ext_resource type="Resource" path="res://Dialogue/character_timeline_test.dtl" id="4_ucxic"]
+[ext_resource type="Resource" uid="uid://cavquqvsc47bn" path="res://Dialogue/placeholder_timeline.dtl" id="4_11har"]
+[ext_resource type="Resource" uid="uid://cm6yu3veo1j72" path="res://Dialogue/character_timeline_test.dtl" id="4_ucxic"]
 [ext_resource type="Texture2D" uid="uid://cwraedbqkryj8" path="res://models/environment/texture_07.png" id="5_un00x"]
 [ext_resource type="PackedScene" uid="uid://b2qhxdrnviyqf" path="res://player/player_fps.tscn" id="6_qkghn"]
-[ext_resource type="Shader" path="res://shaders/EdgeHighlight.gdshader" id="6_xk2sw"]
+[ext_resource type="Shader" uid="uid://cfsd2t71er0n3" path="res://shaders/EdgeHighlight.gdshader" id="6_xk2sw"]
 [ext_resource type="PackedScene" uid="uid://b02ldtqso7x43" path="res://models/table/TableTest.glb" id="7_a2pe7"]
 [ext_resource type="PackedScene" uid="uid://kutm44ohjusm" path="res://objects/character/BetterLowPolyHuman.glb" id="7_wh2ja"]
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://player/camera.tscn" id="8_y75jf"]
-[ext_resource type="Script" path="res://scripts/camera_switcher.gd" id="9_mvxbr"]
 [ext_resource type="PackedScene" uid="uid://2l63kuifpsg8" path="res://levels/focus_area.tscn" id="12_pb21y"]
+[ext_resource type="PackedScene" uid="uid://pdqjt7pqlg0" path="res://objects/cam_focus.tscn" id="13_qj4np"]
+[ext_resource type="Environment" uid="uid://damvjxxjp4wko" path="res://levels/worldenv.tres" id="14_u1e67"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i2n7g"]
 size = Vector3(4.25372, 1, 2.1665)
@@ -67,14 +68,6 @@ uv1_triplanar = true
 
 [sub_resource type="TorusMesh" id="TorusMesh_bb0yi"]
 
-[sub_resource type="Environment" id="Environment_wh5m0"]
-background_mode = 1
-ambient_light_energy = 0.1
-tonemap_mode = 2
-tonemap_exposure = 0.5
-tonemap_white = 3.0
-ssao_enabled = true
-
 [sub_resource type="Animation" id="Animation_clmft"]
 length = 3.0
 loop_mode = 1
@@ -122,8 +115,8 @@ loop_mode = 1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y7lvy"]
 _data = {
-"RESET": SubResource("Animation_clmft"),
-"loop": SubResource("Animation_b55y7")
+&"RESET": SubResource("Animation_clmft"),
+&"loop": SubResource("Animation_b55y7")
 }
 
 [node name="Demo" type="Node3D"]
@@ -166,7 +159,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.100
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Level"]
 material_override = SubResource("StandardMaterial3D_4m83l")
-snap = 1e-06
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Level/CSGCombiner3D"]
@@ -214,46 +206,24 @@ mesh = SubResource("TorusMesh_bb0yi")
 skeleton = NodePath("../..")
 
 [node name="Player" parent="Level" instance=ExtResource("6_qkghn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39456, 0.182372, 2.62458)
+transform = Transform3D(-0.534987, 0, -0.844861, 0, 1, 0, 0.844861, 0, -0.534987, -1.39456, 0.182372, 3.3896)
 
 [node name="TableTest" parent="Level" instance=ExtResource("7_a2pe7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66721, 0.0964136, 6.29678)
 
 [node name="Camera" parent="Level" instance=ExtResource("8_y75jf")]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 8, 14)
-rotation_edit_mode = 1
+transform = Transform3D(0.707107, -0.241845, 0.664463, 0, 0.939693, 0.34202, -0.707107, -0.241845, 0.664463, 0, 5.71472, 14)
 size = 15.0
 near = 0.05
 
-[node name="CamFocus" type="Node3D" parent="Level"]
-transform = Transform3D(1.49, 0, 0, 0, 1.49, 0, 0, 0, 1.49, -7.39986, 0, 6.32049)
-
-[node name="pos1" type="Marker3D" parent="Level/CamFocus"]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 5, 5, 5)
-rotation_edit_mode = 1
-
-[node name="pos3" type="Marker3D" parent="Level/CamFocus"]
-transform = Transform3D(-0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, 0.5, -0.5, -5, 5.182, -5)
-rotation_edit_mode = 1
-
-[node name="pos2" type="Marker3D" parent="Level/CamFocus"]
-transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -5, 5.182, 5)
-rotation_edit_mode = 1
-
-[node name="pos4" type="Marker3D" parent="Level/CamFocus"]
-transform = Transform3D(-0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 5, 5.182, -5)
-rotation_edit_mode = 1
-
-[node name="CameraSwitcher" type="Node" parent="Level/CamFocus" node_paths=PackedStringArray("position_markers")]
-script = ExtResource("9_mvxbr")
-position_markers = [NodePath("../pos1"), NodePath("../pos2"), NodePath("../pos3"), NodePath("../pos4")]
+[node name="CamFocus" parent="Level" instance=ExtResource("13_qj4np")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_wh5m0")
+environment = ExtResource("14_u1e67")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_y7lvy")
+&"": SubResource("AnimationLibrary_y7lvy")
 }
 autoplay = "RESET"
 
@@ -267,6 +237,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.378809, 0.247147, -0.94848
 focus_node = NodePath("../Level/CamFocus")
 cam_manager = NodePath("../Level/CamFocus/CameraSwitcher")
 
+[node name="FocusArea3" parent="." node_paths=PackedStringArray("focus_node", "cam_manager") instance=ExtResource("12_pb21y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.43864, 0.247147, 5.11371)
+focus_node = NodePath("../Level/CamFocus")
+cam_manager = NodePath("../Level/CamFocus/CameraSwitcher")
+
 [editable path="Level/Interactable"]
 [editable path="Level/Interactable/BetterLowPolyHuman"]
 [editable path="Level/Wall"]
@@ -274,3 +249,4 @@ cam_manager = NodePath("../Level/CamFocus/CameraSwitcher")
 [editable path="Level/Player/Pivot/Camera"]
 [editable path="Level/Player/Playermodel"]
 [editable path="Level/Camera"]
+[editable path="Level/CamFocus"]

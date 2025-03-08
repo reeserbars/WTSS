@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b1gq7ul7qvxjw"]
+
+[ext_resource type="Texture2D" uid="uid://t7503jjc2edn" path="res://models/kenney_assets/Textures/treeA.png" id="1_ouqfw"]
+
+[resource]
+resource_name = "treeA"
+transparency = 4
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_ouqfw")

@@ -131,8 +131,9 @@ func rotate_towards_mouse():
 	var cursor_position_on_plane = target_plane_mouse.intersects_ray(from, to)
 	look_at(cursor_position_on_plane, Vector3.UP, 0)
 	
-	Global.debug.add_property("MousePos", get_viewport().get_mouse_position(), 2)
-	Global.debug.add_property("CursorOnPlane", cursor_position_on_plane, 2)
+	if Global.debug:
+		Global.debug.add_property("MousePos", get_viewport().get_mouse_position(), 2)
+		Global.debug.add_property("CursorOnPlane", cursor_position_on_plane, 2)
 	
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

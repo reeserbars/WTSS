@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://0mkesyfuxds"]
 
 [ext_resource type="PackedScene" uid="uid://bvwl11s2p0hd" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu.tscn" id="1_5ak1m"]
-[ext_resource type="Script" path="res://examplescenes/scenes/menus/options_menu/master_options_menu.gd" id="2_ra773"]
+[ext_resource type="Script" uid="uid://dd7p7uvtnbv4h" path="res://examplescenes/scenes/menus/options_menu/master_options_menu.gd" id="2_ra773"]
 
 [node name="MasterOptionsMenu" instance=ExtResource("1_5ak1m")]
 script = ExtResource("2_ra773")

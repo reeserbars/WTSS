@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://byhr6q4vp2e23"]
 
-[ext_resource type="Script" path="res://objects/Interactable.gd" id="1_8qe2b"]
-[ext_resource type="Shader" path="res://shaders/EdgeHighlight.gdshader" id="1_dj4ts"]
+[ext_resource type="Script" uid="uid://c3ms04bja5cww" path="res://objects/Interactable.gd" id="1_8qe2b"]
+[ext_resource type="Shader" uid="uid://cfsd2t71er0n3" path="res://shaders/EdgeHighlight.gdshader" id="1_dj4ts"]
 [ext_resource type="Texture2D" uid="uid://cwraedbqkryj8" path="res://models/environment/texture_07.png" id="2_rip0b"]
 [ext_resource type="Texture2D" uid="uid://1g56xnyset5b" path="res://ui/E.png" id="3_i0ioo"]
 [ext_resource type="Texture2D" uid="uid://civ2ex63x8huc" path="res://objects/character/Markimoo.png" id="5_j00nk"]
