@@ -19,8 +19,6 @@ var uv : bool
 @onready var flashlight: SpotLight3D = $Pivot/Camera/Flashlight
 @onready var playermodel: Node3D = $Playermodel
 
-
-
 func _ready() -> void:
 	camera.current = false
 
@@ -104,7 +102,6 @@ func flash_uv() -> void:
 
 func update_aim_mode() -> void:
 	
-	
 	if Global.is_aiming:
 		playermodel.hide()
 		camera.current = true
@@ -117,7 +114,6 @@ func update_aim_mode() -> void:
 		camera.projection = Camera3D.PROJECTION_ORTHOGONAL
 		camera.rotation.x = 0
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
 
 func rotate_towards_mouse():
 	var current_camera = get_viewport().get_camera_3d()
