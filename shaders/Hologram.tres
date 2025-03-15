@@ -92,13 +92,13 @@ render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_s
 
 
 // Varyings
-varying vec3 WorldPos;
+varying vec3 var_WorldPos;
 
 uniform vec4 Scanline_Color : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
-uniform float Scanline_Scroll_Speed = 1;
-uniform float Scanline_Scale = 1;
+uniform float Scanline_Scroll_Speed = 1.0;
+uniform float Scanline_Scale = 1.0;
 uniform sampler2D Scanline_Texture : source_color;
-uniform float Fresnel_Power = 1;
+uniform float Fresnel_Power = 1.0;
 uniform vec4 Fresnel_Color : source_color = vec4(0.000000, 0.000000, 1.000000, 1.000000);
 
 
@@ -117,7 +117,7 @@ void vertex() {
 
 
 // VaryingSetter:5
-	WorldPos = n_out3p0;
+	var_WorldPos = n_out3p0;
 
 
 }
@@ -144,7 +144,7 @@ void fragment() {
 
 
 // VaryingGetter:21
-	vec3 n_out21p0 = WorldPos;
+	vec3 n_out21p0 = var_WorldPos;
 
 
 // VectorDecompose:9
@@ -208,7 +208,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-691.301, -14.3604)
+graph_offset = Vector2(-869.867, -354.355)
 varyings/WorldPos = "0,4"
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_vojbj")
 nodes/vertex/2/position = Vector2(-400, 440)

@@ -57,14 +57,10 @@ func _input(event: InputEvent) -> void:
 	
 func _unhandled_input(event: InputEvent) -> void:
 	
-	
 	axis_vector = Input.get_vector("look_left", "look_right", "look_up", "look_down")
 	if event is InputEventMouseMotion and Global.is_aiming:
 		camera.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
-	
-	
-
 
 
 func _physics_process(delta: float) -> void:
@@ -112,7 +108,7 @@ func update_aim_mode() -> void:
 		playermodel.show()
 		camera.current = false
 		camera.projection = Camera3D.PROJECTION_ORTHOGONAL
-		camera.rotation.x = 0
+		camera.rotation = pivot.rotation
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func rotate_towards_mouse():
@@ -125,7 +121,10 @@ func rotate_towards_mouse():
 	var from = current_camera.project_ray_origin(mouse_pos)
 	var to = from + current_camera.project_ray_normal(mouse_pos) * 1000
 	var cursor_position_on_plane = target_plane_mouse.intersects_ray(from, to)
-	look_at(cursor_position_on_plane, Vector3.UP, 0)
+	if Global.is_mouse_inside_window():
+		look_at(cursor_position_on_plane, Vector3.UP, 0)
+	else:
+		pass
 	
 	if Global.debug:
 		Global.debug.add_property("MousePos", get_viewport().get_mouse_position(), 2)
