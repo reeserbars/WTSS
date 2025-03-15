@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://cns2ilvhy7giw"]
+[gd_scene load_steps=6 format=3 uid="uid://cns2ilvhy7giw"]
 
-[ext_resource type="Texture2D" uid="uid://bus4dyuyj7uk" path="res://models/environment/texture_09.png" id="1_embea"]
 [ext_resource type="PackedScene" uid="uid://b2qhxdrnviyqf" path="res://player/player_fps.tscn" id="2_wieus"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pl2id"]
@@ -14,16 +13,7 @@ background_energy_multiplier = 1.85
 sky = SubResource("Sky_ekwby")
 ambient_light_source = 3
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_3u743"]
-size = Vector2(10, 10)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ky634"]
-albedo_texture = ExtResource("1_embea")
-uv1_triplanar = true
-uv1_world_triplanar = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_iy25a"]
-size = Vector2(10, 10)
+[sub_resource type="QuadMesh" id="QuadMesh_4eiat"]
 
 [node name="VanLevel" type="Node3D"]
 
@@ -38,34 +28,6 @@ transform = Transform3D(0.707107, -0.287606, 0.645974, 0, 0.913545, 0.406737, -0
 projection = 1
 size = 15.0
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-use_collision = true
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
-use_collision = true
-mesh = SubResource("PlaneMesh_3u743")
-material = SubResource("StandardMaterial3D_ky634")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
-use_collision = true
-mesh = SubResource("QuadMesh_iy25a")
-material = SubResource("StandardMaterial3D_ky634")
-
-[node name="CSGMesh3D5" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 5)
-use_collision = true
-mesh = SubResource("QuadMesh_iy25a")
-material = SubResource("StandardMaterial3D_ky634")
-
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, 0)
-use_collision = true
-mesh = SubResource("QuadMesh_iy25a")
-material = SubResource("StandardMaterial3D_ky634")
-
-[node name="CSGMesh3D4" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -5, 0, 0)
-use_collision = true
-mesh = SubResource("QuadMesh_iy25a")
-material = SubResource("StandardMaterial3D_ky634")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_4eiat")

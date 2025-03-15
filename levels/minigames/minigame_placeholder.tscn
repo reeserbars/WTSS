@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://8wehsx77aek0"]
+
+[ext_resource type="Texture2D" uid="uid://d2d5d4q28ewhx" path="res://levels/minigames/placeHolderMinigame.png" id="3_p1w7s"]
+[ext_resource type="PackedScene" uid="uid://bsai43ravyiww" path="res://levels/minigames/free_draggable.tscn" id="5_p1w7s"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jekyq"]
+b = Vector2(768, 0)
+
+[node name="MinigamePlaceholder" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 192
+theme_override_constants/margin_top = 108
+theme_override_constants/margin_right = 192
+theme_override_constants/margin_bottom = 108
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_p1w7s")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control/MarginContainer"]
+position = Vector2(192, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/MarginContainer/StaticBody2D"]
+shape = SubResource("SegmentShape2D_jekyq")
+one_way_collision = true
+one_way_collision_margin = 2.0
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Control/MarginContainer"]
+position = Vector2(192, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/MarginContainer/StaticBody2D2"]
+shape = SubResource("SegmentShape2D_jekyq")
+one_way_collision = true
+one_way_collision_margin = 2.0
+
+[node name="DraggableWArea" parent="." instance=ExtResource("5_p1w7s")]
+position = Vector2(459, 414)

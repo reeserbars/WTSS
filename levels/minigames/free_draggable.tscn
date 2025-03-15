@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsai43ravyiww"]
+
+[ext_resource type="Script" uid="uid://dqmgxumq6tw2b" path="res://levels/minigames/free_draggable.gd" id="1_hn77u"]
+[ext_resource type="Texture2D" uid="uid://brwn85acwmpm" path="res://icon.svg" id="2_tvkp8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_271gx"]
+size = Vector2(128, 128)
+
+[node name="DraggableWArea" type="Node2D"]
+script = ExtResource("1_hn77u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.321569, 1, 0.509804, 1)
+texture = ExtResource("2_tvkp8")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_271gx")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
