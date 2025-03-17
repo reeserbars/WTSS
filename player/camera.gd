@@ -1,9 +1,6 @@
 @tool
 extends Camera3D
 
-
-
-
 @export var post_processing : bool = true:
 	set(p):
 		post_processing = p

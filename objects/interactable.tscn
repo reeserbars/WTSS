@@ -1,69 +1,52 @@
-[gd_scene load_steps=11 format=3 uid="uid://byhr6q4vp2e23"]
+[gd_scene load_steps=4 format=3 uid="uid://byhr6q4vp2e23"]
 
-[ext_resource type="Script" uid="uid://c3ms04bja5cww" path="res://objects/Interactable.gd" id="1_8qe2b"]
-[ext_resource type="Shader" uid="uid://cfsd2t71er0n3" path="res://shaders/EdgeHighlight.gdshader" id="1_dj4ts"]
-[ext_resource type="Texture2D" uid="uid://cwraedbqkryj8" path="res://models/environment/texture_07.png" id="2_rip0b"]
-[ext_resource type="Texture2D" uid="uid://1g56xnyset5b" path="res://ui/E.png" id="3_i0ioo"]
+[ext_resource type="Script" uid="uid://c3ms04bja5cww" path="res://objects/interactable.gd" id="1_8qe2b"]
 [ext_resource type="Texture2D" uid="uid://civ2ex63x8huc" path="res://objects/character/Markimoo.png" id="5_j00nk"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cd5lq"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("1_dj4ts")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkuk2"]
-resource_local_to_scene = true
-next_pass = SubResource("ShaderMaterial_cd5lq")
-diffuse_mode = 3
-specular_mode = 1
-albedo_texture = ExtResource("2_rip0b")
-roughness = 0.1
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_il36n"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_02cec"]
-size = Vector3(0.995605, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yc2cx"]
-size = Vector3(1.25, 1.25, 1.25)
+[sub_resource type="SphereShape3D" id="SphereShape3D_u3dfy"]
+radius = 1.0
 
 [node name="Interactable" type="StaticBody3D"]
 script = ExtResource("1_8qe2b")
-mesh_instance_path = NodePath("MeshInstance3D")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-material_override = SubResource("StandardMaterial3D_jkuk2")
-mesh = SubResource("BoxMesh_il36n")
-
-[node name="InteractableCollisionbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00219727, 0, 0)
-shape = SubResource("BoxShape3D_02cec")
 
 [node name="InteractionRange" type="Area3D" parent="."]
 
 [node name="InteractionRangeHitbox" type="CollisionShape3D" parent="InteractionRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0109247, 0, 0)
-shape = SubResource("BoxShape3D_yc2cx")
-
-[node name="ButtonPrompt" type="Sprite3D" parent="."]
-transform = Transform3D(0.105, 0, 0, 0, 0.0804346, 0.0674927, 0, -0.0674927, 0.0804346, 0, 1.11725, 0)
-visible = false
-pixel_size = 0.03
-billboard = 1
-fixed_size = true
-texture_filter = 0
-texture = ExtResource("3_i0ioo")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0109247, 0.0656738, 0)
+shape = SubResource("SphereShape3D_u3dfy")
+debug_color = Color(0.7, 0.656949, 0, 0.42)
 
 [node name="CharacterSprite" type="Sprite3D" parent="."]
-transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, 0, 0.57, 0)
+transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, 0, 0.692261, 0)
 visible = false
 billboard = 1
 shaded = true
 texture = ExtResource("5_j00nk")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Prompt" type="Label" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press [E] to Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="InteractionRange" to="." method="_on_interaction_range_body_entered"]
 [connection signal="body_exited" from="InteractionRange" to="." method="_on_interaction_range_body_exited"]

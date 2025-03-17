@@ -1,22 +1,27 @@
 [gd_scene load_steps=5 format=3 uid="uid://cuh1yaoty6gvf"]
 
 [ext_resource type="Script" uid="uid://blny1ms5pgqi6" path="res://player/camera.gd" id="1_rd5nv"]
-[ext_resource type="Shader" uid="uid://divnhc5r8hlx3" path="res://shaders/pixelart_stylizer2.gdshader" id="2_bxrj4"]
+[ext_resource type="Shader" uid="uid://ekcgekirm0lg" path="res://shaders/psx.gdshader" id="3_3u23b"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vgiil"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lhqc"]
 render_priority = 0
-shader = ExtResource("2_bxrj4")
-shader_parameter/depth_threshold = 0.05
-shader_parameter/reverse_depth_threshold = 0.25
-shader_parameter/normal_threshold = 0.6
-shader_parameter/darken_amount = 0.3
-shader_parameter/lighten_amount = 1.5
-shader_parameter/normal_edge_bias = Vector3(1, 1, 1)
-shader_parameter/light_direction = Vector3(-0.96, -0.18, 0.2)
-shader_parameter/pixelation_level = 10.0
+shader = ExtResource("3_3u23b")
+shader_parameter/enable_fog = true
+shader_parameter/fog_color = Color(0, 0, 0, 1)
+shader_parameter/noise_color = Color(0.247059, 0.305882, 0.309804, 1)
+shader_parameter/fog_distance = 100.0
+shader_parameter/fog_fade_range = 115.0
+shader_parameter/enable_noise = true
+shader_parameter/noise_time_fac = 1.0
+shader_parameter/enable_color_limitation = true
+shader_parameter/color_levels = 64
+shader_parameter/enable_dithering = true
+shader_parameter/dither_strength = 0.35
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_57txa"]
-size = Vector2(10, 10)
+material = SubResource("ShaderMaterial_7lhqc")
+size = Vector2(15, 10)
+orientation = 2
 
 [node name="Camera" type="Camera3D"]
 projection = 1
@@ -26,7 +31,6 @@ near = 0.001
 script = ExtResource("1_rd5nv")
 
 [node name="Postprocess" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1.01755)
-material_override = SubResource("ShaderMaterial_vgiil")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.20974)
 extra_cull_margin = 16384.0
 mesh = SubResource("PlaneMesh_57txa")

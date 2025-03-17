@@ -74,7 +74,6 @@ func _physics_process(delta: float) -> void:
 	if current_camera:
 		var input_vector = Vector3(input_dir.x, 0, input_dir.y)
 		var direction = (current_camera.global_transform.basis * input_vector).normalized()
-
 		# Handle movement
 		if direction:
 			velocity.x = direction.x * SPEED
@@ -103,6 +102,7 @@ func update_aim_mode() -> void:
 		camera.current = true
 		camera.projection = Camera3D.PROJECTION_PERSPECTIVE
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		Input.warp_mouse(get_viewport().get_visible_rect().size / 2)
 
 	else:
 		playermodel.show()
@@ -121,7 +121,7 @@ func rotate_towards_mouse():
 	var from = current_camera.project_ray_origin(mouse_pos)
 	var to = from + current_camera.project_ray_normal(mouse_pos) * 1000
 	var cursor_position_on_plane = target_plane_mouse.intersects_ray(from, to)
-	if Global.is_mouse_inside_window():
+	if cursor_position_on_plane != null:
 		look_at(cursor_position_on_plane, Vector3.UP, 0)
 	else:
 		pass
@@ -129,6 +129,9 @@ func rotate_towards_mouse():
 	if Global.debug:
 		Global.debug.add_property("MousePos", get_viewport().get_mouse_position(), 2)
 		Global.debug.add_property("CursorOnPlane", cursor_position_on_plane, 2)
+		Global.debug.add_property("From", from, 3)
+		Global.debug.add_property("To", to, 4)
+		
 	
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

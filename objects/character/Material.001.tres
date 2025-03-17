@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ulwat2o3by44"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cj5g0"]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "Material.001"
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.363654, 0.386333, 0.609375, 1)
+roughness = 0.0
+normal_texture = SubResource("NoiseTexture2D_cj5g0")
+ao_texture_channel = 3
+texture_filter = 0
