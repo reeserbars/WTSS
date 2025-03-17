@@ -22,7 +22,7 @@ func close():
 	if is_instance_valid(_initial_focus_control) and _initial_focus_control.is_inside_tree():
 		_initial_focus_control.focus_mode = _initial_focus_mode
 		_initial_focus_control.grab_focus()
-	hide()
+	queue_free()
 
 func _handle_cancel_input():
 	close()

@@ -8,4 +8,3 @@
 script = ExtResource("2_s06qh")
 options_packed_scene = ExtResource("3_6f12v")
 main_menu_scene = "res://examplescenes/scenes/menus/main_menu/main_menu_with_animations.tscn"
-pauses_game = false
