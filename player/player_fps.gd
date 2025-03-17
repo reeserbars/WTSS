@@ -21,6 +21,8 @@ var uv : bool
 
 func _ready() -> void:
 	camera.current = false
+	
+	
 
 func _process(_delta: float) -> void:
 	sensitivity = Global.sensitivity
@@ -41,7 +43,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("aim"):
 		Global.is_aiming = true
 		update_aim_mode()
-		
+	
 	elif Input.is_action_just_released("aim"):
 		Global.is_aiming = false
 		update_aim_mode()
@@ -67,7 +69,6 @@ func _physics_process(delta: float) -> void:
 	# Add gravity
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-
 	# Get input direction
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var current_camera = get_viewport().get_camera_3d()
@@ -81,11 +82,12 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
-
 	move_and_slide()
 
 	if not Global.is_aiming:
 		rotate_towards_mouse()
+	
+
 
 func flash_uv() -> void:
 	
@@ -127,7 +129,7 @@ func rotate_towards_mouse():
 		pass
 	
 	if Global.debug:
-		Global.debug.add_property("MousePos", get_viewport().get_mouse_position(), 2)
+		
 		Global.debug.add_property("CursorOnPlane", cursor_position_on_plane, 2)
 		Global.debug.add_property("From", from, 3)
 		Global.debug.add_property("To", to, 4)

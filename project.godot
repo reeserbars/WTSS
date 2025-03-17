@@ -25,6 +25,7 @@ SceneLoader="*res://addons/maaacks_game_template/base/scenes/autoloads/scene_loa
 ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_music_controller.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+MinigameLoader="*res://scripts/minigame_loader.gd"
 
 [dialogic]
 
@@ -33,6 +34,7 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "character_timeline_test": "res://Dialogue/character_timeline_test.dtl",
+"donut": "res://Dialogue/donut.dtl",
 "placeholder_timeline": "res://Dialogue/placeholder_timeline.dtl"
 }
 glossary/default_case_sensitive=true
@@ -85,7 +87,14 @@ theme/custom="res://ui/themes/Default.tres"
 [importer_defaults]
 
 scene={
-"_subresources": {},
+"_subresources": {
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/path": "res://environment/environment_materials/Material.tres"
+}
+}
+},
 "animation/fps": 30,
 "animation/import": true,
 "animation/import_rest_as_RESET": false,

@@ -1,13 +1,17 @@
 extends StaticBody3D
+signal interacted
+
 @export var mesh_instance: MeshInstance3D
 @export var is_character: bool
 @export var dialogue_timeline : DialogicTimeline = preload("res://dialogue/placeholder_timeline.dtl")
 
 var shader_material : ShaderMaterial
 var interactable: bool = false
+var interaction_complete : bool = false
 
 @onready var prompt: Label = $UI/Prompt
 @onready var character_sprite: Sprite3D = $CharacterSprite
+@onready var ui: Control = $UI
 
 
 func _ready():
@@ -17,9 +21,9 @@ func _ready():
 		shader_material.render_priority = 1
 		shader_material.set_shader_parameter("outline_width", 0)
 		shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0))
-		
 		mesh_instance.material_overlay = shader_material
-		
+		ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
 
 func _input(_event: InputEvent) -> void:
@@ -31,6 +35,7 @@ func _input(_event: InputEvent) -> void:
 		Dialogic.start(dialogue_timeline)
 		get_viewport().set_input_as_handled()
 		interactable = false
+		interacted.emit()
 
 func _process(_delta: float) -> void:
 	if Global.is_aiming and is_character and mesh_instance:
@@ -39,8 +44,6 @@ func _process(_delta: float) -> void:
 	else:
 		character_sprite.hide()
 		mesh_instance.show()
-	
-
 
 func set_highlight(highlight: bool):
 	var material = mesh_instance.material_overlay
@@ -59,7 +62,8 @@ func _on_interaction_range_body_entered(body : Node3D):
 	if body.name == "Player":
 		set_highlight(true)
 		prompt.show()
-		interactable = true
+		if not interaction_complete:
+			interactable = true
 		
 
 func _on_interaction_range_body_exited(body : Node3D):
