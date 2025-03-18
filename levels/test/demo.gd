@@ -4,6 +4,7 @@ extends Node3D
 @onready var minigame : PackedScene = preload("res://levels/minigames/minigame_placeholder.tscn")
 @onready var interactable_4: StaticBody3D = $Level/Interactable4
 
+
 func _ready() -> void:
 	MinigameLoader.connect("minigame_completed", _on_minigame_completed)
 
@@ -11,7 +12,8 @@ func _on_interactable_4_interacted() -> void:
 	Dialogic.connect("timeline_ended", start_minigame)
 
 func start_minigame() -> void:
-	add_child(minigame.instantiate())
+	interactable_4.add_child(minigame.instantiate())
+	Dialogic.disconnect("timeline_ended", start_minigame)
 
 func _on_minigame_completed() -> void:
 	print("Minigame Completed")

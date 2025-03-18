@@ -23,8 +23,7 @@ func _ready():
 		shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0))
 		mesh_instance.material_overlay = shader_material
 		ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	
-	Dialogic.timeline_ended.connect(_on_timeline_ended)
+
 
 func _input(_event: InputEvent) -> void:
 	# check if a dialog is already running
@@ -54,16 +53,13 @@ func set_highlight(highlight: bool):
 		if material:
 			material.set_shader_parameter("outline_width", 0)
 
-func _on_timeline_ended():
-	pass
-
 func _on_interaction_range_body_entered(body : Node3D):
 	
 	if body.name == "Player":
 		set_highlight(true)
-		prompt.show()
 		if not interaction_complete:
 			interactable = true
+			prompt.show()
 		
 
 func _on_interaction_range_body_exited(body : Node3D):
