@@ -1,35 +1,13 @@
-[gd_scene load_steps=26 format=4 uid="uid://b2qhxdrnviyqf"]
+[gd_scene load_steps=25 format=4 uid="uid://hxtaxwyismwf"]
 
-[ext_resource type="Script" uid="uid://755ha43plb50" path="res://player/player_fps.gd" id="1_jjp5x"]
-[ext_resource type="PackedScene" uid="uid://bxafw8kyswsyx" path="res://player/resources/pistol.blend" id="2_q1iuk"]
-[ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://player/camera.tscn" id="2_w61wo"]
-[ext_resource type="AudioStream" uid="uid://b036qvste7k1i" path="res://player/resources/645317__darkshroom__m9_noisegate-1780.ogg" id="3_6fknb"]
-[ext_resource type="Shader" uid="uid://ekcgekirm0lg" path="res://shaders/psx.gdshader" id="3_kb576"]
-[ext_resource type="Texture2D" uid="uid://ogicbc1hvh6i" path="res://player/resources/star_05.png" id="4_kyt3f"]
-[ext_resource type="PackedScene" uid="uid://kutm44ohjusm" path="res://objects/character/BetterLowPolyHuman.glb" id="7_43q3i"]
-[ext_resource type="Texture2D" uid="uid://cfkmuurjmpycf" path="res://player/resources/player_placeholder.png" id="7_nsdvw"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfpy0"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("3_kb576")
-shader_parameter/enable_fog = true
-shader_parameter/fog_color = Color(0, 0, 0, 1)
-shader_parameter/noise_color = Color(0.247059, 0.305882, 0.309804, 1)
-shader_parameter/fog_distance = 100.0
-shader_parameter/fog_fade_range = 115.0
-shader_parameter/enable_noise = true
-shader_parameter/noise_time_fac = 1.0
-shader_parameter/enable_color_limitation = true
-shader_parameter/color_levels = 64
-shader_parameter/enable_dithering = true
-shader_parameter/dither_strength = 0.658
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_si82l"]
-resource_local_to_scene = true
-material = SubResource("ShaderMaterial_bfpy0")
-size = Vector2(15, 10)
-orientation = 2
+[ext_resource type="Script" uid="uid://755ha43plb50" path="res://player/player_fps.gd" id="1_sen8m"]
+[ext_resource type="PackedScene" uid="uid://bxafw8kyswsyx" path="res://player/resources/pistol.blend" id="4_8ftsk"]
+[ext_resource type="AudioStream" uid="uid://b036qvste7k1i" path="res://player/resources/645317__darkshroom__m9_noisegate-1780.ogg" id="5_ay4f6"]
+[ext_resource type="Script" uid="uid://7ylcwe67yvh3" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_rgyib"]
+[ext_resource type="Texture2D" uid="uid://ogicbc1hvh6i" path="res://player/resources/star_05.png" id="6_0hyi1"]
+[ext_resource type="Script" uid="uid://co36of53adxke" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://cfkmuurjmpycf" path="res://player/resources/player_placeholder.png" id="7_0jmht"]
+[ext_resource type="PackedScene" uid="uid://kutm44ohjusm" path="res://objects/character/BetterLowPolyHuman.glb" id="8_p5n6d"]
 
 [sub_resource type="Gradient" id="Gradient_054tn"]
 offsets = PackedFloat32Array(0, 0.15942, 1)
@@ -47,7 +25,7 @@ transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.952941, 1, 0.47451, 1)
-albedo_texture = ExtResource("4_kyt3f")
+albedo_texture = ExtResource("6_0hyi1")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -58,6 +36,12 @@ material = SubResource("StandardMaterial3D_j06m5")
 size = Vector2(0.5, 0.5)
 orientation = 2
 
+[sub_resource type="Resource" id="Resource_8t03j"]
+script = ExtResource("6_hg6s5")
+duration = 1.0
+transition = 0
+ease = 2
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kk8xf"]
 radius = 0.598758
 height = 2.17246
@@ -67,7 +51,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Camera/pistol:position")
+tracks/0/path = NodePath("Pivot/pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -79,7 +63,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Camera/pistol:rotation")
+tracks/1/path = NodePath("Pivot/pistol:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -96,7 +80,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Camera/pistol:position")
+tracks/0/path = NodePath("Pivot/pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -108,7 +92,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Camera/pistol:rotation")
+tracks/1/path = NodePath("Pivot/pistol:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -125,7 +109,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Camera/pistol:position")
+tracks/0/path = NodePath("Pivot/pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -141,7 +125,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Camera/pistol:position")
+tracks/0/path = NodePath("Pivot/pistol:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -153,7 +137,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Camera/pistol:rotation")
+tracks/1/path = NodePath("Pivot/pistol:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -173,7 +157,7 @@ _data = {
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cj5g0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kb576"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ieo8"]
 resource_local_to_scene = true
 resource_name = "Material.001"
 diffuse_mode = 3
@@ -199,7 +183,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bfpy0"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ebec5"]
 resource_local_to_scene = true
 resource_name = "BetterLowPolyHuman_Cube_004"
 _surfaces = [{
@@ -208,7 +192,7 @@ _surfaces = [{
 "index_count": 1842,
 "index_data": PackedByteArray("wQA2AMIAwgA2AGYAwQDCAGgAwgBmAGgAwwA2AMEAZAA2AMMAZgA2AMQAxAA2AGQAZgDFAGgAxABlAGYAZABlAMQAZgBlAMYAxQBmADkAZgDGADkAxQBpAGgAaQDFADkAxwDBAGgAaQDHAGgAwQDHAGcAwQBnAMMAxwBpADoAxwA6AGcAyABpADkAxgA3ADkANwDIADkAxgBlADcAaQDIABUAaQAVADoAyADJABUAyAA3AMkAFQBsADoANwBlAMoAygBlAGQANwBqAMkAOAAVAMkAagA4AMkAbAAVADgANwDLAGoAygDLADcAagDLADgAygAEAMsAOADLAAQAZAAEAMoAawA4AAQAZAAXAAQABAAXAGsAwwAXAGQAwwBnABcAFwBnAG0AawAXAG0AzAA4AGsAzABsADgAzABrABIAzAASAGwAEgBrAD0AawBtAD0AbQBnAM0AbgDNAGcAOgBuAGcAbABuADoAGADNAG4AGABtAM0AbAAUAG4AEgAUAGwAOwAYAG4AFAA7AG4APABtABgAPQBtADwAGAA7AM4AGADOADwAOwDPAM4APADOANAAFAASAG8APQBvABIAOwAUANEAPADSAD0A0wA7ANEAzwA7ANMA0QAUAD8A1AAUAG8AFADUAD8A1ABvANUAPwDUAAAA1gBvAD0A1gDVAG8APQBAANYA0gBAAD0AQAADANYA0gBBAEAA1gADANcA1wDVANYAQAAGAAMAQABBAAYA1wADANgA0gBwAEEAQQDZAAYAQQDaANkAcADaAEEABgDZAIsA2wBwANIA2wDSADwA0ADbADwABQBwANsABQDbANAAGgBwAAUAGgDaAHAA0ABQAAUAUAAaAAUA2gCHANkA2QCHAIsA3ADaABoAhgCHANoA3ACGANoAUgDcABoAUgAaAFAAhQCGANwA3QDcAFIA3QCFANwAhgAeAIcAhQAeAIYAjQCFAN0AUgCMAN0AjACNAN0AUABTAFIAUwCMAFIAUwCLAIwABgCLAFMAAwAGAFMAAwBTAFAA2AADAFAA2ABQANAAiwDeAIwAiwCHAN4AjADeAN8A3wCNAIwAhwBFAN4AhwAeAEUA3gBUAN8A3gBFAFQA3wCOAI0A3wBUAI4AjQCOAOAAVAAbAI4A4ACOABsA4ACPAI0AjQCPAIUAjwAeAIUAjwDgABwA4AAbABwAHgCPAJAAjwAcAJAARQAeAJAAkwAcABsA4QAcAJMA4QCQABwAkwAbAFYA4QCTAFYABwCQAOEA4QBWAAcABwDiAJAARQCQAOIABwDjAOIA4wBFAOIAlQAHAFYABwCVAOMAlQBWAJYAVgCUAJYAlACVAJYAVgAbAJQAlADjAJUAlAAbAFUA4wCUAFUAGwBUAFUA4wAdAEUA4wBVAB0ARQCRAFQAVACRAFUARQCSAJEAVQDkAB0ARQAdAOUA5ADlAB0AkgBFAOUAVQDmAOQA5gBVAJEA5gDlAOQA5gCRAJIA5gCSAOUAEQCIAEIAIgBCAIgA1QARAEIA1QBCACIA1wARANUA1wCCABEA2ACCANcAigCIABEAggDnABEAEQDnAIoAggCBAOcA5wCDAIoAgQCDAOcA2AAZAIIAGQCBAIIA6AAZANgA0ADoANgAzgDoANAAzgDPAOgA6ADpABkAzwDpAOgAGQCAAIEA6QCAABkA6QDPAEkAgADqAIEA6QDrAIAAgAAiAOoA6wAiAIAA6wDVACIA6wDUANUA1ADrAAAA6wDpAAAA6QBJAAAAIgCJAOoAiQAiAIgA6gCJAE0AgQDqAE0AiQCIAOwAigDsAIgA7QCJAOwAiQDtAE0A7gDsAIoAigCDAO4A7QDsAO8A7gDvAOwATQDtAE4ATgDtAO8AgwAlAO4AJQDvAO4AhACDAIEAhACBAE0AhAAjAIMAIwAlAIMAhABNACQAJABNAE4ATwAjAIQATwCEACQAIwDwACUATwCXACMAlwDwACMATwAkAA8AJABOAPEADwAkAPEA8gBPAA8A8gCXAE8A8gAPAKwA8gANAJcA8wDyAKwA8wANAPIA9ADzAKwA9AANAPMArAAPAK0ArQAPAPEALwCsAK0ADQCYAJcAmADwAJcAKwCYAA0AmABRAPAAKgArAA0AKgANAPQAKwCaAJgAmgBRAJgAnACaACsAmgCbAFEAUQCZAPAAnAD1AJoA9QCbAJoAKwCeAJwA9gD1AJwAnAD3APYAngD3AJwA9gD4APUAoQCeACsAoQArACoA9wD5APYA9gD5APgA9QD4AFoA9QBaAJsA+QAOAPgA9wD6APkAngApAPcAKQD6APcA+wApAJ4AoQD7AJ4AWAD6ACkA+wBYACkA+gCgAPkA+QCgAA4A/AD7AKEAKgD8AKEA/ACZAPsAmQBYAPsAUQBYAJkAmwBYAFEA/QCZAPwA8ACZAP0AJQDwAP0AVwD9APwAJQD9AFcAVwD8ACoAJQBXAO8AVwAqAEMA7wBXAEMAQwAqAPQA/gD0AEMAAgBDAPQAQwD0AP8A/wD0AKwA7wBDAAABAAFDAP8ATgDvAAAB/wCsAC8ATgAAAQEBTgABAfEAAAH/ACYAAAEmAAEB/wCuACYArgD/AC8AAQEmAK8A8QABAa8AJgCuAAIBJgACAa8ArgAvALEArgCxAAIBJwDxAK8ArQDxACcArwACATEAJwCvADEAAgGxALAAAgGwADEAsgCtACcALwCtALIAtAAnADEAsgAnALQAswAvALIALwCzALEAswCyAAMBAwGyALQAsQCzAAQBsQAEAbAABQGzAAMBswAFAQQBAwG0AAoABQEDAQYBAwEKAAYBBAEFAQcBBQEGAQcBsAAEAQgBBAEHAQgBMQCwAAgBtAAxAAkBCQExAAgBCgG0AAkBtAAKAQoACQEIAV8ACAEHAV8ACgEJAbUAtQAJAV8ACgAKARAAEAAKAbUACwEKABAACgALAWAABgEKAGAACwEQALYAYAALAbYAEAC1ALcAEAC3ALYAtQAyALcAtQBfADIABgFgADAABwEGATAABwEwAF8AMABgALgAuABgALYAXwAwAAwBDAEwALgAXwC6ADIAugBfAAwBuAC2AA0BtgC3AA0BDAG4AA4BDgG4AA0BugAMATMAMwAMAQ4BtwAyAA8BtwAPAQ0BMgC6ABABMgAQAQ8BDgENAREBMwAOAREBDQEPAWEADQFhABEBDwEJAGEADwEQAQkAEQFhABIBYQAJABIBuQAzABEBYgARARIBuQARAWIACQDAABIBEAG+AAkACQC+AMAAEgG/AGIAEgHAAL8AEwG5AGIAvwATAWIAvgAUAcAAwAAUAb8AvgAQAbwAFAG+AGMAYwC+ALwAvwAUATUANQAUAWMAFQG/ADUAYwAWATUAFgEVATUAvwAVAb0AEwG/AL0AFQEWAb0AEwG9ABcBFgEXAb0AuQATARcBGAEWAWMAvAAYAWMANAAXARYBuQAXATQAGAE0ABYBMwC5ADQAuwAYAbwAGAG7ADQAuwAzADQAEAG7ALwAuwC6ADMAugC7ABABmwAZAVgAGQH6AFgAGQGgAPoAGgEZAZsAmwBaABoBGgGiABkBogCgABkBWgAoABoBKACiABoBGwEoAFoAWgBeABsB+ABeAFoA+AAOAF4AXgCdABsBGwGdACgADgCfAF4AnwCdAF4AHAGfAA4AoAAcAQ4AnwAdAZ0AKACdAKMAKACjAKIAnQAdAaMAogBZAKAAogCjAFkApAAcAaAAoABZAKQAHAEeAZ8AHgEdAZ8ApAAsABwBLAAeARwBWQAfAaQAowAgAVkAowAdASABWQAgAR8BHgEhAR0BLAAhAR4BHQFbACABHQEhAVsAIAFbAAEAIAEBAB8BIQEiAVsAWwAiAQEApQAhASwAXQAiASEBpQBdACEBAQAiAaoAIgFdAKgAIgGoAKoAAQCqAKsAHwEBAKsAqwCqACMBqgCoACMBJAFdAKUAqABdACQBpQAlASQBJAGnAKgAJAElAacAqACnACYBJwGnACUBJgGnACcBpQAtACUBLQAnASUBLAAtAKUAJgEuAKgAJwEuACYBqAAuACMBLgBcACMBXAAuACcBIwFcAKsAKAEnAS0AKAFcACcBpgAtACwAKAEtAKYApgAsAKQApAAfAaYApgCpACgBqQBcACgBHwGpAKYAXACpAKsAqwCpAB8B0QA+AHEA0QA/AD4A0wDRAHEAPwATAD4APwAAABMAFgDTAHEAFgDPANMAzwAWAEkACAAWAHEASQAWAAgAcQA+ACkBCABxACkBAABJAEgAAABIABMASgBJAAgASQBKAEgASgAIACoBKgEIACkBPgATACsBPgArASkBEwBIAHkAEwB5ACsBSABKAHgASAB4AHkALAFKACoBSgAsAXgAKQErAXMAKwF5AHMAKgEpAXIAcgApAXMALAEqAXQAdAAqAXIAeAAsAXYAdgAsAXQAeQB4AC0BeQAtAXMAeAAuAS0BLgF4AHYAdAByAAsAcgBzAAsAdgB0AHUAdQB0AAsAcwBEAAsAcwAtAUQACwB3AHUARAB3AAsALQEuAUYALQFGAEQALgF2AHoALgF6AEYALwF2AHUAdgAvAXoAdQAfAC8BdQB3AB8ALwEgAHoARgB6ACAALwEfACAAMAEfAHcAMAFLAB8ASwAgAB8AMAFMAEsASwBMACAADAAwAXcAMAEMAEwADAB3ADEBRAAxAXcADAAxATIBMgExAUQAfgBMAAwADAAyAX4AfgB/AEwATAB/AH0AfQB/AH4ATAB9ACAAfQB+ADIBfQBHACAAMgFHAH0AIABHAEYAMgFEACEAMgEhAEcAewBEAEYARgBHAHsAfABEAHsARwAhADMBRAA0ASEARAB8ADQBMwEhADQBNQF8AHsANQF7AEcANQE0AXwARwAzATUBNQEzATQB"),
 "lods": [0.344791, PackedByteArray("ZAA2ABcAZAAXAAQAZABlADYAZAAEAGUANgBlAGYAFwA2AGcANgBmAGgAZwA2AGgAaABmADkAZgBlADkAaQBoADkAZQA3ADkAZQAEADcAaQA5ABUAOQA3ABUAaQA6AGgAOgBnAGgAaQAVADoANwAEAGoANwBqABUAagAEADgAagA4ABUAawA4AAQABAAXAGsAbAAVADgAFQBsADoAOABrABIAOAASAGwAawAXAG0AFwBnAG0AEgBrAD0AawBtAD0AbABuADoAOgBuAGcAEgAUAGwAbAAUAG4AbQBnABgAbgAYAGcAPQBtADwAPABtABgAPQBvABIAFAASAG8APABwAD0AFAA7AG4AOwAYAG4APAAYAAUABQBwADwAOwAWABgAGAAZAAUAGAAWABkAFgA7AHEAOwAUAHEACAAWAHEAGgBwAAUASQAWAAgAFgBJABkACABxAHIAFAA+AHEAcQA+AHIAFAA/AD4APwAUAG8APgBzAHIAdAAIAHIAPwATAD4APgATAHMAcgBzAAsAdAByAAsASgAIAHQASgBJAAgAdQB0AAsAdgBKAHQAdgB0AHUAHwB2AHUACwB3AHUAdQB3AB8ARAB3AAsAcwBEAAsASgB2AHgAEwB5AHMAcwB5AEQAEwBIAHkASABKAHgASAB4AHkASQBKAEgAeQB4AEYAeQBGAEQAeAB2AHoAeAB6AEYAdgAfAHoAAABIABMAAABJAEgAPwAAABMARgB6ACAAHwAgAHoAPwAiAAAAIgBJAAAAewBEAEYAfABEAHsARgBHAHsAfAB7AEcAIABHAEYARAB8ACEARwAhAHwAIQB3AEQAfQBHACAAIQBHAH0ASwAgAB8ADAAfAHcADABLAB8ADAB3ACEASwBMACAADABMAEsATAB9ACAADAAhAH4AfgBMAAwAfQB+ACEAfgB/AEwATAB/AH0AfQB/AH4ASQAiAIAASQCAABkAGQCAAIEAgAAiAE0AgABNAIEAGQCBAIIAUAAZAIIABQAZAFAAggCBAIMAUAAaAAUAUACCABEAggCDABEAUgAaAFAAhACDAIEAhACBAE0AhAAjAIMAhABNACQATwAjAIQATwCEACQAUgCFABoAUABTAFIAhQCGABoAGgCGAHAAcACGAEEAPQBwAEEAPQBBAEAAQABvAD0AQQCGAIcAhQAeAIYAhgAeAIcAQQCHAAYAQABBAAYAQABCAG8APwBvAEIAIgA/AEIAEQBCAEAAIgBCAIgAEQCIAEIAiQAiAIgAIgCJAE0AigCIABEAQAADABEAQAAGAAMAEQADAFAAEQCDAIoAAwBTAFAAAwAGAFMAigBDAIgAiQCIAEMAigCDACUAJQBDAIoAIwAlAIMABgCLAFMABgCHAIsAUwCLAIwAUwCMAFIAhwBFAIsAhwAeAEUAiwBUAIwAiwBFAFQAUgCMAI0AjQCFAFIAjACOAI0AjABUAI4AjQCPAIUAjwAeAIUAjQCOABwAHACPAI0AVAAbAI4AHACOABsAHgCPAJAAjwAcAJAARQAeAJAARQCRAFQARQCSAJEAVACRAFUAkgBVAJEAGwBUAFUAkgBFAB0AHQBFAJAAVQCSAB0ABwAdAJAABwCQABwAkwAcABsABwAcAJMAlAAbAFUAHQCUAFUAkwAbAFYABwCTAFYAVgAbAJQABwCVAB0AlQAHAFYAlAAdAJUAlQBWAJYAVgCUAJYAlACVAJYATwANAJcATwCXACMAmAAjAJcADQCYAJcAmABRACMAKwCYAA0AUQCZACMAJQAjAJkAmgBRAJgAKwCaAJgAUQBYAJkAJQCZAFcAmgCbAFEAmwBYAFEAJQBXAEMAWgCbAJoAVwCZACkAmQBYACkAKABYAJsAmwBaACgAnABaAJoAnACaACsAWgCdACgAnABeAFoAXgCdAFoAKwCeAJwAnAAOAF4AngAOAJwADgCfAF4AnwCdAF4AngCgAA4AKQCgAJ4ALACfAA4AoAAsAA4AWACgACkAoQApAJ4AoQCeACsAVwApAKEAoQArACoAKgBXAKEAKgArAA0AVwAqAEMAogCgAFgAKACiAFgAKACjAKIAKACdAKMAogBZAKAAogCjAFkAoABZAKQApAAsAKAAnQBbAKMAnwBbAJ0AowBbAAEAowABAFkAnwClAFsALAClAJ8AWwBdAAEApQBdAFsApgAsAKQApABZAKYALAAtAKUApgAtACwApQCnAF0ApQAtAKcAXQCnAKgAqQAtAKYAWQCpAKYALQBcAKcAqQBcAC0ApwAuAKgAXAAuAKcAXQCoAKoAqAAuAKoALgBcAKoAAQBdAKoAqwCpAFkAWQABAKsAXACpAKsAAQCqAKsAqgBcAKsAQwAqAAIAKgACAEMAKgANAAIAAgANAKwADQBPAKwATwAPAKwATwAkAA8ArAAPAK0ArQAPACQAAgCsAC8ALwCsAK0AJgBDAAIArgACAC8AAgCuACYATgBDACYATgCJAEMAiQBOAE0AJABNAE4ATgAmAK8ATgCvACQAJgCuALAAJgCwAK8ArgCxALAArgAvALEArwCwADEAJwAkAK8AJwCvADEArQAkACcALwCtALIAsgCtACcALwCzALEAswAvALIAsACxAF8AMQCwAF8AsQCzADAAsQAwAF8AsgAnALQAtAAnADEAswCyAAoACgCyALQAswBgADAAswAKAGAAEAC0ADEAtAAQAAoAEAAxALUAtQAxAF8ACgAQALYAYAAKALYAEAC1ALcAEAC3ALYAtQBfADIAtQAyALcAuABgALYAMABgALgAtgC3AGEAuAC2AGEAMwAwALgAXwAwADMAuABhALkAMwC4ALkAugBfADMAXwC6ADIAuwC6ADMAugC7ADIAMwC5ADQAuwAzADQAuQBhAGIAMgC7ALwAvAC7ADQAuQC9ADQAuQBiAL0AvAA0AGMANAC9AGMAvgAyALwAYwC+ALwAMgC+AAkAYQAJAGIAtwAyAAkAtwAJAGEAYwC9ADUAYgC/AL0AvQC/ADUACQDAAGIAYgDAAL8ACQC+AMAAvwDAADUAwAC+AGMANQDAAGMA"), 0.508638, PackedByteArray("BAA2ABcABAA3ADYANwAEADgANgA3ADkAFwA2ADkANwA4ABUAOQA3ABUAEgA4AAQAOAASABUABAAXABIAFQA6ADkAOgAXADkAFQAUADoAEgAUABUAOgAYABcAFAA7ADoAOwAYADoAOwAUABYAOwAWABgAPAAXABgAPQAXADwAEgAXAD0APAAYAAUAPAAFAD0AGAAWABkAGAAZAAUAFAA+ABYAPwAUABIAFAA/AD4AQAASAD0APQAFAEEAPQBBAEAAPwASAEIAQABCABIAIgA/AEIAEQBCAEAAPwAiABMAPwATAD4AQAAGABEAQABBAAYAEQBDAEIAIgBCAEMAPgATAEQAQQBFAAYAPgBEAAsAEwBGAEQARwBEAEYAEwBIAEYAIgBIABMAIABHAEYASAAgAEYARABHACEAIQBHACAAIQALAEQAIgBJAEgADAALACEAIAAMACEACAA+AAsAFgA+AAgASQAWAAgASgAIAAsASgBJAAgASQBKAEgASABKACAAFgBJABkAHwBKAAsASgAfACAADAAfAAsASwAgAB8ADABLAB8ASwBMACAATAAMACAADABMAEsASQBNABkASQAiAE0AIgBOAE0ATwAZAE0ATgAiAEMATwBNACQAJABNAE4ATwAjABkATwAkAA0ATwANACMAJwAkAE4ADQAkACcAUAAZACMABQAZAFAADQBRACMAUAAaAAUABQAaAEEAGgAeAEEAUgAaAFAAUgAeABoAUAAjABEAUABTAFIAEQBTAFAAEQAjACUAEQAGAFMAUQAlACMAJQBDABEABgBUAFMABgBFAFQAQQAeAEUAUwBUABsAUwAbAFIARQBVAFQAGwBUAFUAVQBFAB0AHQBFAB4AHQAbAFUAHAAeAFIAUgAbABwABwAdAB4AGwAdAAcABwAeABwAHAAbAFYAVgAbAAcABwAcAFYAJQBXAEMAVwAlACkAVwAqAEMAVwApACoAJQBYACkAUQBYACUAWQApAFgAKABYAFEAKABZAFgAUQBaACgAKQBZACwAKwBaAFEAKwBRAA0AKgArAA0AWgBbACgAKAABAFkAKABbAAEAAQBcAFkAWQBcACwALgBcAAEAXAAuAC0AXAAtACwAXQAuAAEAXQAtAC4AWwBdAAEALAAtAF0AXgBbAFoAXgBdAFsALABdAF4AKwBeAFoALABeAA4AKwAOAF4AKQAsAA4AKgAOACsAKgApAA4AKgANAAIAQwAqAAIAKgACAEMAAgANAC8AJgBDAAIATgBDACYAAgAwACYAAgAvADAATgAmADEALwANACcAJwBOADEAMQAmAF8AJgAwAF8AEAAnADEALwAnAAoAJwAQAAoALwBgADAALwAKAGAAXwAwADMAMwAwAGAAMgAxAF8AEAAxADIAXwAzADIACgAQAGEAYAAKAGEAEAAyAAkAEAAJAGEAYABhAGIAMwBgAGIAYQAJAGIAMwBiADQAYgAJADUAYgA1ADQACQAyAGMAMgAzAGMANQAJAGMAYwAzADQAYwA0ADUA"), 1.13547, PackedByteArray("BgARABIAEwASABEAEwAUABIAEgAUABUAFAATABYAFAAWABUABAASABUABAAXABIAFwAEABUAEgAXAAUAEgAFAAYAFQAYABcAFgAYABUABQAXABgAGAAWABkAGAAZAAUABQAaAAYAGQAaAAUAGQAGABoAEQAGABkABgAbABoAGgAbABwABgAdABsAGgAeAAYABgAeAB0AHAAeABoAGwAdAAcAHAAbAAcABwAdAB4ABwAeABwAGQAWAAgAFgATAAgAGQAIABMACAATAAsAHwAIAAsADAAfAAsACAAfACAAHwAMACAAEwAIACAADAALACEAIAAMACEAEwAhAAsAEwAgACEAIgAZABMAIgATABEAGQAjABEAGQAiACQAIwAZACQAIgARAAIAEQAjACUAJQACABEAIgAmACQAJgAiAAIAJwAkACYAIwAkAA0ADQAkACcAKAAlACMADQAoACMAKAApACUAJQApACoAJQAqAAIAKgANAAIAKgArAA0AKwAoAA0AKgAOACsAKgApAA4AKwAOACgAKQAsAA4AKQAoACwADgABACgADgAsAAEAKAAtACwAAQAtACgALAAtAC4ALgAtAAEALAAuAAEAAgANAC8ALwANACcAAgAvADAAAgAwACYALwAnAAoALwAKADAAJwAmADEAJgAwADEAJwAyAAoAMgAnADEAMAAKAAkACgAyAAkAMQAwADMAMQAzADIAMAAJADMACQAyADQAMgAzADQAMwAJADUANQAJADQAMwA1ADQA"), 1.22713, PackedByteArray("BAAFAAYABgAHAAUABQAHAAYAAAAEAAYACAAFAAQAAAAIAAQABQACAAYAAAAGAAIACAACAAUAAAACAAkACgAAAAkAAgAKAAkACgAIAAAAAAAIAAsACAAAAAsACAALAAwACAAMAAsADQAIAAoACAANAAIAAgANAAoADQABAAIAAQAOAAIAAgAOAA0ADQAOAAEA"), 2.05972, PackedByteArray("AAABAAIAAAACAAEAAAADAAIAAAACAAMA")],
-"material": SubResource("StandardMaterial3D_kb576"),
+"material": SubResource("StandardMaterial3D_2ieo8"),
 "name": "Material.001",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -219,23 +203,17 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3tqws")
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_jjp5x")
+script = ExtResource("1_sen8m")
 
 [node name="Pivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58822, 0)
 
-[node name="Camera" parent="Pivot" instance=ExtResource("2_w61wo")]
-projection = 0
-
-[node name="Postprocess" parent="Pivot/Camera" index="0"]
-mesh = SubResource("PlaneMesh_si82l")
-
-[node name="RayCast3D" type="RayCast3D" parent="Pivot/Camera"]
+[node name="PlayerRay" type="RayCast3D" parent="Pivot"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, -50)
 collision_mask = 3
 
-[node name="Flashlight" type="SpotLight3D" parent="Pivot/Camera"]
+[node name="Flashlight" type="SpotLight3D" parent="Pivot"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.235163, -0.601973, -0.0741627)
 light_energy = 13.221
 light_indirect_energy = 3.112
@@ -245,14 +223,14 @@ spot_attenuation = 2.0
 spot_angle = 30.1729
 spot_angle_attenuation = 1.61369
 
-[node name="pistol" parent="Pivot/Camera" instance=ExtResource("2_q1iuk")]
+[node name="pistol" parent="Pivot" instance=ExtResource("4_8ftsk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
-[node name="GunshotSound" type="AudioStreamPlayer3D" parent="Pivot/Camera/pistol"]
+[node name="GunshotSound" type="AudioStreamPlayer3D" parent="Pivot/pistol"]
 unique_name_in_owner = true
-stream = ExtResource("3_6fknb")
+stream = ExtResource("5_ay4f6")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Pivot/Camera/pistol"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Pivot/pistol"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00020802, 0.0394075, -0.282182)
 emitting = false
 amount = 1
@@ -261,6 +239,11 @@ one_shot = true
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_h4yve")
 draw_pass_1 = SubResource("PlaneMesh_fbvoh")
+
+[node name="PlayerPhantomCam" type="Node3D" parent="Pivot"]
+script = ExtResource("5_rgyib")
+tween_resource = SubResource("Resource_8t03j")
+metadata/_custom_type_script = "uid://7ylcwe67yvh3"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -278,13 +261,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886675, 0)
 visible = false
 pixel_size = 0.1
 texture_filter = 2
-texture = ExtResource("7_nsdvw")
+texture = ExtResource("7_0jmht")
 hframes = 7
 vframes = 8
 
-[node name="Playermodel" parent="." instance=ExtResource("7_43q3i")]
+[node name="Playermodel" parent="." instance=ExtResource("8_p5n6d")]
 transform = Transform3D(-0.143807, 0, 1.25721e-08, 0, 0.143807, 0, -1.25721e-08, 0, -0.143807, 0, 1.2731, 0)
-mesh = SubResource("ArrayMesh_bfpy0")
+mesh = SubResource("ArrayMesh_ebec5")
 
 [node name="OmniLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.35367, 0)
@@ -302,5 +285,4 @@ spot_angle = 17.757
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
-[editable path="Pivot/Camera"]
 [editable path="Playermodel"]

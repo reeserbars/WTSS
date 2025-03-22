@@ -26,6 +26,7 @@ ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/autoload
 ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 MinigameLoader="*res://scripts/minigame_loader.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [dialogic]
 
@@ -78,7 +79,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/gdLinter/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/gdLinter/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [gui]
 
@@ -213,6 +214,10 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 
 disable_plugin_dialogues=true
 copy_path="res://examplescenes"
+
+[physics]
+
+common/physics_interpolation=true
 
 [rendering]
 
