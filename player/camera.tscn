@@ -16,7 +16,7 @@ shader_parameter/noise_time_fac = 1.0
 shader_parameter/enable_color_limitation = true
 shader_parameter/color_levels = 64
 shader_parameter/enable_dithering = true
-shader_parameter/dither_strength = 0.35
+shader_parameter/dither_strength = 0.45
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_57txa"]
 material = SubResource("ShaderMaterial_7lhqc")

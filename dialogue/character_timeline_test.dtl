@@ -3,4 +3,8 @@ join markiplier leftmost
 Character interaction test
 hello everybody my name is multiplier
 Spread those ass cheeks jethro
+if StoryEventListener.goals["lamp_lit_up"] == true:
+	I see the light is green. nice. get in the van.
+else:
+	interact with the donut
 [end_timeline]

@@ -21,6 +21,7 @@ transform = Transform3D(0.235, 0, 0, 0, 0.235, 0, 0, 0, 0.235, 0, 0.692261, 0)
 visible = false
 billboard = 1
 shaded = true
+double_sided = false
 texture = ExtResource("5_j00nk")
 
 [node name="UI" type="Control" parent="."]

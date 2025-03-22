@@ -1,14 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://2l63kuifpsg8"]
+[gd_scene load_steps=2 format=3 uid="uid://2l63kuifpsg8"]
 
 [ext_resource type="Script" uid="uid://bhikqwtdp84o1" path="res://scripts/focus_area.gd" id="1_3ij1m"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_x6l2o"]
-size = Vector3(5, 0.2, 5)
 
 [node name="FocusArea" type="Area3D"]
 script = ExtResource("1_3ij1m")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_x6l2o")
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

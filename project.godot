@@ -25,7 +25,7 @@ SceneLoader="*res://addons/maaacks_game_template/base/scenes/autoloads/scene_loa
 ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_music_controller.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
-MinigameLoader="*res://scripts/minigame_loader.gd"
+StoryEventListener="*res://scripts/story_event_listener.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [dialogic]

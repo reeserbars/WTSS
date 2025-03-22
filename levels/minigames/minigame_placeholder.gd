@@ -2,5 +2,5 @@ extends CanvasLayer
 
 
 func _on_draggable_detector_area_entered(area: Area2D) -> void:
-	MinigameLoader.emit_signal("minigame_completed")
+	StoryEventListener.complete_goal("lamp_lit_up")
 	queue_free()
