@@ -2,20 +2,25 @@ extends Node3D
 
 @onready var lightsourcestreetlamp_6: SpotLight3D = $Level/Lightsourcestreetlamp6
 @onready var minigame : PackedScene = preload("res://levels/minigames/minigame_placeholder.tscn")
-@onready var interactable_4: StaticBody3D = $Level/Interactable4
-
+@onready var game_int: StaticBody3D = %GameInt
 
 func _ready() -> void:
-	MinigameLoader.connect("minigame_completed", _on_minigame_completed)
+	StoryEventListener.goal_completed.connect(_on_goal_completed)
 
-func _on_interactable_4_interacted() -> void:
-	Dialogic.connect("timeline_ended", start_minigame)
+func _process(delta: float) -> void:
+	Global.debug.add_property("is aiming", Global.is_aiming, 3)
+	Global.debug.add_property("lamp lit up", StoryEventListener.goals["lamp_lit_up"], 3)
 
 func start_minigame() -> void:
-	interactable_4.add_child(minigame.instantiate())
+	game_int.add_child(minigame.instantiate())
 	Dialogic.disconnect("timeline_ended", start_minigame)
 
-func _on_minigame_completed() -> void:
-	print("Minigame Completed")
-	lightsourcestreetlamp_6.show()
-	interactable_4.interaction_complete = true
+func _on_goal_completed(goal_name: String) -> void:
+	if goal_name == "lamp_lit_up":
+		lightsourcestreetlamp_6.show()
+		game_int.interaction_complete = true
+
+
+func _on_game_int_interacted() -> void:
+	if !game_int.interaction_complete:
+		Dialogic.connect("timeline_ended", start_minigame)

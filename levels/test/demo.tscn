@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://djc2wirwhg3g"]
+[gd_scene load_steps=45 format=4 uid="uid://djc2wirwhg3g"]
 
 [ext_resource type="PackedScene" uid="uid://benhs2xg0xqh8" path="res://models/van/BetterTruck.glb" id="1_1wmqt"]
 [ext_resource type="Script" uid="uid://xicgpi2cx4ue" path="res://levels/test/demo.gd" id="1_rnqlt"]
@@ -9,19 +9,32 @@
 [ext_resource type="Resource" uid="uid://cavquqvsc47bn" path="res://Dialogue/placeholder_timeline.dtl" id="4_11har"]
 [ext_resource type="Resource" uid="uid://cm6yu3veo1j72" path="res://Dialogue/character_timeline_test.dtl" id="4_ucxic"]
 [ext_resource type="Texture2D" uid="uid://cwraedbqkryj8" path="res://models/environment/texture_07.png" id="5_un00x"]
-[ext_resource type="PackedScene" uid="uid://b2qhxdrnviyqf" path="res://player/player_fps.tscn" id="6_qkghn"]
 [ext_resource type="PackedScene" uid="uid://b02ldtqso7x43" path="res://models/table/TableTest.glb" id="7_a2pe7"]
 [ext_resource type="PackedScene" uid="uid://kutm44ohjusm" path="res://objects/character/BetterLowPolyHuman.glb" id="7_wh2ja"]
+[ext_resource type="Resource" uid="uid://do6m1rnbewkvc" path="res://player/resources/world_cam.tres" id="8_h7j24"]
+[ext_resource type="PackedScene" uid="uid://hxtaxwyismwf" path="res://player/player.tscn" id="8_tfh16"]
 [ext_resource type="PackedScene" uid="uid://bpy4nvio2an2c" path="res://objects/interactable_mesh.tscn" id="8_wm4cq"]
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://player/camera.tscn" id="8_y75jf"]
 [ext_resource type="Resource" uid="uid://3xlg8y80ffiw" path="res://Dialogue/donut.dtl" id="9_2a1cu"]
 [ext_resource type="PackedScene" uid="uid://2l63kuifpsg8" path="res://levels/focus_area.tscn" id="12_pb21y"]
-[ext_resource type="PackedScene" uid="uid://pdqjt7pqlg0" path="res://objects/cam_focus.tscn" id="13_qj4np"]
 [ext_resource type="Environment" uid="uid://damvjxxjp4wko" path="res://levels/worldenv.tres" id="14_u1e67"]
 [ext_resource type="Script" uid="uid://7ylcwe67yvh3" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_tfh16"]
 [ext_resource type="Script" uid="uid://co36of53adxke" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_h7j24"]
 [ext_resource type="PackedScene" uid="uid://dv1pcrflu73bg" path="res://ui/debug_panel.tscn" id="16_tithr"]
 [ext_resource type="Script" uid="uid://d1f3j7hbn4d1o" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="17_wbscu"]
+
+[sub_resource type="Resource" id="Resource_tfh16"]
+script = ExtResource("16_h7j24")
+duration = 1.0
+transition = 0
+ease = 2
+metadata/_custom_type_script = "uid://co36of53adxke"
+
+[sub_resource type="Resource" id="Resource_8pi2b"]
+script = ExtResource("16_h7j24")
+duration = 2.0
+transition = 4
+ease = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i2n7g"]
 size = Vector3(4.25372, 1, 2.1665)
@@ -38,7 +51,7 @@ uv1_world_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78ma3"]
 albedo_color = Color(0.190762, 0.190762, 0.190762, 1)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cj5g0"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h7j24"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfh16"]
 resource_local_to_scene = true
@@ -47,11 +60,11 @@ diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.363654, 0.386333, 0.609375, 1)
 roughness = 0.0
-normal_texture = SubResource("NoiseTexture2D_cj5g0")
+normal_texture = SubResource("NoiseTexture2D_h7j24")
 ao_texture_channel = 3
 texture_filter = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_3tqws"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_sbool"]
 _surfaces = [{
 "aabb": AABB(-2.98542, -9.19773, -1.28838, 5.97083, 16.1063, 2.87359),
 "format": 34896613377,
@@ -83,7 +96,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_3tqws")
+shadow_mesh = SubResource("ArrayMesh_sbool")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tithr"]
 points = PackedVector3Array(0.440758, 6.63665, 0.36048, 1.7438, -9.32553, 1.65132, 1.48794, -7.02404, -1.41593, -1.83456, -9.32553, -0.649265, -0.556487, 3.45677, -1.41593, 3.02247, -0.633692, -0.393411, -1.5793, -9.32553, 1.65132, 0.976836, 2.94586, 1.39547, -2.08981, 3.45677, 0.884358, 3.02247, -1.1446, 1.39547, -2.60152, 2.94586, -0.649265, -1.5793, -6.76618, -1.41593, 2.51076, 3.20052, -0.649265, 1.99905, -9.32553, -0.393411, -2.85737, -1.1446, 1.39547, -0.300633, 6.78007, -0.904819, 0.209874, 6.26756, 1.14021, -3.11323, -0.122785, -0.393411, -3.11323, -1.39765, 1.14021, 1.48794, 3.45677, -1.16037, -0.812341, 6.78007, 0.37295, 1.99905, 3.45677, 0.884358, 0.465728, 6.78007, -0.904819, 1.48794, -9.32553, -0.904819, -0.812341, 3.20052, 1.39547, -1.83456, -9.32553, 1.39547, 1.99905, -6.51153, -1.16037, -2.08981, 3.71142, -0.904819, 3.02247, -1.90856, 0.884358, 0.720982, 6.26756, 0.884358, -1.32345, -9.32553, -0.904819, 0.720982, 6.78007, -0.393411)
@@ -118,46 +131,16 @@ points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_2a1cu"]
 size = Vector3(2, 1, 2)
 
-[sub_resource type="Resource" id="Resource_8pi2b"]
-script = ExtResource("16_h7j24")
-duration = 1.0
-transition = 0
-ease = 2
-
 [sub_resource type="Animation" id="Animation_clmft"]
 length = 3.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Level/van:position")
+tracks/0/path = NodePath("Level/GameInt/Donut:rotation")
 tracks/0/interp = 1
-tracks/0/loop_wrap = false
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(5.45422, 0.992346, -3.27157), Vector3(-1.6537, 0.992346, -2.78559)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Level/van:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(1.93333, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.755448, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Level/Interactable4/Donut:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -175,6 +158,12 @@ _data = {
 &"loop": SubResource("Animation_b55y7")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_h7j24"]
+size = Vector3(10.5569, 1, 10.504)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qyhb"]
+size = Vector3(11.8723, 1, 8.54138)
+
 [node name="Demo" type="Node3D"]
 script = ExtResource("1_rnqlt")
 
@@ -184,6 +173,43 @@ pause_menu_packed = ExtResource("2_iwuuq")
 metadata/_custom_type_script = "uid://cfmp2danfawfl"
 
 [node name="Level" type="Node3D" parent="."]
+
+[node name="MainCamera" parent="Level" instance=ExtResource("8_y75jf")]
+unique_name_in_owner = true
+physics_interpolation_mode = 1
+transform = Transform3D(0.965768, -0.12761, 0.225851, 1.49012e-08, 0.870637, 0.491927, -0.259409, -0.475087, 0.840832, -0.636149, 5.07874, 13.7176)
+projection = 0
+size = 6.494
+near = 0.05
+post_processing = true
+
+[node name="PhantomCameraHost" type="Node" parent="Level/MainCamera"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("17_wbscu")
+metadata/_custom_type_script = "uid://d1f3j7hbn4d1o"
+
+[node name="Table" type="Node3D" parent="Level" node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(0.965766, -0.12761, 0.225851, 1.49011e-08, 0.870636, 0.491927, -0.259409, -0.475087, 0.840832, -0.636149, 5.07874, 13.7176)
+script = ExtResource("15_tfh16")
+priority = 1
+look_at_mode = 2
+look_at_target = NodePath("../Player")
+tween_resource = SubResource("Resource_tfh16")
+camera_3d_resource = ExtResource("8_h7j24")
+metadata/_custom_type_script = "uid://7ylcwe67yvh3"
+
+[node name="Mark" type="Node3D" parent="Level" node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(-0.415912, -0.239577, 0.877278, 0, 0.964674, 0.263444, -0.909403, 0.10957, -0.40122, 11.7961, 4.58019, -1.38919)
+script = ExtResource("15_tfh16")
+look_at_mode = 2
+look_at_target = NodePath("../Player")
+tween_resource = SubResource("Resource_8pi2b")
+camera_3d_resource = ExtResource("8_h7j24")
+metadata/_custom_type_script = "uid://7ylcwe67yvh3"
+
+[node name="Player" parent="Level" instance=ExtResource("8_tfh16")]
+transform = Transform3D(-0.276879, 0, -0.960905, 0, 1, 0, 0.960905, 0, -0.276879, -2.8898, 0.170065, 5.32734)
 
 [node name="Lightsourcestreetlamp3" type="SpotLight3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.47077, 4.40838, 5.10528)
@@ -249,48 +275,46 @@ material = SubResource("StandardMaterial3D_78ma3")
 transform = Transform3D(0.596519, 0, -0.802599, 0, 1, 0, 0.802599, 0, 0.596519, 4.57413, -0.221173, 4.08948)
 size = Vector3(5.39557, 0.669922, 12.4467)
 
-[node name="Interactable" parent="Level" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("3_h1ffd")]
+[node name="CharacterInt" parent="Level" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("3_h1ffd")]
 transform = Transform3D(0.760281, 0, -0.649594, 0, 1, 0, 0.649594, 0, 0.760281, 0.239367, 0.549617, 0.207944)
 mesh_instance = NodePath("Cube_001")
 is_character = true
 dialogue_timeline = ExtResource("4_ucxic")
 
-[node name="Cube_001" parent="Level/Interactable" instance=ExtResource("7_wh2ja")]
+[node name="Cube_001" parent="Level/CharacterInt" instance=ExtResource("7_wh2ja")]
 transform = Transform3D(0.151, 0, -1.49012e-08, 0, 0.151, 0, 1.49012e-08, 0, 0.151, 0, 0.929621, 0.0277366)
 mesh = SubResource("ArrayMesh_h7j24")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Interactable"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/CharacterInt"]
 transform = Transform3D(0.151, 0, -1.49012e-08, 0, 0.151, 0, 1.49012e-08, 0, 0.151, 0, 0.929621, 0.0277366)
 shape = SubResource("ConvexPolygonShape3D_tithr")
 
-[node name="Interactable4" parent="Level" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("3_h1ffd")]
+[node name="GameInt" parent="Level" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("3_h1ffd")]
+unique_name_in_owner = true
 transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, 2.09052, 1.2976, 7.34358)
 mesh_instance = NodePath("Donut")
 dialogue_timeline = ExtResource("9_2a1cu")
 
-[node name="Donut" type="MeshInstance3D" parent="Level/Interactable4"]
+[node name="Donut" type="MeshInstance3D" parent="Level/GameInt"]
 transform = Transform3D(0.80073, -0.599025, -3.90638e-06, 0.523917, 0.700336, -0.484809, 0.290415, 0.388199, 0.87462, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_44hiu")
 mesh = SubResource("TorusMesh_bb0yi")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Interactable4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/GameInt"]
 transform = Transform3D(0.704405, -0.676246, -0.215649, 0.523918, 0.700336, -0.484809, 0.478877, 0.22852, 0.847617, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_rnqlt")
 
-[node name="Interactable2" parent="Level" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("3_h1ffd")]
+[node name="WorldInt" parent="Level" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("3_h1ffd")]
 transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, -8.68631, 0.596415, 8.56845)
 mesh_instance = NodePath("InteractableMesh")
 dialogue_timeline = ExtResource("4_11har")
 
-[node name="InteractableMesh" parent="Level/Interactable2" instance=ExtResource("8_wm4cq")]
+[node name="InteractableMesh" parent="Level/WorldInt" instance=ExtResource("8_wm4cq")]
 mesh = SubResource("BoxMesh_wbscu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Interactable2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/WorldInt"]
 shape = SubResource("ConvexPolygonShape3D_iwuuq")
-
-[node name="Player" parent="Level" instance=ExtResource("6_qkghn")]
-transform = Transform3D(0.749407, 0, -0.662111, 0, 1, 0, 0.662111, 0, 0.749407, -1.40929, 0.197164, 3.96168)
 
 [node name="TableTest" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44893, 0.999823, 8.14682)
@@ -302,55 +326,36 @@ shape = SubResource("BoxShape3D_2a1cu")
 [node name="TableTest" parent="Level/TableTest" instance=ExtResource("7_a2pe7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="PhantomCamera3D" type="Node3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 0.926975, 0.375124, 0, -0.375124, 0.926975, 0.294386, 6.30182, 13.2948)
-script = ExtResource("15_tfh16")
-tween_resource = SubResource("Resource_8pi2b")
-metadata/_custom_type_script = "uid://7ylcwe67yvh3"
-
-[node name="MainCamera" parent="Level" instance=ExtResource("8_y75jf")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.926975, 0.375124, 0, -0.375124, 0.926975, 0.294386, 6.30182, 13.2948)
-projection = 0
-post_processing = true
-
-[node name="PhantomCameraHost" type="Node" parent="Level/MainCamera"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("17_wbscu")
-metadata/_custom_type_script = "uid://d1f3j7hbn4d1o"
-
-[node name="CamFocus" parent="Level" instance=ExtResource("13_qj4np")]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("14_u1e67")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
 libraries = {
 &"": SubResource("AnimationLibrary_y7lvy")
 }
 autoplay = "RESET"
 
-[node name="FocusArea" parent="." node_paths=PackedStringArray("focus_node", "cam_manager") instance=ExtResource("12_pb21y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96014, 0.247147, 7.06394)
-focus_node = NodePath("../Level/CamFocus")
-cam_manager = NodePath("../Level/CamFocus/CameraSwitcher")
+[node name="FocusArea" parent="." node_paths=PackedStringArray("pcam") instance=ExtResource("12_pb21y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.82256, 0.247147, 7.95332)
+pcam = NodePath("../Level/Table")
 
-[node name="FocusArea2" parent="." node_paths=PackedStringArray("focus_node", "cam_manager") instance=ExtResource("12_pb21y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.378809, 0.247147, -0.948487)
-focus_node = NodePath("../Level/CamFocus")
-cam_manager = NodePath("../Level/CamFocus/CameraSwitcher")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FocusArea"]
+shape = SubResource("BoxShape3D_h7j24")
 
-[node name="FocusArea3" parent="." node_paths=PackedStringArray("focus_node", "cam_manager") instance=ExtResource("12_pb21y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.43864, 0.247147, 5.11371)
-focus_node = NodePath("../Level/CamFocus")
-cam_manager = NodePath("../Level/CamFocus/CameraSwitcher")
+[node name="FocusArea2" parent="." node_paths=PackedStringArray("pcam") instance=ExtResource("12_pb21y")]
+transform = Transform3D(0.614602, 0, -0.788837, 0, 1, 0, 0.788837, 0, 0.614602, 4.5803, 0.247147, 3.16083)
+pcam = NodePath("../Level/Mark")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FocusArea2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71326, 0, 0)
+shape = SubResource("BoxShape3D_3qyhb")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
 
 [node name="DebugPanel" parent="UI" instance=ExtResource("16_tithr")]
 process_mode = 3
@@ -360,6 +365,4 @@ offset_top = 0.0
 offset_right = 200.0
 offset_bottom = 41.0
 
-[connection signal="interacted" from="Level/Interactable4" to="." method="_on_interactable_4_interacted"]
-
-[editable path="Level/CamFocus"]
+[connection signal="interacted" from="Level/GameInt" to="." method="_on_game_int_interacted"]

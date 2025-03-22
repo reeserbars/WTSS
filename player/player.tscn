@@ -1,12 +1,13 @@
-[gd_scene load_steps=25 format=4 uid="uid://hxtaxwyismwf"]
+[gd_scene load_steps=27 format=4 uid="uid://hxtaxwyismwf"]
 
-[ext_resource type="Script" uid="uid://755ha43plb50" path="res://player/player_fps.gd" id="1_sen8m"]
+[ext_resource type="Script" uid="uid://ck5jc1ni4o8k5" path="res://player/player.gd" id="1_rgyib"]
 [ext_resource type="PackedScene" uid="uid://bxafw8kyswsyx" path="res://player/resources/pistol.blend" id="4_8ftsk"]
 [ext_resource type="AudioStream" uid="uid://b036qvste7k1i" path="res://player/resources/645317__darkshroom__m9_noisegate-1780.ogg" id="5_ay4f6"]
 [ext_resource type="Script" uid="uid://7ylcwe67yvh3" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_rgyib"]
 [ext_resource type="Texture2D" uid="uid://ogicbc1hvh6i" path="res://player/resources/star_05.png" id="6_0hyi1"]
 [ext_resource type="Script" uid="uid://co36of53adxke" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://cfkmuurjmpycf" path="res://player/resources/player_placeholder.png" id="7_0jmht"]
+[ext_resource type="Script" uid="uid://cughph7v6gqi2" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="7_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://kutm44ohjusm" path="res://objects/character/BetterLowPolyHuman.glb" id="8_p5n6d"]
 
 [sub_resource type="Gradient" id="Gradient_054tn"]
@@ -38,9 +39,22 @@ orientation = 2
 
 [sub_resource type="Resource" id="Resource_8t03j"]
 script = ExtResource("6_hg6s5")
-duration = 1.0
+duration = 0.1
 transition = 0
 ease = 2
+
+[sub_resource type="Resource" id="Resource_2ieo8"]
+script = ExtResource("7_hg6s5")
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+projection = 0
+fov = 75.0
+size = 1.0
+frustum_offset = Vector2(0, 0)
+near = 0.05
+far = 4000.0
+metadata/_custom_type_script = "uid://cughph7v6gqi2"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kk8xf"]
 radius = 0.598758
@@ -203,15 +217,13 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3tqws")
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_sen8m")
+script = ExtResource("1_rgyib")
 
 [node name="Pivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58822, 0)
 
-[node name="PlayerRay" type="RayCast3D" parent="Pivot"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
-target_position = Vector3(0, 0, -50)
-collision_mask = 3
+[node name="Gaze" type="Marker3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.487004)
 
 [node name="Flashlight" type="SpotLight3D" parent="Pivot"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.235163, -0.601973, -0.0741627)
@@ -240,10 +252,20 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_h4yve")
 draw_pass_1 = SubResource("PlaneMesh_fbvoh")
 
-[node name="PlayerPhantomCam" type="Node3D" parent="Pivot"]
+[node name="PlayerPhantomCam" type="Node3D" parent="Pivot" node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.105)
 script = ExtResource("5_rgyib")
+look_at_target = NodePath("../..")
 tween_resource = SubResource("Resource_8t03j")
+camera_3d_resource = SubResource("Resource_2ieo8")
+follow_distance = -0.105
+spring_length = -0.105
 metadata/_custom_type_script = "uid://7ylcwe67yvh3"
+
+[node name="PlayerRay" type="RayCast3D" parent="Pivot/PlayerPhantomCam"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, -50)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -268,13 +290,6 @@ vframes = 8
 [node name="Playermodel" parent="." instance=ExtResource("8_p5n6d")]
 transform = Transform3D(-0.143807, 0, 1.25721e-08, 0, 0.143807, 0, -1.25721e-08, 0, -0.143807, 0, 1.2731, 0)
 mesh = SubResource("ArrayMesh_ebec5")
-
-[node name="OmniLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.35367, 0)
-visible = false
-light_energy = 0.2
-spot_range = 7.30046
-spot_angle = 77.9851
 
 [node name="PlayerLight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.35367, 0)
