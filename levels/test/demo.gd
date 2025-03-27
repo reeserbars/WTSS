@@ -20,7 +20,7 @@ func _on_goal_completed(goal_name: String) -> void:
 		lightsourcestreetlamp_6.show()
 		game_int.interaction_complete = true
 
-
+	
 func _on_game_int_interacted() -> void:
 	if !game_int.interaction_complete:
 		Dialogic.connect("timeline_ended", start_minigame)
