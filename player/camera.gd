@@ -14,3 +14,7 @@ extends Camera3D
 				$Postprocess.hide()
 		else:
 			print("Error: Postprocess node is null")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_shaders"):
+		post_processing = not post_processing

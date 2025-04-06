@@ -5,7 +5,7 @@ const GRAVITY = -9.8
 
 var sensitivity : float =  10
 var controller_sensitivity : float =  .010
-
+var in_lit_area: bool = true
 var axis_vector : Vector2
 var mouse_captured : bool = true
 var uv : bool
@@ -21,13 +21,15 @@ var uv : bool
 
 func _ready() -> void:
 	camera = owner.get_node("%MainCamera")
-	
-	
+
 
 func _process(_delta: float) -> void:
 	sensitivity = Global.sensitivity
 	controller_sensitivity = Global.controller_sensitivity
 	
+	
+	if Global.debug:
+		Global.debug.add_property("in_lit_area", in_lit_area, 4)
 	# Check if the aim button is pressed or released
 	
 	if Global.is_aiming:
@@ -45,7 +47,7 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	
 	
-	if event.is_action_pressed("flashlight"):
+	if event.is_action_pressed("flashlight") and !StoryEventListener.flash_is_out:
 		flashlight.visible = not flashlight.visible
 	
 	if event.is_action_pressed("shoot"):
@@ -120,3 +122,13 @@ func rotate_towards_mouse():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "shoot":
 		anim_player.play("idle")
+
+
+func _on_sanity_timer_timeout() -> void:
+	if in_lit_area:
+		Global.insanity -= 2
+	elif flashlight.visible:
+		Global.insanity -= 1
+	else:
+		Global.insanity += 1
+	Global.insanity = clamp(Global.insanity, 0, 100)

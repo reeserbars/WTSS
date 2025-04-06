@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c42hej5sa2swm"]
+
+[ext_resource type="Script" uid="uid://br5o3qgyo7uut" path="res://objects/lit_area.gd" id="1_ekvyx"]
+
+[node name="LitArea" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.06581e-14, 0, -1.06581e-14, 1, 0, 0, 0)
+script = ExtResource("1_ekvyx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

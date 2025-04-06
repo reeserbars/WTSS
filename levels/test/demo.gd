@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var lightsourcestreetlamp_6: SpotLight3D = $Level/Lightsourcestreetlamp6
+@export var greenlight: SpotLight3D
 @onready var minigame : PackedScene = preload("res://levels/minigames/minigame_placeholder.tscn")
 @onready var game_int: StaticBody3D = %GameInt
 
@@ -17,10 +17,10 @@ func start_minigame() -> void:
 
 func _on_goal_completed(goal_name: String) -> void:
 	if goal_name == "lamp_lit_up":
-		lightsourcestreetlamp_6.show()
+		greenlight.show()
 		game_int.interaction_complete = true
 
-	
+
 func _on_game_int_interacted() -> void:
 	if !game_int.interaction_complete:
 		Dialogic.connect("timeline_ended", start_minigame)

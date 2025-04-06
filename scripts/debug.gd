@@ -1,20 +1,11 @@
 extends PanelContainer
 
-
-
-#var property
-var frames_per_second : String
 @onready var property_container: VBoxContainer = $MarginContainer/PropertyContainer
 
 func _ready() -> void:
 	visible = false
 	Global.debug = self
 
-func _process(delta: float) -> void:
-	frames_per_second = "%.2f" %  (1.0/delta)
-	add_property("FPS",frames_per_second,1)
-	add_property("MousePos", get_viewport().get_mouse_position(), 2)
-	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug"):

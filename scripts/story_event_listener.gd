@@ -1,6 +1,7 @@
 extends Node
 
 signal goal_completed(goal_name)
+var flash_is_out: bool = false
 
 var goals : Dictionary = {
 	"orange_box_interacted" : false,
