@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://djc2wirwhg3g"]
+[gd_scene load_steps=42 format=4 uid="uid://djc2wirwhg3g"]
 
 [ext_resource type="PackedScene" uid="uid://benhs2xg0xqh8" path="res://models/van/BetterTruck.glb" id="1_1wmqt"]
 [ext_resource type="Script" uid="uid://xicgpi2cx4ue" path="res://levels/test/demo.gd" id="1_rnqlt"]
@@ -16,10 +16,37 @@
 [ext_resource type="Resource" uid="uid://3xlg8y80ffiw" path="res://dialogue/donut.dtl" id="9_2a1cu"]
 [ext_resource type="PackedScene" uid="uid://2l63kuifpsg8" path="res://levels/focus_area.tscn" id="12_pb21y"]
 [ext_resource type="Environment" uid="uid://damvjxxjp4wko" path="res://levels/worldenv.tres" id="14_u1e67"]
-[ext_resource type="Script" uid="uid://7ylcwe67yvh3" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_tfh16"]
-[ext_resource type="Script" uid="uid://co36of53adxke" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_h7j24"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_tfh16"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_h7j24"]
 [ext_resource type="PackedScene" uid="uid://dv1pcrflu73bg" path="res://ui/debug_panel.tscn" id="16_tithr"]
-[ext_resource type="Script" uid="uid://d1f3j7hbn4d1o" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="17_wbscu"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="17_wbscu"]
+
+[sub_resource type="Animation" id="Animation_clmft"]
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Level/GameInt/Donut:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.506145, -6.28319, 0.642281), Vector3(0.506145, 6.28319, 0.642281)]
+}
+
+[sub_resource type="Animation" id="Animation_b55y7"]
+resource_name = "loop"
+length = 10.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7lvy"]
+_data = {
+&"RESET": SubResource("Animation_clmft"),
+&"loop": SubResource("Animation_b55y7")
+}
 
 [sub_resource type="Resource" id="Resource_tfh16"]
 script = ExtResource("16_h7j24")
@@ -28,27 +55,12 @@ transition = 0
 ease = 2
 metadata/_custom_type_script = "uid://co36of53adxke"
 
-[sub_resource type="Resource" id="Resource_8pi2b"]
-script = ExtResource("16_h7j24")
-duration = 2.0
-transition = 4
-ease = 2
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2a1cu"]
 height = 0.0197021
 radius = 0.0424805
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i2n7g"]
 size = Vector3(4.25372, 1, 2.1665)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4m83l"]
-diffuse_mode = 3
-specular_mode = 2
-albedo_texture = ExtResource("3_qrp6v")
-roughness = 0.0
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-uv1_world_triplanar = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h7j24"]
 
@@ -100,6 +112,15 @@ shadow_mesh = SubResource("ArrayMesh_sbool")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tithr"]
 points = PackedVector3Array(0.440758, 6.63665, 0.36048, 1.7438, -9.32553, 1.65132, 1.48794, -7.02404, -1.41593, -1.83456, -9.32553, -0.649265, -0.556487, 3.45677, -1.41593, 3.02247, -0.633692, -0.393411, -1.5793, -9.32553, 1.65132, 0.976836, 2.94586, 1.39547, -2.08981, 3.45677, 0.884358, 3.02247, -1.1446, 1.39547, -2.60152, 2.94586, -0.649265, -1.5793, -6.76618, -1.41593, 2.51076, 3.20052, -0.649265, 1.99905, -9.32553, -0.393411, -2.85737, -1.1446, 1.39547, -0.300633, 6.78007, -0.904819, 0.209874, 6.26756, 1.14021, -3.11323, -0.122785, -0.393411, -3.11323, -1.39765, 1.14021, 1.48794, 3.45677, -1.16037, -0.812341, 6.78007, 0.37295, 1.99905, 3.45677, 0.884358, 0.465728, 6.78007, -0.904819, 1.48794, -9.32553, -0.904819, -0.812341, 3.20052, 1.39547, -1.83456, -9.32553, 1.39547, 1.99905, -6.51153, -1.16037, -2.08981, 3.71142, -0.904819, 3.02247, -1.90856, 0.884358, 0.720982, 6.26756, 0.884358, -1.32345, -9.32553, -0.904819, 0.720982, 6.78007, -0.393411)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4m83l"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("3_qrp6v")
+roughness = 0.0
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44hiu"]
 diffuse_mode = 3
 specular_mode = 2
@@ -130,77 +151,61 @@ points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_2a1cu"]
 size = Vector3(2, 1, 2)
 
-[sub_resource type="Animation" id="Animation_clmft"]
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Level/GameInt/Donut:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.506145, -6.28319, 0.642281), Vector3(0.506145, 6.28319, 0.642281)]
-}
-
-[sub_resource type="Animation" id="Animation_b55y7"]
-resource_name = "loop"
-length = 10.0
-loop_mode = 1
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7lvy"]
+[sub_resource type="Curve3D" id="Curve3D_2a1cu"]
 _data = {
-&"RESET": SubResource("Animation_clmft"),
-&"loop": SubResource("Animation_b55y7")
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 15, 5, 10, 0, 0, 0, 0, 0, 0, -15, 5, 10),
+"tilts": PackedFloat32Array(0, 0)
 }
+point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h7j24"]
 size = Vector3(10.5569, 1, 10.504)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3qyhb"]
-size = Vector3(11.8723, 1, 8.54138)
-
 [node name="Demo" type="Node3D" node_paths=PackedStringArray("greenlight")]
 script = ExtResource("1_rnqlt")
-greenlight = NodePath("Level/Greenlight")
+greenlight = NodePath("Level/LitAreaCondition")
 
-[node name="Level" type="Node3D" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("14_u1e67")
 
-[node name="MainCamera" parent="Level" instance=ExtResource("8_y75jf")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_y7lvy")
+}
+autoplay = "RESET"
+
+[node name="MainCamera" parent="." instance=ExtResource("8_y75jf")]
 unique_name_in_owner = true
 physics_interpolation_mode = 1
-transform = Transform3D(0.965768, -0.127609, 0.225851, -7.45058e-09, 0.870638, 0.491925, -0.259408, -0.475085, 0.840834, -0.636149, 5.07874, 13.7176)
+transform = Transform3D(1, -5.9147e-06, 5.7221e-06, 0, 0.695308, 0.718711, -8.22959e-06, -0.718711, 0.695308, -2.88976, 5, 10)
 projection = 0
 size = 6.494
 near = 0.05
 
-[node name="PhantomCameraHost" type="Node" parent="Level/MainCamera"]
+[node name="PhantomCameraHost" type="Node" parent="MainCamera"]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("17_wbscu")
-metadata/_custom_type_script = "uid://d1f3j7hbn4d1o"
 
-[node name="Table" type="Node3D" parent="Level" node_paths=PackedStringArray("look_at_target")]
-transform = Transform3D(0.965766, -0.127609, 0.225851, -7.45057e-09, 0.870637, 0.491925, -0.259408, -0.475085, 0.840833, -0.636149, 5.07874, 13.7176)
+[node name="Path1Follow" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "follow_path", "look_at_target")]
+transform = Transform3D(0.999989, -5.91469e-06, 5.72205e-06, 0, 0.695308, 0.718704, -8.2295e-06, -0.718711, 0.695301, -2.88976, 5, 10)
+top_level = true
 script = ExtResource("15_tfh16")
 priority = 1
+follow_mode = 4
+follow_target = NodePath("../Level/Player")
+follow_path = NodePath("../Path1")
 look_at_mode = 2
-look_at_target = NodePath("../Player")
+look_at_target = NodePath("../Level/Player")
 tween_resource = SubResource("Resource_tfh16")
 camera_3d_resource = ExtResource("8_h7j24")
-metadata/_custom_type_script = "uid://7ylcwe67yvh3"
+follow_damping = true
+follow_damping_value = Vector3(0.25, 0.25, 0.25)
+dead_zone_width = 0.725
+dead_zone_height = 0.601
 
-[node name="Noah" type="Node3D" parent="Level" node_paths=PackedStringArray("look_at_target")]
-transform = Transform3D(-0.415911, -0.239577, 0.877278, 1.49011e-08, 0.964674, 0.263444, -0.909403, 0.10957, -0.401219, 11.7961, 4.58019, -1.38919)
-script = ExtResource("15_tfh16")
-look_at_mode = 2
-look_at_target = NodePath("../Player")
-tween_resource = SubResource("Resource_8pi2b")
-camera_3d_resource = ExtResource("8_h7j24")
-metadata/_custom_type_script = "uid://7ylcwe67yvh3"
+[node name="Level" type="Node3D" parent="."]
 
 [node name="Player" parent="Level" instance=ExtResource("8_tfh16")]
 transform = Transform3D(-0.276879, 0, -0.960905, 0, 1, 0, 0.960905, 0, -0.276879, -2.8898, 0.170065, 5.32734)
@@ -213,17 +218,25 @@ monitorable = false
 transform = Transform3D(90, 0, 0, 0, 90, 0, 0, 0, 90, 0, 0.651489, 0)
 shape = SubResource("CylinderShape3D_2a1cu")
 
-[node name="Lightsource" type="SpotLight3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.47077, 5.58751, 5.10528)
-light_energy = 4.697
+[node name="Lightsource" type="SpotLight3D" parent="Level/LitArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.02371, 0)
+light_energy = 5.347
 light_volumetric_fog_energy = 2.99
 shadow_enabled = true
-spot_range = 32.0094
+spot_range = 7.01042
 spot_angle = 41.7142
 
-[node name="Greenlight" type="SpotLight3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.83306, 4.40838, 7.22268)
+[node name="LitAreaCondition" parent="Level" instance=ExtResource("8_2a1cu")]
+transform = Transform3D(1, 0, 0, 0, 1, 1.06581e-14, 0, -1.06581e-14, 1, 15.0428, 0.563799, 1.98355)
 visible = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/LitAreaCondition"]
+transform = Transform3D(90, 0, 0, 0, 90, 0, 0, 0, 90, 0, 0.651489, 0)
+shape = SubResource("CylinderShape3D_2a1cu")
+
+[node name="Greenlight" type="SpotLight3D" parent="Level/LitAreaCondition"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
 light_color = Color(0.710109, 1, 0.681886, 1)
 light_energy = 4.697
 light_volumetric_fog_energy = 2.99
@@ -232,7 +245,7 @@ spot_range = 22.5086
 spot_angle = 41.7142
 
 [node name="van" type="StaticBody3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45422, 0.992346, -3.27157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1, -3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/van"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11752, 0, 0.010498)
@@ -241,16 +254,8 @@ shape = SubResource("BoxShape3D_i2n7g")
 [node name="BetterTruck" parent="Level/van" instance=ExtResource("1_1wmqt")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.1004, 0.421096, -0.0799606)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Level"]
-material_override = SubResource("StandardMaterial3D_4m83l")
-use_collision = true
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Level/CSGCombiner3D"]
-transform = Transform3D(0.596519, 0, -0.802599, 0, 1, 0, 0.802599, 0, 0.596519, -0.616212, -0.221173, 6.43621)
-size = Vector3(22.979, 0.669922, 23.578)
-
 [node name="CharacterInt" parent="Level" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("3_h1ffd")]
-transform = Transform3D(0.760281, 0, -0.649594, 0, 1, 0, 0.649594, 0, 0.760281, 6.82421, 0.549617, 0.0343536)
+transform = Transform3D(0.824235, 0, 0.566248, 0, 1, 0, -0.566248, 0, 0.824235, -12, 1, 1)
 mesh_instance = NodePath("Cube_001")
 is_character = true
 dialogue_timeline = ExtResource("4_ucxic")
@@ -263,9 +268,16 @@ mesh = SubResource("ArrayMesh_tfh16")
 transform = Transform3D(0.151, 0, -1.49012e-08, 0, 0.151, 0, 1.49012e-08, 0, 0.151, 0, 0.929621, 0.0277366)
 shape = SubResource("ConvexPolygonShape3D_tithr")
 
+[node name="Floor" type="CSGCombiner3D" parent="Level"]
+material_override = SubResource("StandardMaterial3D_4m83l")
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level/Floor"]
+size = Vector3(40, 1, 19)
+
 [node name="GameInt" parent="Level" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("3_h1ffd")]
 unique_name_in_owner = true
-transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, 2.09052, 1.2976, 7.34358)
+transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, 16, 2, 2)
 mesh_instance = NodePath("Donut")
 dialogue_timeline = ExtResource("9_2a1cu")
 
@@ -280,7 +292,7 @@ transform = Transform3D(0.704405, -0.676246, -0.215649, 0.523918, 0.700336, -0.4
 shape = SubResource("ConvexPolygonShape3D_rnqlt")
 
 [node name="WorldInt" parent="Level" node_paths=PackedStringArray("mesh_instance") instance=ExtResource("3_h1ffd")]
-transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, -8.68631, 0.596415, 8.56845)
+transform = Transform3D(0.969128, 0, 0.246559, 0, 1, 0, -0.246559, 0, 0.969128, -3, 1, 8)
 mesh_instance = NodePath("InteractableMesh")
 
 [node name="InteractableMesh" parent="Level/WorldInt" instance=ExtResource("8_wm4cq")]
@@ -290,7 +302,7 @@ mesh = SubResource("BoxMesh_wbscu")
 shape = SubResource("ConvexPolygonShape3D_iwuuq")
 
 [node name="TableTest" type="StaticBody3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44893, 0.999823, 8.14682)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13139, 1.40341, 7.93862)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/TableTest"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.380737, 0)
@@ -299,30 +311,15 @@ shape = SubResource("BoxShape3D_2a1cu")
 [node name="TableTest" parent="Level/TableTest" instance=ExtResource("7_a2pe7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("14_u1e67")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-callback_mode_process = 0
-libraries = {
-&"": SubResource("AnimationLibrary_y7lvy")
-}
-autoplay = "RESET"
+[node name="Path1" type="Path3D" parent="."]
+curve = SubResource("Curve3D_2a1cu")
 
 [node name="FocusArea" parent="." node_paths=PackedStringArray("pcam") instance=ExtResource("12_pb21y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.82256, 0.247147, 7.95332)
-pcam = NodePath("../Level/Table")
+transform = Transform3D(1.675, 0, 0, 0, 1.675, 0, 0, 0, 1.675, -9, 1, 0)
+pcam = NodePath("../Path1Follow")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FocusArea"]
 shape = SubResource("BoxShape3D_h7j24")
-
-[node name="FocusArea2" parent="." node_paths=PackedStringArray("pcam") instance=ExtResource("12_pb21y")]
-transform = Transform3D(0.614602, 0, -0.788837, 0, 1, 0, 0.788837, 0, 0.614602, 4.5803, 0.247147, 3.16083)
-pcam = NodePath("../Level/Noah")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FocusArea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71326, 0, 0)
-shape = SubResource("BoxShape3D_3qyhb")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

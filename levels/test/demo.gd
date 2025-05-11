@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var greenlight: SpotLight3D
+@export var greenlight: Area3D
 @onready var minigame : PackedScene = preload("res://levels/minigames/minigame_placeholder.tscn")
 @onready var game_int: StaticBody3D = %GameInt
 
