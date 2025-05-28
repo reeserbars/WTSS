@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://ck5jc1ni4o8k5" path="res://player/player.gd" id="1_rgyib"]
 [ext_resource type="PackedScene" uid="uid://bxafw8kyswsyx" path="res://player/resources/pistol.blend" id="4_8ftsk"]
 [ext_resource type="AudioStream" uid="uid://b036qvste7k1i" path="res://player/resources/645317__darkshroom__m9_noisegate-1780.ogg" id="5_ay4f6"]
-[ext_resource type="Script" uid="uid://7ylcwe67yvh3" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_rgyib"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_rgyib"]
 [ext_resource type="Texture2D" uid="uid://ogicbc1hvh6i" path="res://player/resources/star_05.png" id="6_0hyi1"]
-[ext_resource type="Script" uid="uid://co36of53adxke" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_hg6s5"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://cfkmuurjmpycf" path="res://player/resources/player_placeholder.png" id="7_0jmht"]
-[ext_resource type="Script" uid="uid://cughph7v6gqi2" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="7_hg6s5"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="7_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://kutm44ohjusm" path="res://objects/character/BetterLowPolyHuman.glb" id="8_p5n6d"]
 
 [sub_resource type="Gradient" id="Gradient_054tn"]
@@ -45,6 +45,7 @@ ease = 2
 
 [sub_resource type="Resource" id="Resource_2ieo8"]
 script = ExtResource("7_hg6s5")
+keep_aspect = 1
 cull_mask = 1048575
 h_offset = 0.0
 v_offset = 0.0
@@ -259,7 +260,6 @@ tween_resource = SubResource("Resource_8t03j")
 camera_3d_resource = SubResource("Resource_2ieo8")
 follow_distance = -0.105
 spring_length = -0.105
-metadata/_custom_type_script = "uid://7ylcwe67yvh3"
 
 [node name="PlayerRay" type="RayCast3D" parent="Pivot/PlayerPhantomCam"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)

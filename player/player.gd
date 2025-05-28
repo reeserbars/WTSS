@@ -30,8 +30,10 @@ func _process(_delta: float) -> void:
 	
 	if Global.debug:
 		Global.debug.add_property("in_lit_area", in_lit_area, 4)
+		Global.debug.add_property("mousemode", Input.mouse_mode, 4)
 	# Check if the aim button is pressed or released
 	
+	update_aim_mode()
 	if Global.is_aiming:
 		rotate_y(-axis_vector.x * controller_sensitivity)
 		pivot.rotate_x(-axis_vector.y * controller_sensitivity)
@@ -40,9 +42,6 @@ func _process(_delta: float) -> void:
 		pivot.rotation.y = clamp(pivot.rotation.y, deg_to_rad(-45),deg_to_rad(45))
 		pivot.rotation.z = clamp(pivot.rotation.z, 0,0)
 	
-	if Input.is_action_just_pressed("aim") or Input.is_action_just_released("aim"):
-		Global.is_aiming = Input.is_action_just_pressed("aim")
-		update_aim_mode()
 
 func _input(event: InputEvent) -> void:
 	
@@ -96,7 +95,7 @@ func update_aim_mode() -> void:
 	if Global.is_aiming:
 		playermodel.hide()
 		player_phantom_cam.set_priority(2)
-		Input.mouse_mode = Input.MOUSE_MODE_MAX
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
 	else:
 		playermodel.show()

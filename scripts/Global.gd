@@ -3,7 +3,7 @@ extends Node
 var debug
 var sensitivity : float =  .0005
 var controller_sensitivity : float =  .010
-var is_aiming : bool = false
+var is_aiming : bool = true
 var frames_per_second
 var insanity : int = 0
 
